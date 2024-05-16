@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "build/FOC.elf",
+            "name": "Debug with OpenOCD",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "configFiles": [
+                "D:/OpenOCD/share/openocd/scripts/interface/cmsis-dap.cfg",
+                "D:/OpenOCD/share/openocd/scripts/target/stm32f4x.cfg"
+            ]
+        }
+    ]
+}

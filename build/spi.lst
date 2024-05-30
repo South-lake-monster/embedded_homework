@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
   28:Core/Src/spi.c **** // 因为这类SPI的屏幕，每次更新显示时，需要先配置坐标区域、再写显存，
   29:Core/Src/spi.c **** // 在显示字符时，如果是一个个点去写坐标写显存，会非常慢，
   30:Core/Src/spi.c **** // 因此开辟一片缓冲区，先将需要显示的数据写进缓冲区，最后再批量写入
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 2
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 2
 
 
   31:Core/Src/spi.c **** // 用户可以根据实际情况去修改此处缓冲区的大小，
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
   67:Core/Src/spi.c ****   hspi3.Init.Direction = SPI_DIRECTION_2LINES;
   47              		.loc 1 67 3 is_stmt 1 view .LVU5
   48              		.loc 1 67 24 is_stmt 0 view .LVU6
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 3
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 3
 
 
   49 000e 0023     		movs	r3, #0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
   84:Core/Src/spi.c **** 
   85:Core/Src/spi.c **** }
   87              		.loc 1 85 1 view .LVU28
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 4
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 4
 
 
   88 0030 08BD     		pop	{r3, pc}
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
   91:Core/Src/spi.c ****   if(spiHandle->Instance==SPI3)
  138              		.loc 1 91 3 is_stmt 1 view .LVU35
  139              		.loc 1 91 15 is_stmt 0 view .LVU36
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 5
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 5
 
 
  140 0012 0268     		ldr	r2, [r0]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  139:Core/Src/spi.c **** 
  140:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspInit 1 */
  141:Core/Src/spi.c ****     // 初始化 背光 引脚  
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 6
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 6
 
 
  142:Core/Src/spi.c **** 		GPIO_InitStruct.Pin 		= LCD_Backlight_PIN;				// 背光 引脚
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  179              	.LBB3:
   95:Core/Src/spi.c ****   /* USER CODE END SPI3_MspInit 0 */
  180              		.loc 1 95 5 view .LVU47
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 7
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 7
 
 
  181 003c 0195     		str	r5, [sp, #4]
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  221 0074 0392     		str	r2, [sp, #12]
  100:Core/Src/spi.c ****     __HAL_RCC_GPIOC_CLK_ENABLE();
  222              		.loc 1 100 5 view .LVU62
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 8
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 8
 
 
  223 0076 039A     		ldr	r2, [sp, #12]
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  260 00a0 05A9     		add	r1, sp, #20
  261 00a2 2148     		ldr	r0, .L13+4
  262              	.LVL5:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 9
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 9
 
 
  112:Core/Src/spi.c **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  126:Core/Src/spi.c ****     hdma_spi3_tx.Init.MemInc = DMA_MINC_ENABLE;
  299              		.loc 1 126 5 is_stmt 1 view .LVU98
  126:Core/Src/spi.c ****     hdma_spi3_tx.Init.MemInc = DMA_MINC_ENABLE;
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 10
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 10
 
 
  300              		.loc 1 126 33 is_stmt 0 view .LVU99
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  335              		.loc 1 138 5 view .LVU118
  142:Core/Src/spi.c **** 		GPIO_InitStruct.Mode 	= GPIO_MODE_OUTPUT_PP;			// 推挽输出模式
  336              		.loc 1 142 3 view .LVU119
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 11
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 11
 
 
  142:Core/Src/spi.c **** 		GPIO_InitStruct.Mode 	= GPIO_MODE_OUTPUT_PP;			// 推挽输出模式
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  373              		.loc 1 153 3 is_stmt 1 view .LVU137
  374 0112 05A9     		add	r1, sp, #20
  375 0114 2846     		mov	r0, r5
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 12
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 12
 
 
  376 0116 FFF7FEFF 		bl	HAL_GPIO_Init
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  425              		.cfi_offset 4, -8
  426              		.cfi_offset 14, -4
  427 000c 0446     		mov	r4, r0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 13
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 13
 
 
  162:Core/Src/spi.c ****   {
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  459 0040 00080240 		.word	1073874944
  460              		.cfi_endproc
  461              	.LFE172:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 14
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 14
 
 
  463              		.section	.text.LCD_WriteCommand,"ax",%progbits
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  503 0022 03B0     		add	sp, sp, #12
  504              	.LCFI8:
  505              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 15
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 15
 
 
  506              		@ sp needed
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  548              		.loc 1 213 4 view .LVU164
  549 0012 4FF47A73 		mov	r3, #1000
  550 0016 0122     		movs	r2, #1
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 16
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 16
 
 
  551 0018 0DF10701 		add	r1, sp, #7
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  593              		.loc 1 227 21 is_stmt 0 view .LVU170
  594 0004 030A     		lsrs	r3, r0, #8
  595 0006 8DF80430 		strb	r3, [sp, #4]
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 17
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 17
 
 
  228:Core/Src/spi.c ****    lcd_data_buff[1] = lcd_data;
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  645              		.syntax unified
  646              		.thumb
  647              		.thumb_func
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 18
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 18
 
 
  649              	LCD_WriteBuff:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  689 001e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  690 0020 002B     		cmp	r3, #0
  691 0022 FBD0     		beq	.L38
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 19
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 19
 
 
  692              		.loc 1 247 2 discriminator 2 view .LVU193
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  276:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x35);     // VGH = 13.26V，VGL = -10.43V
  277:Core/Src/spi.c **** 
  278:Core/Src/spi.c **** 	LCD_WriteCommand(0xBB);			// 公共电压设置指令
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 20
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 20
 
 
  279:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x19);     // VCOM = 1.35V
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  333:Core/Src/spi.c **** 
  334:Core/Src/spi.c ****  	// 退出休眠指令，LCD控制器在刚上电、复位时，会自动进入休眠模式 ，因
  335:Core/Src/spi.c **** 	LCD_WriteCommand(0x11);       // 退出休眠 指令
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 21
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 21
 
 
  336:Core/Src/spi.c ****    	HAL_Delay(120);               // 需要等待120ms，让电源电压和时钟电路稳定下来
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  744              		.loc 1 365 2 is_stmt 1 view .LVU201
  745              		.loc 1 365 28 is_stmt 0 view .LVU202
  746 0012 0F4C     		ldr	r4, .L44
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 22
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 22
 
 
  747 0014 A37A     		ldrb	r3, [r4, #10]	@ zero_extendqisi2
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  794              		.section	.text.LCD_SetColor,"ax",%progbits
  795              		.align	1
  796              		.global	LCD_SetColor
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 23
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 23
 
 
  797              		.syntax unified
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  396:Core/Src/spi.c **** *	函数功能:	设置背景色,此函数用于清屏以及显示字符的背景色
  397:Core/Src/spi.c **** *
  398:Core/Src/spi.c **** *	说    明:	1. 为了方便用户使用自定义颜色，入口参数 Color 使用24位 RGB888的
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 24
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 24
 
 
  399:Core/Src/spi.c **** *					2. 24位的颜色中，从高位到低位分别对应 R、G、B  3个颜色通道
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  867              		.cfi_def_cfa_offset 8
  868              		.cfi_offset 3, -8
  869              		.cfi_offset 14, -4
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 25
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 25
 
 
  420:Core/Src/spi.c **** 	LCD.Direction = direction;    // 写入全局LCD参数
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  453:Core/Src/spi.c ****       LCD.X_Offset   = 0;              // 设置控制器坐标偏移量
  454:Core/Src/spi.c ****       LCD.Y_Offset   = 20;     
  455:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋值长、宽
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 26
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 26
 
 
  456:Core/Src/spi.c ****       LCD.Height     = LCD_Height;				
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  929 003a FFF7FEFF 		bl	LCD_WriteCommand
  930              	.LVL57:
  434:Core/Src/spi.c ****       LCD.X_Offset   = 0;              // 设置控制器坐标偏移量
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 27
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 27
 
 
  931              		.loc 1 434 7 is_stmt 1 view .LVU250
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  445:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		 // 重新赋值长、宽
  971              		.loc 1 445 22 is_stmt 0 view .LVU265
  972 006c 0022     		movs	r2, #0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 28
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 28
 
 
  973 006e DA72     		strb	r2, [r3, #11]
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1012              		.loc 1 458 1 view .LVU281
  1013 009c BAE7     		b	.L52
  1014              	.L63:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 29
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 29
 
 
  1015 009e 00BF     		.align	2
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1057              	.LFB183:
  475:Core/Src/spi.c **** 
  476:Core/Src/spi.c **** /**************************************************************************************************
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 30
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 30
 
 
  477:Core/Src/spi.c **** *	函 数 名:	LCD_Clear
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1094              		.loc 1 490 4 is_stmt 1 view .LVU298
  1095              		.loc 1 490 26 is_stmt 0 view .LVU299
  1096 0018 114B     		ldr	r3, .L74
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 31
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 31
 
 
  1097              	.LVL71:
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  492:Core/Src/spi.c **** 	for(int j=0; j<75; j++)
  1146              		.loc 1 492 21 discriminator 2 view .LVU315
  492:Core/Src/spi.c **** 	for(int j=0; j<75; j++)
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 32
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 32
 
 
  1147              		.loc 1 492 22 is_stmt 0 discriminator 2 view .LVU316
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1182              		.cfi_startproc
  1183              		@ args = 0, pretend = 0, frame = 0
  1184              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 33
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 33
 
 
  1185              		.loc 1 514 1 is_stmt 0 view .LVU322
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1233              		.loc 1 520 2 discriminator 1 view .LVU337
  1234              		.loc 1 520 2 discriminator 1 view .LVU338
  1235 0036 074B     		ldr	r3, .L79+12
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 34
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 34
 
 
  1236 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1276 0002 0B46     		mov	r3, r1
  1277 0004 1446     		mov	r4, r2
  537:Core/Src/spi.c **** 	LCD_SetAddress(x,y,x,y);	//	设置坐标 
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 35
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 35
 
 
  1278              		.loc 1 537 2 is_stmt 1 view .LVU344
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1313              		.cfi_offset 6, -16
  1314              		.cfi_offset 7, -12
  1315              		.cfi_offset 8, -8
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 36
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 36
 
 
  1316              		.cfi_offset 14, -4
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1348              		.loc 1 578 4 is_stmt 1 view .LVU364
  1349              		.loc 1 578 5 is_stmt 0 view .LVU365
  1350 0020 0EF1010E 		add	lr, lr, #1
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 37
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 37
 
 
  1351              	.LVL93:
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  581:Core/Src/spi.c **** 			{								   // 进入下一字符的写入的绘制
  582:Core/Src/spi.c **** 				w = 0;
  1393              		.loc 1 582 7 view .LVU383
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 38
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 38
 
 
  1394 0054 0023     		movs	r3, #0
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1430 0072 AA88     		ldrh	r2, [r5, #4]
  1431              		.loc 1 587 27 view .LVU399
  1432 0074 0244     		add	r2, r2, r0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 39
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 39
 
 
  1433 0076 92B2     		uxth	r2, r2
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  594:Core/Src/spi.c **** *	入口参数:	x - 起始水平坐标
  595:Core/Src/spi.c **** *					y - 起始垂直坐标
  596:Core/Src/spi.c **** *					p - ASCII字符串的首地址
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 40
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 40
 
 
  597:Core/Src/spi.c **** *
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1521 001c 0135     		adds	r5, r5, #1
  1522              	.LVL113:
  1523              	.L97:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 41
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 41
 
 
  608:Core/Src/spi.c **** 	{
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1559              		.loc 1 628 1 is_stmt 1 view -0
  1560              		.cfi_startproc
  1561              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 42
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 42
 
 
  1562              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1610              		.loc 1 264 2 view .LVU436
  1611 0018 3A20     		movs	r0, #58
  1612 001a FFF7FEFF 		bl	LCD_WriteCommand
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 43
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 43
 
 
  1613              	.LVL120:
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1656 005c FFF7FEFF 		bl	LCD_WriteData_8bit
  1657              	.LVL131:
  281:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x2C);
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 44
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 44
 
 
  1658              		.loc 1 281 2 view .LVU448
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  297:Core/Src/spi.c **** 	LCD_WriteData_8bit(0xA1);     // AVDD = 6.8V ，AVDD = -4.8V ，VDS = 2.3V
  1702              		.loc 1 297 2 view .LVU459
  1703 00a2 A420     		movs	r0, #164
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 45
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 45
 
 
  1704 00a4 FFF7FEFF 		bl	LCD_WriteData_8bit
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1747 00e4 4C20     		movs	r0, #76
  1748 00e6 FFF7FEFF 		bl	LCD_WriteData_8bit
  1749              	.LVL154:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 46
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 46
 
 
  310:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0D);
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1793              	.LVL165:
  322:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x3F);
  1794              		.loc 1 322 2 view .LVU482
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 47
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 47
 
 
  1795 012c 2C20     		movs	r0, #44
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1838              		.loc 1 336 5 view .LVU493
  1839 016e 7820     		movs	r0, #120
  1840 0170 FFF7FEFF 		bl	HAL_Delay
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 48
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 48
 
 
  1841              	.LVL177:
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1886              		.section	.rodata.LCD_DisplayNumber.str1.4,"aMS",%progbits,1
  1887              		.align	2
  1888              	.LC0:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 49
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 49
 
 
  1889 0000 25302E2A 		.ascii	"%0.*d\000"
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  1923              	.LVL188:
  651:Core/Src/spi.c **** 	char   Number_Buffer[15];				// 用于存储转换后的字符串
  1924              		.loc 1 651 2 is_stmt 1 view .LVU507
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 50
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 50
 
 
  652:Core/Src/spi.c **** 
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  659:Core/Src/spi.c **** 	}
  1965              		.loc 1 659 3 is_stmt 0 view .LVU518
  1966 002e 6846     		mov	r0, sp
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 51
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 51
 
 
  1967              	.LVL196:
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  675:Core/Src/spi.c **** *							示例2：小数 -123.123 ，指定 len =10 的话，则实际输出   -123.123(负号前�
  676:Core/Src/spi.c **** *							示例3：小数 -123.123 ，指定 len =10 的话，当调用函数 LCD_ShowNumMode() 设�
  677:Core/Src/spi.c **** *
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 52
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 52
 
 
  678:Core/Src/spi.c **** *					decs - 要保留的小数位数，若小数的实际位数超过了指定的小数位，则�
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  2045              	.LVL200:
  2046              	.L118:
  695:Core/Src/spi.c **** 	{
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 53
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 53
 
 
  696:Core/Src/spi.c ****         Number_Buffer[i] = ' ';
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  708:Core/Src/spi.c ****     double dec_part = decimals - int_part;
  2084              		.loc 1 708 5 is_stmt 1 view .LVU543
  2085              		.loc 1 708 32 is_stmt 0 view .LVU544
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 54
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 54
 
 
  2086 0050 B8EEE87A 		vcvt.f32.s32	s14, s17
@@ -3221,7 +3221,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  2116              		.loc 1 712 9 is_stmt 1 discriminator 3 view .LVU556
  2117              		.loc 1 712 18 is_stmt 0 discriminator 3 view .LVU557
  2118 006a 0022     		movs	r2, #0
- 2119 006c 4C4B     		ldr	r3, .L147
+ 2119 006c 4E4B     		ldr	r3, .L147
  2120 006e FFF7FEFF 		bl	__aeabi_dmul
  2121              	.LVL212:
  710:Core/Src/spi.c **** 	{
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  710:Core/Src/spi.c **** 	{
  2130              		.loc 1 710 25 is_stmt 1 discriminator 1 view .LVU561
  710:Core/Src/spi.c **** 	{
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 55
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 55
 
 
  2131              		.loc 1 710 5 is_stmt 0 discriminator 1 view .LVU562
@@ -3274,7 +3274,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  720:Core/Src/spi.c ****     sprintf(int_buffer, "%d", int_part);
  2153              		.loc 1 720 5 view .LVU572
  2154 008c 18EE902A 		vmov	r2, s17	@ int
- 2155 0090 4449     		ldr	r1, .L147+4
+ 2155 0090 4649     		ldr	r1, .L147+4
  2156 0092 0FA8     		add	r0, sp, #60
  2157              	.LVL219:
  2158              		.loc 1 720 5 is_stmt 0 view .LVU573
@@ -3287,7 +3287,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  2162              		.loc 1 723 5 view .LVU575
  2163 0098 2346     		mov	r3, r4
  2164 009a 2A46     		mov	r2, r5
- 2165 009c 4249     		ldr	r1, .L147+8
+ 2165 009c 4449     		ldr	r1, .L147+8
  2166 009e 0AA8     		add	r0, sp, #40
  2167 00a0 FFF7FEFF 		bl	sprintf
  2168              	.LVL221:
@@ -3297,8 +3297,8 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  726:Core/Src/spi.c ****     if (decs > 0) 
  2170              		.loc 1 726 5 view .LVU577
  2171              		.loc 1 726 8 is_stmt 0 view .LVU578
- 2172 00a4 B5B1     		cbz	r5, .L123
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 56
+ 2172 00a4 CDB1     		cbz	r5, .L123
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 56
 
 
  727:Core/Src/spi.c **** 	{
@@ -3306,7 +3306,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  2173              		.loc 1 728 9 is_stmt 1 view .LVU579
  2174 00a6 0AAB     		add	r3, sp, #40
  2175 00a8 0FAA     		add	r2, sp, #60
- 2176 00aa 4049     		ldr	r1, .L147+12
+ 2176 00aa 4249     		ldr	r1, .L147+12
  2177 00ac 6846     		mov	r0, sp
  2178 00ae FFF7FEFF 		bl	sprintf
  2179              	.LVL222:
@@ -3320,12 +3320,12 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  735:Core/Src/spi.c **** 	if( LCD.ShowNum_Mode == Fill_Zero)	// 多余位填充0模式
  2181              		.loc 1 735 2 view .LVU580
  2182              		.loc 1 735 9 is_stmt 0 view .LVU581
- 2183 00b2 3F4B     		ldr	r3, .L147+16
+ 2183 00b2 414B     		ldr	r3, .L147+16
  2184 00b4 1C79     		ldrb	r4, [r3, #4]	@ zero_extendqisi2
  2185              	.LVL223:
  2186              		.loc 1 735 4 view .LVU582
  2187 00b6 002C     		cmp	r4, #0
- 2188 00b8 3ED1     		bne	.L125
+ 2188 00b8 40D1     		bne	.L125
  2189              	.LBB12:
  736:Core/Src/spi.c **** 	{
  737:Core/Src/spi.c **** 		uint8_t combined_len = (uint8_t)strlen(combined);
@@ -3339,137 +3339,133 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  2196              		.loc 1 738 6 is_stmt 0 view .LVU586
  2197 00c0 B5EEC08A 		vcmpe.f32	s16, #0
  2198 00c4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 2199 00c8 23D5     		bpl	.L126
+ 2199 00c8 25D5     		bpl	.L126
  739:Core/Src/spi.c **** 		{
- 740:Core/Src/spi.c **** 			buffer[0] = '-';
+ 740:Core/Src/spi.c **** 			buffer[len - combined_len] = '-';
  2200              		.loc 1 740 4 is_stmt 1 view .LVU587
- 2201              		.loc 1 740 14 is_stmt 0 view .LVU588
- 2202 00ca 2D23     		movs	r3, #45
- 2203 00cc 8DF85030 		strb	r3, [sp, #80]
- 741:Core/Src/spi.c ****             for (uint8_t i = 1; i < len - combined_len + 1; i++) 
- 2204              		.loc 1 741 13 is_stmt 1 view .LVU589
- 2205              	.LBB13:
- 2206              		.loc 1 741 18 view .LVU590
- 2207              	.LVL225:
- 2208              		.loc 1 741 26 is_stmt 0 view .LVU591
- 2209 00d0 0123     		movs	r3, #1
- 2210              		.loc 1 741 13 view .LVU592
- 2211 00d2 0CE0     		b	.L128
+ 2201              		.loc 1 740 15 is_stmt 0 view .LVU588
+ 2202 00ca 301A     		subs	r0, r6, r0
+ 2203              	.LVL225:
+ 2204              		.loc 1 740 31 view .LVU589
+ 2205 00cc 00F1A003 		add	r3, r0, #160
+ 2206 00d0 6B44     		add	r3, sp, r3
+ 2207 00d2 2D22     		movs	r2, #45
+ 2208 00d4 03F8502C 		strb	r2, [r3, #-80]
+ 741:Core/Src/spi.c ****             for (uint8_t i = 0; i < len - combined_len; i++) 
+ 2209              		.loc 1 741 13 is_stmt 1 view .LVU590
+ 2210              	.LBB13:
+ 2211              		.loc 1 741 18 view .LVU591
  2212              	.LVL226:
- 2213              	.L123:
- 2214              		.loc 1 741 13 view .LVU593
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 57
+ 2213              		.loc 1 741 13 is_stmt 0 view .LVU592
+ 2214 00d8 0CE0     		b	.L128
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 57
 
 
- 2215              	.LBE13:
- 2216              	.LBE12:
+ 2215              	.LVL227:
+ 2216              	.L123:
+ 2217              		.loc 1 741 13 view .LVU593
+ 2218              	.LBE13:
+ 2219              	.LBE12:
  732:Core/Src/spi.c ****     }
- 2217              		.loc 1 732 9 is_stmt 1 view .LVU594
- 2218 00d4 0FA9     		add	r1, sp, #60
- 2219 00d6 6846     		mov	r0, sp
- 2220 00d8 FFF7FEFF 		bl	strcpy
- 2221              	.LVL227:
- 2222 00dc E9E7     		b	.L124
- 2223              	.LVL228:
- 2224              	.L129:
- 2225              	.LBB16:
- 2226              	.LBB14:
+ 2220              		.loc 1 732 9 is_stmt 1 view .LVU594
+ 2221 00da 0FA9     		add	r1, sp, #60
+ 2222 00dc 6846     		mov	r0, sp
+ 2223 00de FFF7FEFF 		bl	strcpy
+ 2224              	.LVL228:
+ 2225 00e2 E6E7     		b	.L124
+ 2226              	.LVL229:
+ 2227              	.L129:
+ 2228              	.LBB16:
+ 2229              	.LBB14:
  742:Core/Src/spi.c **** 			{
  743:Core/Src/spi.c ****                 buffer[i] = '0';
- 2227              		.loc 1 743 17 discriminator 3 view .LVU595
- 2228              		.loc 1 743 27 is_stmt 0 discriminator 3 view .LVU596
- 2229 00de 03F1A002 		add	r2, r3, #160
- 2230 00e2 6A44     		add	r2, sp, r2
- 2231 00e4 3021     		movs	r1, #48
- 2232 00e6 02F8501C 		strb	r1, [r2, #-80]
+ 2230              		.loc 1 743 17 discriminator 3 view .LVU595
+ 2231              		.loc 1 743 27 is_stmt 0 discriminator 3 view .LVU596
+ 2232 00e4 04F1A003 		add	r3, r4, #160
+ 2233 00e8 6B44     		add	r3, sp, r3
+ 2234 00ea 3022     		movs	r2, #48
+ 2235 00ec 03F8502C 		strb	r2, [r3, #-80]
  741:Core/Src/spi.c **** 			{
- 2233              		.loc 1 741 61 is_stmt 1 discriminator 3 view .LVU597
+ 2236              		.loc 1 741 57 is_stmt 1 discriminator 3 view .LVU597
  741:Core/Src/spi.c **** 			{
- 2234              		.loc 1 741 62 is_stmt 0 discriminator 3 view .LVU598
- 2235 00ea 0133     		adds	r3, r3, #1
- 2236              	.LVL229:
- 741:Core/Src/spi.c **** 			{
- 2237              		.loc 1 741 62 discriminator 3 view .LVU599
- 2238 00ec DBB2     		uxtb	r3, r3
+ 2237              		.loc 1 741 58 is_stmt 0 discriminator 3 view .LVU598
+ 2238 00f0 0134     		adds	r4, r4, #1
  2239              	.LVL230:
- 2240              	.L128:
  741:Core/Src/spi.c **** 			{
- 2241              		.loc 1 741 33 is_stmt 1 discriminator 1 view .LVU600
+ 2240              		.loc 1 741 58 discriminator 3 view .LVU599
+ 2241 00f2 E4B2     		uxtb	r4, r4
+ 2242              	.LVL231:
+ 2243              	.L128:
  741:Core/Src/spi.c **** 			{
- 2242              		.loc 1 741 41 is_stmt 0 discriminator 1 view .LVU601
- 2243 00ee 321A     		subs	r2, r6, r0
+ 2244              		.loc 1 741 33 is_stmt 1 discriminator 1 view .LVU600
  741:Core/Src/spi.c **** 			{
- 2244              		.loc 1 741 13 discriminator 1 view .LVU602
- 2245 00f0 9A42     		cmp	r2, r3
- 2246 00f2 F4DA     		bge	.L129
- 2247              	.LBE14:
+ 2245              		.loc 1 741 13 is_stmt 0 discriminator 1 view .LVU601
+ 2246 00f4 A042     		cmp	r0, r4
+ 2247 00f6 F5DC     		bgt	.L129
+ 2248              	.LBE14:
  744:Core/Src/spi.c ****             }
  745:Core/Src/spi.c **** 			sprintf(Number_Buffer, "%s%s", buffer, combined);
- 2248              		.loc 1 745 4 is_stmt 1 view .LVU603
- 2249 00f4 6B46     		mov	r3, sp
- 2250              	.LVL231:
- 2251              		.loc 1 745 4 is_stmt 0 view .LVU604
- 2252 00f6 14AA     		add	r2, sp, #80
- 2253 00f8 2E49     		ldr	r1, .L147+20
- 2254 00fa 1EA8     		add	r0, sp, #120
+ 2249              		.loc 1 745 4 is_stmt 1 view .LVU602
+ 2250 00f8 6B46     		mov	r3, sp
+ 2251 00fa 14AA     		add	r2, sp, #80
+ 2252 00fc 2F49     		ldr	r1, .L147+20
+ 2253 00fe 1EA8     		add	r0, sp, #120
+ 2254 0100 FFF7FEFF 		bl	sprintf
  2255              	.LVL232:
- 2256              		.loc 1 745 4 view .LVU605
- 2257 00fc FFF7FEFF 		bl	sprintf
- 2258              	.LVL233:
- 2259 0100 10E0     		b	.L130
- 2260              	.LVL234:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 58
-
-
- 2261              	.L131:
- 2262              	.LBB15:
+ 2256 0104 10E0     		b	.L130
+ 2257              	.LVL233:
+ 2258              	.L131:
+ 2259              	.LBB15:
  746:Core/Src/spi.c **** 		}
  747:Core/Src/spi.c **** 		else
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 58
+
+
  748:Core/Src/spi.c **** 		{
  749:Core/Src/spi.c **** 			for (uint8_t i = 0; i < len - combined_len; i++) 
  750:Core/Src/spi.c **** 			{
  751:Core/Src/spi.c **** 				buffer[i] = '0';
- 2263              		.loc 1 751 5 is_stmt 1 discriminator 3 view .LVU606
- 2264              		.loc 1 751 15 is_stmt 0 discriminator 3 view .LVU607
- 2265 0102 04F1A003 		add	r3, r4, #160
- 2266 0106 6B44     		add	r3, sp, r3
- 2267 0108 3022     		movs	r2, #48
- 2268 010a 03F8502C 		strb	r2, [r3, #-80]
+ 2260              		.loc 1 751 5 discriminator 3 view .LVU603
+ 2261              		.loc 1 751 15 is_stmt 0 discriminator 3 view .LVU604
+ 2262 0106 04F1A003 		add	r3, r4, #160
+ 2263 010a 6B44     		add	r3, sp, r3
+ 2264 010c 3022     		movs	r2, #48
+ 2265 010e 03F8502C 		strb	r2, [r3, #-80]
  749:Core/Src/spi.c **** 			{
- 2269              		.loc 1 749 48 is_stmt 1 discriminator 3 view .LVU608
+ 2266              		.loc 1 749 48 is_stmt 1 discriminator 3 view .LVU605
  749:Core/Src/spi.c **** 			{
- 2270              		.loc 1 749 49 is_stmt 0 discriminator 3 view .LVU609
- 2271 010e 0134     		adds	r4, r4, #1
+ 2267              		.loc 1 749 49 is_stmt 0 discriminator 3 view .LVU606
+ 2268 0112 0134     		adds	r4, r4, #1
+ 2269              	.LVL234:
+ 749:Core/Src/spi.c **** 			{
+ 2270              		.loc 1 749 49 discriminator 3 view .LVU607
+ 2271 0114 E4B2     		uxtb	r4, r4
  2272              	.LVL235:
+ 2273              	.L126:
  749:Core/Src/spi.c **** 			{
- 2273              		.loc 1 749 49 discriminator 3 view .LVU610
- 2274 0110 E4B2     		uxtb	r4, r4
- 2275              	.LVL236:
- 2276              	.L126:
+ 2274              		.loc 1 749 24 is_stmt 1 discriminator 1 view .LVU608
  749:Core/Src/spi.c **** 			{
- 2277              		.loc 1 749 24 is_stmt 1 discriminator 1 view .LVU611
+ 2275              		.loc 1 749 32 is_stmt 0 discriminator 1 view .LVU609
+ 2276 0116 331A     		subs	r3, r6, r0
  749:Core/Src/spi.c **** 			{
- 2278              		.loc 1 749 32 is_stmt 0 discriminator 1 view .LVU612
- 2279 0112 331A     		subs	r3, r6, r0
- 749:Core/Src/spi.c **** 			{
- 2280              		.loc 1 749 4 discriminator 1 view .LVU613
- 2281 0114 9C42     		cmp	r4, r3
- 2282 0116 F4DB     		blt	.L131
- 2283              	.LBE15:
+ 2277              		.loc 1 749 4 discriminator 1 view .LVU610
+ 2278 0118 9C42     		cmp	r4, r3
+ 2279 011a F4DB     		blt	.L131
+ 2280              	.LBE15:
  752:Core/Src/spi.c **** 			}
  753:Core/Src/spi.c **** 			sprintf(Number_Buffer, "%s%s", buffer, combined);
- 2284              		.loc 1 753 4 is_stmt 1 view .LVU614
- 2285 0118 6B46     		mov	r3, sp
- 2286 011a 14AA     		add	r2, sp, #80
- 2287 011c 2549     		ldr	r1, .L147+20
- 2288 011e 1EA8     		add	r0, sp, #120
+ 2281              		.loc 1 753 4 is_stmt 1 view .LVU611
+ 2282 011c 6B46     		mov	r3, sp
+ 2283 011e 14AA     		add	r2, sp, #80
+ 2284 0120 2649     		ldr	r1, .L147+20
+ 2285 0122 1EA8     		add	r0, sp, #120
+ 2286              	.LVL236:
+ 2287              		.loc 1 753 4 is_stmt 0 view .LVU612
+ 2288 0124 FFF7FEFF 		bl	sprintf
  2289              	.LVL237:
- 2290              		.loc 1 753 4 is_stmt 0 view .LVU615
- 2291 0120 FFF7FEFF 		bl	sprintf
- 2292              	.LVL238:
- 2293              	.L130:
- 2294              		.loc 1 753 4 view .LVU616
- 2295              	.LBE16:
+ 2290              	.L130:
+ 2291              		.loc 1 753 4 view .LVU613
+ 2292              	.LBE16:
  754:Core/Src/spi.c **** 		}
  755:Core/Src/spi.c **** 		
  756:Core/Src/spi.c **** 	}
@@ -3478,13 +3474,13 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  759:Core/Src/spi.c **** 		uint8_t combined_len = (uint8_t)strlen(combined);
  760:Core/Src/spi.c **** 		if (negative)
  761:Core/Src/spi.c **** 		{
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 59
-
-
- 762:Core/Src/spi.c **** 			buffer[0] = '-';
- 763:Core/Src/spi.c **** 			for (uint8_t i = 1; i < len - combined_len + 1; i++) 
+ 762:Core/Src/spi.c **** 			buffer[len - combined_len] = '-';
+ 763:Core/Src/spi.c **** 			for (uint8_t i = 0; i < len - combined_len; i++) 
  764:Core/Src/spi.c **** 			{
  765:Core/Src/spi.c **** 				buffer[i] = ' ';
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 59
+
+
  766:Core/Src/spi.c **** 			}
  767:Core/Src/spi.c **** 			sprintf(Number_Buffer, "%s%s", buffer, combined);
  768:Core/Src/spi.c **** 		}
@@ -3498,337 +3494,337 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 1
  776:Core/Src/spi.c **** 		}	
  777:Core/Src/spi.c **** 	}
  778:Core/Src/spi.c **** 	LCD_DisplayString( x, y, (char *)Number_Buffer) ;	// 将转换得到的字符串显示出来
- 2296              		.loc 1 778 2 is_stmt 1 view .LVU617
- 2297 0124 1EAA     		add	r2, sp, #120
- 2298 0126 4146     		mov	r1, r8
- 2299 0128 3846     		mov	r0, r7
- 2300 012a FFF7FEFF 		bl	LCD_DisplayString
- 2301              	.LVL239:
+ 2293              		.loc 1 778 2 is_stmt 1 view .LVU614
+ 2294 0128 1EAA     		add	r2, sp, #120
+ 2295 012a 4146     		mov	r1, r8
+ 2296 012c 3846     		mov	r0, r7
+ 2297 012e FFF7FEFF 		bl	LCD_DisplayString
+ 2298              	.LVL238:
  779:Core/Src/spi.c **** }
- 2302              		.loc 1 779 1 is_stmt 0 view .LVU618
- 2303 012e 28B0     		add	sp, sp, #160
- 2304              	.LCFI31:
- 2305              		.cfi_remember_state
- 2306              		.cfi_def_cfa_offset 32
- 2307              		@ sp needed
- 2308 0130 BDEC028B 		vldm	sp!, {d8}
- 2309              	.LCFI32:
- 2310              		.cfi_restore 80
- 2311              		.cfi_restore 81
- 2312              		.cfi_def_cfa_offset 24
+ 2299              		.loc 1 779 1 is_stmt 0 view .LVU615
+ 2300 0132 28B0     		add	sp, sp, #160
+ 2301              	.LCFI31:
+ 2302              		.cfi_remember_state
+ 2303              		.cfi_def_cfa_offset 32
+ 2304              		@ sp needed
+ 2305 0134 BDEC028B 		vldm	sp!, {d8}
+ 2306              	.LCFI32:
+ 2307              		.cfi_restore 80
+ 2308              		.cfi_restore 81
+ 2309              		.cfi_def_cfa_offset 24
+ 2310              	.LVL239:
+ 2311              		.loc 1 779 1 view .LVU616
+ 2312 0138 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
  2313              	.LVL240:
- 2314              		.loc 1 779 1 view .LVU619
- 2315 0134 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 2316              	.LVL241:
- 2317              	.L125:
- 2318              	.LCFI33:
- 2319              		.cfi_restore_state
- 2320              	.LBB17:
+ 2314              	.L125:
+ 2315              	.LCFI33:
+ 2316              		.cfi_restore_state
+ 2317              	.LBB17:
  759:Core/Src/spi.c **** 		if (negative)
- 2321              		.loc 1 759 3 is_stmt 1 view .LVU620
+ 2318              		.loc 1 759 3 is_stmt 1 view .LVU617
  759:Core/Src/spi.c **** 		if (negative)
- 2322              		.loc 1 759 35 is_stmt 0 view .LVU621
- 2323 0138 6846     		mov	r0, sp
- 2324 013a FFF7FEFF 		bl	strlen
- 2325              	.LVL242:
+ 2319              		.loc 1 759 35 is_stmt 0 view .LVU618
+ 2320 013c 6846     		mov	r0, sp
+ 2321 013e FFF7FEFF 		bl	strlen
+ 2322              	.LVL241:
  760:Core/Src/spi.c **** 		{
- 2326              		.loc 1 760 3 is_stmt 1 view .LVU622
+ 2323              		.loc 1 760 3 is_stmt 1 view .LVU619
  760:Core/Src/spi.c **** 		{
- 2327              		.loc 1 760 6 is_stmt 0 view .LVU623
- 2328 013e B5EEC08A 		vcmpe.f32	s16, #0
- 2329 0142 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
- 2330 0146 01D4     		bmi	.L146
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 60
-
-
- 2331              	.LBB18:
+ 2324              		.loc 1 760 6 is_stmt 0 view .LVU620
+ 2325 0142 B5EEC08A 		vcmpe.f32	s16, #0
+ 2326 0146 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 2327 014a 01D4     		bmi	.L146
+ 2328              	.LBB18:
  771:Core/Src/spi.c **** 			{
- 2332              		.loc 1 771 17 view .LVU624
- 2333 0148 0023     		movs	r3, #0
- 2334 014a 1EE0     		b	.L132
- 2335              	.L146:
- 2336              	.LBE18:
- 762:Core/Src/spi.c **** 			for (uint8_t i = 1; i < len - combined_len + 1; i++) 
- 2337              		.loc 1 762 4 is_stmt 1 view .LVU625
- 762:Core/Src/spi.c **** 			for (uint8_t i = 1; i < len - combined_len + 1; i++) 
- 2338              		.loc 1 762 14 is_stmt 0 view .LVU626
- 2339 014c 2D23     		movs	r3, #45
- 2340 014e 8DF85030 		strb	r3, [sp, #80]
+ 2329              		.loc 1 771 17 view .LVU621
+ 2330 014c 0023     		movs	r3, #0
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 60
+
+
+ 2331 014e 21E0     		b	.L132
+ 2332              	.L146:
+ 2333              	.LBE18:
+ 762:Core/Src/spi.c **** 			for (uint8_t i = 0; i < len - combined_len; i++) 
+ 2334              		.loc 1 762 4 is_stmt 1 view .LVU622
+ 762:Core/Src/spi.c **** 			for (uint8_t i = 0; i < len - combined_len; i++) 
+ 2335              		.loc 1 762 15 is_stmt 0 view .LVU623
+ 2336 0150 301A     		subs	r0, r6, r0
+ 2337              	.LVL242:
+ 762:Core/Src/spi.c **** 			for (uint8_t i = 0; i < len - combined_len; i++) 
+ 2338              		.loc 1 762 31 view .LVU624
+ 2339 0152 00F1A003 		add	r3, r0, #160
+ 2340 0156 6B44     		add	r3, sp, r3
+ 2341 0158 2D22     		movs	r2, #45
+ 2342 015a 03F8502C 		strb	r2, [r3, #-80]
  763:Core/Src/spi.c **** 			{
- 2341              		.loc 1 763 4 is_stmt 1 view .LVU627
- 2342              	.LBB19:
+ 2343              		.loc 1 763 4 is_stmt 1 view .LVU625
+ 2344              	.LBB19:
  763:Core/Src/spi.c **** 			{
- 2343              		.loc 1 763 9 view .LVU628
- 2344              	.LVL243:
+ 2345              		.loc 1 763 9 view .LVU626
+ 2346              	.LVL243:
  763:Core/Src/spi.c **** 			{
- 2345              		.loc 1 763 17 is_stmt 0 view .LVU629
- 2346 0152 0123     		movs	r3, #1
+ 2347              		.loc 1 763 17 is_stmt 0 view .LVU627
+ 2348 015e 0023     		movs	r3, #0
  763:Core/Src/spi.c **** 			{
- 2347              		.loc 1 763 4 view .LVU630
- 2348 0154 07E0     		b	.L134
- 2349              	.LVL244:
- 2350              	.L135:
+ 2349              		.loc 1 763 4 view .LVU628
+ 2350 0160 07E0     		b	.L134
+ 2351              	.LVL244:
+ 2352              	.L135:
  765:Core/Src/spi.c **** 			}
- 2351              		.loc 1 765 5 is_stmt 1 discriminator 3 view .LVU631
+ 2353              		.loc 1 765 5 is_stmt 1 discriminator 3 view .LVU629
  765:Core/Src/spi.c **** 			}
- 2352              		.loc 1 765 15 is_stmt 0 discriminator 3 view .LVU632
- 2353 0156 03F1A002 		add	r2, r3, #160
- 2354 015a 6A44     		add	r2, sp, r2
- 2355 015c 2021     		movs	r1, #32
- 2356 015e 02F8501C 		strb	r1, [r2, #-80]
+ 2354              		.loc 1 765 15 is_stmt 0 discriminator 3 view .LVU630
+ 2355 0162 03F1A002 		add	r2, r3, #160
+ 2356 0166 6A44     		add	r2, sp, r2
+ 2357 0168 2021     		movs	r1, #32
+ 2358 016a 02F8501C 		strb	r1, [r2, #-80]
  763:Core/Src/spi.c **** 			{
- 2357              		.loc 1 763 52 is_stmt 1 discriminator 3 view .LVU633
+ 2359              		.loc 1 763 48 is_stmt 1 discriminator 3 view .LVU631
  763:Core/Src/spi.c **** 			{
- 2358              		.loc 1 763 53 is_stmt 0 discriminator 3 view .LVU634
- 2359 0162 0133     		adds	r3, r3, #1
- 2360              	.LVL245:
+ 2360              		.loc 1 763 49 is_stmt 0 discriminator 3 view .LVU632
+ 2361 016e 0133     		adds	r3, r3, #1
+ 2362              	.LVL245:
  763:Core/Src/spi.c **** 			{
- 2361              		.loc 1 763 53 discriminator 3 view .LVU635
- 2362 0164 DBB2     		uxtb	r3, r3
- 2363              	.LVL246:
- 2364              	.L134:
+ 2363              		.loc 1 763 49 discriminator 3 view .LVU633
+ 2364 0170 DBB2     		uxtb	r3, r3
+ 2365              	.LVL246:
+ 2366              	.L134:
  763:Core/Src/spi.c **** 			{
- 2365              		.loc 1 763 24 is_stmt 1 discriminator 1 view .LVU636
+ 2367              		.loc 1 763 24 is_stmt 1 discriminator 1 view .LVU634
  763:Core/Src/spi.c **** 			{
- 2366              		.loc 1 763 32 is_stmt 0 discriminator 1 view .LVU637
- 2367 0166 321A     		subs	r2, r6, r0
- 763:Core/Src/spi.c **** 			{
- 2368              		.loc 1 763 4 discriminator 1 view .LVU638
- 2369 0168 9A42     		cmp	r2, r3
- 2370 016a F4DA     		bge	.L135
+ 2368              		.loc 1 763 4 is_stmt 0 discriminator 1 view .LVU635
+ 2369 0172 9842     		cmp	r0, r3
+ 2370 0174 F5DC     		bgt	.L135
  2371              	.LBE19:
  767:Core/Src/spi.c **** 		}
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 61
+ 2372              		.loc 1 767 4 is_stmt 1 view .LVU636
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 61
 
 
- 2372              		.loc 1 767 4 is_stmt 1 view .LVU639
- 2373 016c 6B46     		mov	r3, sp
+ 2373 0176 6B46     		mov	r3, sp
  2374              	.LVL247:
  767:Core/Src/spi.c **** 		}
- 2375              		.loc 1 767 4 is_stmt 0 view .LVU640
- 2376 016e 14AA     		add	r2, sp, #80
- 2377 0170 1049     		ldr	r1, .L147+20
- 2378 0172 1EA8     		add	r0, sp, #120
- 2379              	.LVL248:
- 767:Core/Src/spi.c **** 		}
- 2380              		.loc 1 767 4 view .LVU641
- 2381 0174 FFF7FEFF 		bl	sprintf
+ 2375              		.loc 1 767 4 is_stmt 0 view .LVU637
+ 2376 0178 14AA     		add	r2, sp, #80
+ 2377 017a 1049     		ldr	r1, .L147+20
+ 2378 017c 1EA8     		add	r0, sp, #120
+ 2379 017e FFF7FEFF 		bl	sprintf
+ 2380              	.LVL248:
+ 2381 0182 D1E7     		b	.L130
  2382              	.LVL249:
- 2383 0178 D4E7     		b	.L130
- 2384              	.LVL250:
- 2385              	.L136:
- 2386              	.LBB20:
+ 2383              	.L136:
+ 2384              	.LBB20:
  773:Core/Src/spi.c **** 			}
- 2387              		.loc 1 773 5 is_stmt 1 discriminator 3 view .LVU642
+ 2385              		.loc 1 773 5 is_stmt 1 discriminator 3 view .LVU638
  773:Core/Src/spi.c **** 			}
- 2388              		.loc 1 773 15 is_stmt 0 discriminator 3 view .LVU643
- 2389 017a 03F1A002 		add	r2, r3, #160
- 2390 017e 6A44     		add	r2, sp, r2
- 2391 0180 2021     		movs	r1, #32
- 2392 0182 02F8501C 		strb	r1, [r2, #-80]
+ 2386              		.loc 1 773 15 is_stmt 0 discriminator 3 view .LVU639
+ 2387 0184 03F1A002 		add	r2, r3, #160
+ 2388 0188 6A44     		add	r2, sp, r2
+ 2389 018a 2021     		movs	r1, #32
+ 2390 018c 02F8501C 		strb	r1, [r2, #-80]
  771:Core/Src/spi.c **** 			{
- 2393              		.loc 1 771 48 is_stmt 1 discriminator 3 view .LVU644
+ 2391              		.loc 1 771 48 is_stmt 1 discriminator 3 view .LVU640
  771:Core/Src/spi.c **** 			{
- 2394              		.loc 1 771 49 is_stmt 0 discriminator 3 view .LVU645
- 2395 0186 0133     		adds	r3, r3, #1
- 2396              	.LVL251:
+ 2392              		.loc 1 771 49 is_stmt 0 discriminator 3 view .LVU641
+ 2393 0190 0133     		adds	r3, r3, #1
+ 2394              	.LVL250:
  771:Core/Src/spi.c **** 			{
- 2397              		.loc 1 771 49 discriminator 3 view .LVU646
- 2398 0188 DBB2     		uxtb	r3, r3
- 2399              	.LVL252:
- 2400              	.L132:
+ 2395              		.loc 1 771 49 discriminator 3 view .LVU642
+ 2396 0192 DBB2     		uxtb	r3, r3
+ 2397              	.LVL251:
+ 2398              	.L132:
  771:Core/Src/spi.c **** 			{
- 2401              		.loc 1 771 24 is_stmt 1 discriminator 1 view .LVU647
+ 2399              		.loc 1 771 24 is_stmt 1 discriminator 1 view .LVU643
  771:Core/Src/spi.c **** 			{
- 2402              		.loc 1 771 32 is_stmt 0 discriminator 1 view .LVU648
- 2403 018a 321A     		subs	r2, r6, r0
+ 2400              		.loc 1 771 32 is_stmt 0 discriminator 1 view .LVU644
+ 2401 0194 321A     		subs	r2, r6, r0
  771:Core/Src/spi.c **** 			{
- 2404              		.loc 1 771 4 discriminator 1 view .LVU649
- 2405 018c 9342     		cmp	r3, r2
- 2406 018e F4DB     		blt	.L136
- 2407              	.LBE20:
+ 2402              		.loc 1 771 4 discriminator 1 view .LVU645
+ 2403 0196 9342     		cmp	r3, r2
+ 2404 0198 F4DB     		blt	.L136
+ 2405              	.LBE20:
  775:Core/Src/spi.c **** 		}	
- 2408              		.loc 1 775 4 is_stmt 1 view .LVU650
- 2409 0190 6B46     		mov	r3, sp
- 2410              	.LVL253:
+ 2406              		.loc 1 775 4 is_stmt 1 view .LVU646
+ 2407 019a 6B46     		mov	r3, sp
+ 2408              	.LVL252:
  775:Core/Src/spi.c **** 		}	
- 2411              		.loc 1 775 4 is_stmt 0 view .LVU651
- 2412 0192 14AA     		add	r2, sp, #80
- 2413 0194 0749     		ldr	r1, .L147+20
- 2414 0196 1EA8     		add	r0, sp, #120
- 2415              	.LVL254:
+ 2409              		.loc 1 775 4 is_stmt 0 view .LVU647
+ 2410 019c 14AA     		add	r2, sp, #80
+ 2411 019e 0749     		ldr	r1, .L147+20
+ 2412 01a0 1EA8     		add	r0, sp, #120
+ 2413              	.LVL253:
  775:Core/Src/spi.c **** 		}	
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 62
+ 2414              		.loc 1 775 4 view .LVU648
+ 2415 01a2 FFF7FEFF 		bl	sprintf
+ 2416              	.LVL254:
+ 2417 01a6 BFE7     		b	.L130
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 62
 
 
- 2416              		.loc 1 775 4 view .LVU652
- 2417 0198 FFF7FEFF 		bl	sprintf
- 2418              	.LVL255:
- 2419 019c C2E7     		b	.L130
- 2420              	.L148:
- 2421 019e 00BF     		.align	2
- 2422              	.L147:
- 2423 01a0 00002440 		.word	1076101120
- 2424 01a4 00000000 		.word	.LC2
- 2425 01a8 04000000 		.word	.LC3
- 2426 01ac 0C000000 		.word	.LC4
- 2427 01b0 00000000 		.word	.LANCHOR3
- 2428 01b4 14000000 		.word	.LC5
- 2429              	.LBE17:
- 2430              		.cfi_endproc
- 2431              	.LFE190:
- 2433              		.global	hdma_spi3_tx
- 2434              		.global	hspi3
- 2435              		.global	sendFlg
- 2436              		.global	LCD
- 2437              		.global	LCD_Buff
- 2438              		.section	.bss.LCD,"aw",%nobits
- 2439              		.align	2
- 2440              		.set	.LANCHOR3,. + 0
- 2443              	LCD:
- 2444 0000 00000000 		.space	12
- 2444      00000000 
- 2444      00000000 
- 2445              		.section	.bss.LCD_AsciiFonts,"aw",%nobits
- 2446              		.align	2
- 2447              		.set	.LANCHOR4,. + 0
- 2450              	LCD_AsciiFonts:
- 2451 0000 00000000 		.space	4
- 2452              		.section	.bss.LCD_Buff,"aw",%nobits
- 2453              		.align	2
- 2454              		.set	.LANCHOR5,. + 0
- 2457              	LCD_Buff:
- 2458 0000 00000000 		.space	2048
- 2458      00000000 
- 2458      00000000 
- 2458      00000000 
- 2458      00000000 
- 2459              		.section	.bss.hdma_spi3_tx,"aw",%nobits
- 2460              		.align	2
- 2461              		.set	.LANCHOR1,. + 0
- 2464              	hdma_spi3_tx:
- 2465 0000 00000000 		.space	96
- 2465      00000000 
- 2465      00000000 
- 2465      00000000 
- 2465      00000000 
- 2466              		.section	.bss.hspi3,"aw",%nobits
- 2467              		.align	2
- 2468              		.set	.LANCHOR0,. + 0
- 2471              	hspi3:
- 2472 0000 00000000 		.space	88
- 2472      00000000 
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 63
+ 2418              	.L148:
+ 2419              		.align	2
+ 2420              	.L147:
+ 2421 01a8 00002440 		.word	1076101120
+ 2422 01ac 00000000 		.word	.LC2
+ 2423 01b0 04000000 		.word	.LC3
+ 2424 01b4 0C000000 		.word	.LC4
+ 2425 01b8 00000000 		.word	.LANCHOR3
+ 2426 01bc 14000000 		.word	.LC5
+ 2427              	.LBE17:
+ 2428              		.cfi_endproc
+ 2429              	.LFE190:
+ 2431              		.global	hdma_spi3_tx
+ 2432              		.global	hspi3
+ 2433              		.global	sendFlg
+ 2434              		.global	LCD
+ 2435              		.global	LCD_Buff
+ 2436              		.section	.bss.LCD,"aw",%nobits
+ 2437              		.align	2
+ 2438              		.set	.LANCHOR3,. + 0
+ 2441              	LCD:
+ 2442 0000 00000000 		.space	12
+ 2442      00000000 
+ 2442      00000000 
+ 2443              		.section	.bss.LCD_AsciiFonts,"aw",%nobits
+ 2444              		.align	2
+ 2445              		.set	.LANCHOR4,. + 0
+ 2448              	LCD_AsciiFonts:
+ 2449 0000 00000000 		.space	4
+ 2450              		.section	.bss.LCD_Buff,"aw",%nobits
+ 2451              		.align	2
+ 2452              		.set	.LANCHOR5,. + 0
+ 2455              	LCD_Buff:
+ 2456 0000 00000000 		.space	2048
+ 2456      00000000 
+ 2456      00000000 
+ 2456      00000000 
+ 2456      00000000 
+ 2457              		.section	.bss.hdma_spi3_tx,"aw",%nobits
+ 2458              		.align	2
+ 2459              		.set	.LANCHOR1,. + 0
+ 2462              	hdma_spi3_tx:
+ 2463 0000 00000000 		.space	96
+ 2463      00000000 
+ 2463      00000000 
+ 2463      00000000 
+ 2463      00000000 
+ 2464              		.section	.bss.hspi3,"aw",%nobits
+ 2465              		.align	2
+ 2466              		.set	.LANCHOR0,. + 0
+ 2469              	hspi3:
+ 2470 0000 00000000 		.space	88
+ 2470      00000000 
+ 2470      00000000 
+ 2470      00000000 
+ 2470      00000000 
+ 2471              		.section	.bss.sendFlg,"aw",%nobits
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 63
 
 
- 2472      00000000 
- 2472      00000000 
- 2472      00000000 
- 2473              		.section	.bss.sendFlg,"aw",%nobits
- 2474              		.set	.LANCHOR2,. + 0
- 2477              	sendFlg:
- 2478 0000 00       		.space	1
- 2479              		.text
- 2480              	.Letext0:
- 2481              		.file 2 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
- 2482              		.file 3 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
- 2483              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h"
- 2484              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 2485              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 2486              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 2487              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
- 2488              		.file 9 "Core/Inc/lcd_fonts.h"
- 2489              		.file 10 "Core/Inc/spi.h"
- 2490              		.file 11 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\string.h"
- 2491              		.file 12 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\stdio.h"
- 2492              		.file 13 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\math.h"
- 2493              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 2494              		.file 15 "Core/Inc/main.h"
- 2495              		.file 16 "<built-in>"
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 64
+ 2472              		.set	.LANCHOR2,. + 0
+ 2475              	sendFlg:
+ 2476 0000 00       		.space	1
+ 2477              		.text
+ 2478              	.Letext0:
+ 2479              		.file 2 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 2480              		.file 3 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 2481              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h"
+ 2482              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 2483              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 2484              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 2485              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 2486              		.file 9 "Core/Inc/lcd_fonts.h"
+ 2487              		.file 10 "Core/Inc/spi.h"
+ 2488              		.file 11 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\string.h"
+ 2489              		.file 12 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\stdio.h"
+ 2490              		.file 13 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\math.h"
+ 2491              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 2492              		.file 15 "Core/Inc/main.h"
+ 2493              		.file 16 "<built-in>"
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 64
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 spi.c
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:20     .text.MX_SPI3_Init:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:26     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:98     .text.MX_SPI3_Init:00000038 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:104    .text.HAL_SPI_MspInit:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:110    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:389    .text.HAL_SPI_MspInit:00000124 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:399    .text.HAL_SPI_MspDeInit:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:405    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:456    .text.HAL_SPI_MspDeInit:00000034 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:464    .text.LCD_WriteCommand:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:470    .text.LCD_WriteCommand:00000000 LCD_WriteCommand
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:511    .text.LCD_WriteCommand:00000028 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:517    .text.LCD_WriteData_8bit:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:523    .text.LCD_WriteData_8bit:00000000 LCD_WriteData_8bit
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:564    .text.LCD_WriteData_8bit:00000028 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:570    .text.LCD_WriteData_16bit:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:576    .text.LCD_WriteData_16bit:00000000 LCD_WriteData_16bit
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:636    .text.LCD_WriteData_16bit:00000038 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:643    .text.LCD_WriteBuff:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:649    .text.LCD_WriteBuff:00000000 LCD_WriteBuff
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:704    .text.LCD_WriteBuff:0000002c $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:711    .text.LCD_SetAddress:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:717    .text.LCD_SetAddress:00000000 LCD_SetAddress
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:790    .text.LCD_SetAddress:00000050 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:795    .text.LCD_SetColor:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:801    .text.LCD_SetColor:00000000 LCD_SetColor
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:818    .text.LCD_SetColor:00000008 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:823    .text.LCD_SetBackColor:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:829    .text.LCD_SetBackColor:00000000 LCD_SetBackColor
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:846    .text.LCD_SetBackColor:00000008 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:851    .text.LCD_SetDirection:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:857    .text.LCD_SetDirection:00000000 LCD_SetDirection
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1017   .text.LCD_SetDirection:000000a0 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1022   .text.LCD_SetAsciiFont:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1028   .text.LCD_SetAsciiFont:00000000 LCD_SetAsciiFont
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1045   .text.LCD_SetAsciiFont:00000008 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1050   .text.LCD_Clear:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1056   .text.LCD_Clear:00000000 LCD_Clear
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1163   .text.LCD_Clear:00000060 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1172   .text.LCD_ClearRect:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1178   .text.LCD_ClearRect:00000000 LCD_ClearRect
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1249   .text.LCD_ClearRect:00000048 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1257   .text.LCD_DrawPoint:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1263   .text.LCD_DrawPoint:00000000 LCD_DrawPoint
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1294   .text.LCD_DisplayChar:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1300   .text.LCD_DisplayChar:00000000 LCD_DisplayChar
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1467   .text.LCD_DisplayChar:000000a4 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1474   .text.LCD_DisplayString:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1480   .text.LCD_DisplayString:00000000 LCD_DisplayString
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1544   .text.LCD_DisplayString:00000030 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1550   .text.LCD_ShowNumMode:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1556   .text.LCD_ShowNumMode:00000000 LCD_ShowNumMode
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1573   .text.LCD_ShowNumMode:00000008 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1578   .text.SPI_LCD_Init:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1584   .text.SPI_LCD_Init:00000000 SPI_LCD_Init
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s 			page 65
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:20     .text.MX_SPI3_Init:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:26     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:98     .text.MX_SPI3_Init:00000038 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:104    .text.HAL_SPI_MspInit:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:110    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:389    .text.HAL_SPI_MspInit:00000124 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:399    .text.HAL_SPI_MspDeInit:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:405    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:456    .text.HAL_SPI_MspDeInit:00000034 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:464    .text.LCD_WriteCommand:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:470    .text.LCD_WriteCommand:00000000 LCD_WriteCommand
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:511    .text.LCD_WriteCommand:00000028 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:517    .text.LCD_WriteData_8bit:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:523    .text.LCD_WriteData_8bit:00000000 LCD_WriteData_8bit
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:564    .text.LCD_WriteData_8bit:00000028 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:570    .text.LCD_WriteData_16bit:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:576    .text.LCD_WriteData_16bit:00000000 LCD_WriteData_16bit
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:636    .text.LCD_WriteData_16bit:00000038 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:643    .text.LCD_WriteBuff:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:649    .text.LCD_WriteBuff:00000000 LCD_WriteBuff
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:704    .text.LCD_WriteBuff:0000002c $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:711    .text.LCD_SetAddress:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:717    .text.LCD_SetAddress:00000000 LCD_SetAddress
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:790    .text.LCD_SetAddress:00000050 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:795    .text.LCD_SetColor:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:801    .text.LCD_SetColor:00000000 LCD_SetColor
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:818    .text.LCD_SetColor:00000008 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:823    .text.LCD_SetBackColor:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:829    .text.LCD_SetBackColor:00000000 LCD_SetBackColor
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:846    .text.LCD_SetBackColor:00000008 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:851    .text.LCD_SetDirection:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:857    .text.LCD_SetDirection:00000000 LCD_SetDirection
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1017   .text.LCD_SetDirection:000000a0 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1022   .text.LCD_SetAsciiFont:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1028   .text.LCD_SetAsciiFont:00000000 LCD_SetAsciiFont
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1045   .text.LCD_SetAsciiFont:00000008 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1050   .text.LCD_Clear:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1056   .text.LCD_Clear:00000000 LCD_Clear
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1163   .text.LCD_Clear:00000060 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1172   .text.LCD_ClearRect:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1178   .text.LCD_ClearRect:00000000 LCD_ClearRect
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1249   .text.LCD_ClearRect:00000048 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1257   .text.LCD_DrawPoint:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1263   .text.LCD_DrawPoint:00000000 LCD_DrawPoint
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1294   .text.LCD_DisplayChar:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1300   .text.LCD_DisplayChar:00000000 LCD_DisplayChar
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1467   .text.LCD_DisplayChar:000000a4 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1474   .text.LCD_DisplayString:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1480   .text.LCD_DisplayString:00000000 LCD_DisplayString
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1544   .text.LCD_DisplayString:00000030 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1550   .text.LCD_ShowNumMode:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1556   .text.LCD_ShowNumMode:00000000 LCD_ShowNumMode
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1573   .text.LCD_ShowNumMode:00000008 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1578   .text.SPI_LCD_Init:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1584   .text.SPI_LCD_Init:00000000 SPI_LCD_Init
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 65
 
 
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1881   .text.SPI_LCD_Init:000001ac $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1887   .rodata.LCD_DisplayNumber.str1.4:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1894   .text.LCD_DisplayNumber:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1900   .text.LCD_DisplayNumber:00000000 LCD_DisplayNumber
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1976   .text.LCD_DisplayNumber:00000038 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1986   .rodata.LCD_DisplayDecimals.str1.4:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:1999   .text.LCD_DisplayDecimals:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2005   .text.LCD_DisplayDecimals:00000000 LCD_DisplayDecimals
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2423   .text.LCD_DisplayDecimals:000001a0 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2464   .bss.hdma_spi3_tx:00000000 hdma_spi3_tx
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2471   .bss.hspi3:00000000 hspi3
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2477   .bss.sendFlg:00000000 sendFlg
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2443   .bss.LCD:00000000 LCD
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2457   .bss.LCD_Buff:00000000 LCD_Buff
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2439   .bss.LCD:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2446   .bss.LCD_AsciiFonts:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2450   .bss.LCD_AsciiFonts:00000000 LCD_AsciiFonts
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2453   .bss.LCD_Buff:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2460   .bss.hdma_spi3_tx:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2467   .bss.hspi3:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccmu0Uhe.s:2478   .bss.sendFlg:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1881   .text.SPI_LCD_Init:000001ac $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1887   .rodata.LCD_DisplayNumber.str1.4:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1894   .text.LCD_DisplayNumber:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1900   .text.LCD_DisplayNumber:00000000 LCD_DisplayNumber
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1976   .text.LCD_DisplayNumber:00000038 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1986   .rodata.LCD_DisplayDecimals.str1.4:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1999   .text.LCD_DisplayDecimals:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2005   .text.LCD_DisplayDecimals:00000000 LCD_DisplayDecimals
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2421   .text.LCD_DisplayDecimals:000001a8 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2462   .bss.hdma_spi3_tx:00000000 hdma_spi3_tx
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2469   .bss.hspi3:00000000 hspi3
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2475   .bss.sendFlg:00000000 sendFlg
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2441   .bss.LCD:00000000 LCD
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2455   .bss.LCD_Buff:00000000 LCD_Buff
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2437   .bss.LCD:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2444   .bss.LCD_AsciiFonts:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2448   .bss.LCD_AsciiFonts:00000000 LCD_AsciiFonts
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2451   .bss.LCD_Buff:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2458   .bss.hdma_spi3_tx:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2465   .bss.hspi3:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2476   .bss.sendFlg:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init

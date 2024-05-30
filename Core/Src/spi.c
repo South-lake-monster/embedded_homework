@@ -737,8 +737,8 @@ void  LCD_DisplayDecimals( uint16_t x, uint16_t y, float decimals, uint8_t len, 
 		uint8_t combined_len = (uint8_t)strlen(combined);
 		if (negative)
 		{
-			buffer[0] = '-';
-            for (uint8_t i = 1; i < len - combined_len + 1; i++) 
+			buffer[len - combined_len] = '-';
+            for (uint8_t i = 0; i < len - combined_len; i++) 
 			{
                 buffer[i] = '0';
             }
@@ -759,8 +759,8 @@ void  LCD_DisplayDecimals( uint16_t x, uint16_t y, float decimals, uint8_t len, 
 		uint8_t combined_len = (uint8_t)strlen(combined);
 		if (negative)
 		{
-			buffer[0] = '-';
-			for (uint8_t i = 1; i < len - combined_len + 1; i++) 
+			buffer[len - combined_len] = '-';
+			for (uint8_t i = 0; i < len - combined_len; i++) 
 			{
 				buffer[i] = ' ';
 			}

@@ -22,7 +22,7 @@
 #include "dma.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "spi.h"
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
@@ -57,6 +57,9 @@ void MX_DMA_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
-
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+        sendFlg = 1;    // 传输完成标志
+}
 /* USER CODE END 2 */
 

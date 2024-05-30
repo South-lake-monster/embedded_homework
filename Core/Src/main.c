@@ -69,8 +69,7 @@ void 	LCD_Test_Variable (void);	   // 变量显示，包括整数和小数
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  LCD_Test_Clear(); 		// 清屏测试     
-  LCD_Test_Variable ();	// 变量显示，包括整数和小数
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -94,8 +93,9 @@ int main(void)
   MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_TIM4_Init();
-  MX_SPI3_Init();
+  
   /* USER CODE BEGIN 2 */
+  SPI_LCD_Init();    // 初始化LCD
   HAL_TIM_Base_Start_IT(&htim4);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
@@ -108,7 +108,8 @@ int main(void)
   {
     
     /* USER CODE END WHILE */
-
+    LCD_Test_Clear();
+    LCD_Test_Variable ();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -191,7 +192,7 @@ void LCD_Test_Clear(void)
             default:	break;			
         }
         LCD_Clear();		// 清屏
-        // HAL_Delay(1000);
+        HAL_Delay(1000);
     }
 }
 
@@ -208,8 +209,8 @@ void LCD_Test_Variable (void)
     int32_t	b = 0;			// 定义整数变量，用于测试
     int32_t	c = 0;			// 定义整数变量，用于测试
 
-    double p = 3.1415926;	// 定义浮点数变量，用于测试
-    double f = -1234.1234;	// 定义浮点数变量，用于测试
+    double p = 123.123;	// 定义浮点数变量，用于测试
+    double f = -123.123;	// 定义浮点数变量，用于测试
     
     LCD_SetBackColor(LCD_DISP_BLACK); 			//	设置背景色
     LCD_Clear(); 								// 清屏
@@ -243,8 +244,8 @@ void LCD_Test_Variable (void)
         
         LCD_SetColor(LCD_DISP_RED);									// 设置画笔，亮红色			
         LCD_ShowNumMode(Fill_Space);								// 多余位填充空格		
-        LCD_DisplayDecimals( 100,170, p+i*0.1,  6,3);		// 显示小数	
-        LCD_DisplayDecimals( 100,200, f+i*0.01, 11,4);		// 显示小数		
+        LCD_DisplayDecimals( 100,170, p+i*0.1,  10,3);		// 显示小数	
+        LCD_DisplayDecimals( 100,200, f+i*0.01, 10,4);		// 显示小数		
         
         HAL_Delay(15);				
     }

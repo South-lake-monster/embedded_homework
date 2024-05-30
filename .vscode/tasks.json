@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "make",
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "Build & Update",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "D:/OpenOCD/share/openocd/scripts/interface/cmsis-dap.cfg",
+                "-f",
+                "D:/OpenOCD/share/openocd/scripts/target/stm32f4x.cfg",
+                "-c",
+                "program build/FOC.elf verify reset exit"
+            ],
+            "dependsOn": "Build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        }
+    ]
+}

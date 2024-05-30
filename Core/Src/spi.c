@@ -686,20 +686,96 @@ void  LCD_DisplayNumber( uint16_t x, uint16_t y, int32_t number, uint8_t len)
 *					4. 使用示例 LCD_DisplayDecimals( 10, 10, a, 5, 3) ，在坐标(10,10)显示字变量a,总长度为5位，其中保留3位小数
 *						
 *****************************************************************************************************************************************/
-void  LCD_DisplayDecimals( uint16_t x, uint16_t y, double decimals, uint8_t len, uint8_t decs) 
+void  LCD_DisplayDecimals( uint16_t x, uint16_t y, float decimals, uint8_t len, uint8_t decs) 
 {  
-	char  Number_Buffer[20];				// 用于存储转换后的字符串
+	char  Number_Buffer[40];				// 用于存储转换后的字符串
+	char  buffer[40];
+	// 清空缓冲区
+    for (uint8_t i = 0; i < 20; i++) 
+	{
+        Number_Buffer[i] = ' ';
+    }
+    Number_Buffer[20] = '\0';
+
+	// 处理负数
+    int negative = decimals < 0;
+    if (negative) 
+	{
+        decimals = -decimals;
+    }
+	// 提取整数部分和小数部分
+    int int_part = (int)decimals;
+    double dec_part = decimals - int_part;
+    // 处理小数部分并四舍五入
+    for (uint8_t i = 0; i < decs; i++) 
+	{
+        dec_part *= 10;
+    }
+    dec_part = round(dec_part);
+    // 重新计算整数部分和小数部分，处理进位
+    int_part = (int)decimals;
+    int dec_part_int = (int)dec_part;
+    // 准备整数部分字符串
+    char int_buffer[20];
+    sprintf(int_buffer, "%d", int_part);
+    // 准备小数部分字符串
+    char dec_buffer[20];
+    sprintf(dec_buffer, "%0*d", decs, dec_part_int);
+	// 组合整数部分和小数部分
+    char combined[40];
+    if (decs > 0) 
+	{
+        sprintf(combined, "%s.%s", int_buffer, dec_buffer);
+    } 
+	else 
+	{
+        sprintf(combined, "%s", int_buffer);
+    }
 	
 	if( LCD.ShowNum_Mode == Fill_Zero)	// 多余位填充0模式
 	{
-		sprintf( Number_Buffer , "%0*.*lf",len,decs, decimals );	// 将 number 转换成字符串，便于显示		
+		uint8_t combined_len = (uint8_t)strlen(combined);
+		if (negative)
+		{
+			buffer[0] = '-';
+            for (uint8_t i = 1; i < len - combined_len + 1; i++) 
+			{
+                buffer[i] = '0';
+            }
+			sprintf(Number_Buffer, "%s%s", buffer, combined);
+		}
+		else
+		{
+			for (uint8_t i = 0; i < len - combined_len; i++) 
+			{
+				buffer[i] = '0';
+			}
+			sprintf(Number_Buffer, "%s%s", buffer, combined);
+		}
+		
 	}
 	else		// 多余位填充空格
 	{
-		sprintf( Number_Buffer , "%*.*lf",len,decs, decimals );	// 将 number 转换成字符串，便于显示		
+		uint8_t combined_len = (uint8_t)strlen(combined);
+		if (negative)
+		{
+			buffer[0] = '-';
+			for (uint8_t i = 1; i < len - combined_len + 1; i++) 
+			{
+				buffer[i] = ' ';
+			}
+			sprintf(Number_Buffer, "%s%s", buffer, combined);
+		}
+		else
+		{
+			for (uint8_t i = 0; i < len - combined_len; i++) 
+			{
+				buffer[i] = ' ';
+			}
+			sprintf(Number_Buffer, "%s%s", buffer, combined);
+		}	
 	}
-	
-	LCD_DisplayString( x, y,(char *)Number_Buffer) ;	// 将转换得到的字符串显示出来
+	LCD_DisplayString( x, y, (char *)Number_Buffer) ;	// 将转换得到的字符串显示出来
 }
 
 /* USER CODE END 1 */

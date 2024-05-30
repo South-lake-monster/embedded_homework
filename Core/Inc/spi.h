@@ -30,6 +30,7 @@ extern "C" {
 
 /* USER CODE BEGIN Includes */
 #include "usart.h"
+#include <math.h>
 #include "lcd_fonts.h"
 /* USER CODE END Includes */
 
@@ -119,7 +120,7 @@ void 	LCD_DisplayString( uint16_t x, uint16_t y, char *p);	 		//	显示ASCII字�
 //>>>>>	显示整数或小数
 void  LCD_ShowNumMode(uint8_t mode);		// 设置变量显示模式，多余位填充空格还是填充0
 void  LCD_DisplayNumber( uint16_t x, uint16_t y, int32_t number,uint8_t len) ;					// 显示整数
-void  LCD_DisplayDecimals( uint16_t x, uint16_t y, double number,uint8_t len,uint8_t decs);	// 显示小数
+void  LCD_DisplayDecimals( uint16_t x, uint16_t y, float number,uint8_t len,uint8_t decs);	// 显示小数
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

@@ -8,6 +8,10 @@
         "arm_math_memory.h": "c",
         "arm_math_types.h": "c",
         "spi.h": "c",
-        "lcd_fonts.h": "c"
+        "lcd_fonts.h": "c",
+        "gpio.h": "c",
+        "winapifamily.h": "c",
+        "stdarg.h": "c",
+        "type_traits": "c"
     }
 }

@@ -29,6 +29,7 @@ extern "C" {
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
+#include <stdint.h>
 #include "stdio.h"
 #include <stdarg.h>
 /* USER CODE END Includes */

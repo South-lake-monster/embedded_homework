@@ -37,10 +37,10 @@ extern "C" {
 extern SPI_HandleTypeDef hspi3;
 
 /* USER CODE BEGIN Private defines */
-/*----------------------------------------------- 参数宏 -------------------------------------------*/
-#define LCD_Width         240		// LCD的像素长度
-#define LCD_Height        320		// LCD的像素宽度
-#define DMA_SPI_BUF_SIZE  1024	// DMA传输缓存大小  每两个字节显示一个像素
+/*----------------------------------------------- 参数�? -------------------------------------------*/
+#define LCD_Width         240		// LCD的像素长�?
+#define LCD_Height        320		// LCD的像素宽�?
+#define DMA_SPI_BUF_SIZE  1024	// DMA传输缓存大小  每两个字节显示一个像�?
 
 // 显示方向参数
 // 使用示例：LCD_DisplayDirection(Direction_H) 设置屏幕横屏显示
@@ -49,9 +49,9 @@ extern SPI_HandleTypeDef hspi3;
 #define	Direction_V				  2					//LCD竖屏显示 
 #define	Direction_V_Flip	  3					//LCD竖屏显示,上下翻转 
 
-// 设置变量显示时多余位补0还是补空格
-// 只有 LCD_DisplayNumber() 显示整数 和 LCD_DisplayDecimals()显示小数 这两个函数用到
-// 使用示例： LCD_ShowNumMode(Fill_Zero) 设置多余位填充0，例如 123 可以显示为 000123
+// 设置变量显示时多余位�?0还是补空�?
+// 只有 LCD_DisplayNumber() 显示整数 �? LCD_DisplayDecimals()显示小数 这两个函数用�?
+// 使用示例�? LCD_ShowNumMode(Fill_Zero) 设置多余位填�?0，例�? 123 可以显示�? 000123
 #define  Fill_Zero          0		//填充0
 #define  Fill_Space         1		//填充空格
 
@@ -60,12 +60,12 @@ extern volatile uint8_t sendFlg;	// DMA传输完成标志
 
 /*---------------------------------------- 常用颜色 ------------------------------------------------------
 
- 1. 这里为了方便用户使用，定义的是24位 RGB888颜色，然后再通过代码自动转换成 16位 RGB565 的颜色
- 2. 24位的颜色中，从高位到低位分别对应 R、G、B  3个颜色通道
- 3. 用户可以在电脑用调色板获取24位RGB颜色，再将颜色输入LCD_SetColor()或LCD_SetBackColor()就可以显示出相应的颜色 
+ 1. 这里为了方便用户使用，定义的�?24�? RGB888颜色，然后再通过代码自动转换�? 16�? RGB565 的颜�?
+ 2. 24位的颜色中，从高位到低位分别对应 R、G、B  3个颜色�?�道
+ 3. 用户可以在电脑用调色板获�?24位RGB颜色，再将颜色输入LCD_SetColor()或LCD_SetBackColor()就可以显示出相应的颜�? 
  */                                                  						
 
-/************** 颜色(RGB 5,6,5) **************/     //先高字节，后低字节 
+/************** 颜色(RGB 5,6,5) **************/     //先高字节，后低字�? 
 #define LCD_DISP_RED                    0xF800    // 红色                
 #define LCD_DISP_YELLOW                 0xFFE0    // 黄色
 #define LCD_DISP_GREEN                  0x07E0    // 绿色
@@ -81,7 +81,7 @@ extern volatile uint8_t sendFlg;	// DMA传输完成标志
 #define LCD_DISP_CYAN                   0x07FF    // 青色
 #define LCD_DISP_MAGENTA                0xF81F    // 紫色
 #define LCD_DISP_PINK                   0xFC18    // 粉色
-#define LCD_DISP_SKYBLUE                0x867D    // 天蓝色
+#define LCD_DISP_SKYBLUE                0x867D    // 天蓝�?
 
  /*--------------------------------------------- LCD其它引脚 -----------------------------------------------*/
 #define   LCD_Backlight_PIN								    SPI3_BL_Pin				         // 背光  引脚				
@@ -89,7 +89,7 @@ extern volatile uint8_t sendFlg;	// DMA传输完成标志
 #define 	GPIO_LDC_Backlight_CLK_ENABLE       __HAL_RCC_GPIOE_CLK_ENABLE()	// 背光 GPIO时钟 	
 
 #define	  LCD_Backlight_OFF		HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_RESET);	// 低电平，关闭背光
-#define 	LCD_Backlight_ON		HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_SET);		// 高电平，开启背光
+#define 	LCD_Backlight_ON		HAL_GPIO_WritePin(LCD_Backlight_PORT, LCD_Backlight_PIN, GPIO_PIN_SET);		// 高电平，�?启背�?
  
 #define   LCD_DC_PIN						    SPI3_DC_Pin				         // 数据指令选择  引脚				
 #define 	LCD_DC_PORT						    SPI3_DC_GPIO_Port									// 数据指令选择  GPIO端口
@@ -103,9 +103,9 @@ void MX_SPI3_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 /*------------------------------------------------ 函数声明 ----------------------------------------------*/
-void  SPI_LCD_Init(void);      // 液晶屏以及SPI初始化   
+void  SPI_LCD_Init(void);      // 液晶屏以及SPI初始�?   
 void  LCD_Clear(void);			 // 清屏函数
-void  LCD_ClearRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height);	// 局部清屏函数
+void  LCD_ClearRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height);	// �?部清屏函�?
 
 void  LCD_SetAddress(uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2);	// 设置坐标		
 void  LCD_SetColor(uint16_t Color); 				   //	设置画笔颜色
@@ -115,9 +115,9 @@ void  LCD_SetDirection(uint8_t direction);  	      //	设置显示方向
 //>>>>>	显示ASCII字符
 void  LCD_SetAsciiFont(pFONT *fonts);										//	设置ASCII字体
 void 	LCD_DisplayChar(uint16_t x, uint16_t y,uint8_t c);				//	显示单个ASCII字符
-void 	LCD_DisplayString( uint16_t x, uint16_t y, char *p);	 		//	显示ASCII字符串
+void 	LCD_DisplayString( uint16_t x, uint16_t y, char *p);	 		//	显示ASCII字符�?
 
-//>>>>>	显示整数或小数
+//>>>>>	显示整数或小�?
 void  LCD_ShowNumMode(uint8_t mode);		// 设置变量显示模式，多余位填充空格还是填充0
 void  LCD_DisplayNumber( uint16_t x, uint16_t y, int32_t number,uint8_t len) ;					// 显示整数
 void  LCD_DisplayDecimals( uint16_t x, uint16_t y, float number,uint8_t len,uint8_t decs);	// 显示小数

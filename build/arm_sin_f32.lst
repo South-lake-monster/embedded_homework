@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 1
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccJ8FhQv.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 1
   27:Drivers/CMSIS/DSP/Source/FastMathFunctions/arm_sin_f32.c ****  */
   28:Drivers/CMSIS/DSP/Source/FastMathFunctions/arm_sin_f32.c **** 
   29:Drivers/CMSIS/DSP/Source/FastMathFunctions/arm_sin_f32.c **** #include "dsp/fast_math_functions.h"
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 2
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccJ8FhQv.s 			page 2
 
 
   30:Drivers/CMSIS/DSP/Source/FastMathFunctions/arm_sin_f32.c **** #include "arm_common_tables.h"
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 1
   37              		.loc 1 76 3 view .LVU3
   77:Drivers/CMSIS/DSP/Source/FastMathFunctions/arm_sin_f32.c ****   int32_t n;
   38              		.loc 1 77 3 view .LVU4
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 3
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccJ8FhQv.s 			page 3
 
 
   78:Drivers/CMSIS/DSP/Source/FastMathFunctions/arm_sin_f32.c ****   float32_t findex;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 1
   72              	.LVL6:
   99:Drivers/CMSIS/DSP/Source/FastMathFunctions/arm_sin_f32.c **** 
  100:Drivers/CMSIS/DSP/Source/FastMathFunctions/arm_sin_f32.c ****   /* when "in" is exactly 1, we need to rotate the index down to 0 */
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 4
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccJ8FhQv.s 			page 4
 
 
  101:Drivers/CMSIS/DSP/Source/FastMathFunctions/arm_sin_f32.c ****   if (index >= FAST_MATH_TABLE_SIZE) {
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 1
  112 0064 77EEC07A 		vsub.f32	s15, s15, s0
  113              		.loc 1 114 27 view .LVU35
  114 0068 67EEA67A 		vmul.f32	s15, s15, s13
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 5
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccJ8FhQv.s 			page 5
 
 
  115              		.loc 1 114 39 view .LVU36
@@ -281,14 +281,14 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 1
  146              		.file 3 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
  147              		.file 4 "Drivers/CMSIS/DSP/Include/arm_math_types.h"
  148              		.file 5 "Drivers/CMSIS/DSP/Include/arm_common_tables.h"
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s 			page 6
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccJ8FhQv.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 arm_sin_f32.c
-C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s:20     .text.arm_sin_f32:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s:26     .text.arm_sin_f32:00000000 arm_sin_f32
-C:\Users\23612\AppData\Local\Temp\ccuwTeX0.s:137    .text.arm_sin_f32:00000084 $d
+C:\Users\23612\AppData\Local\Temp\ccJ8FhQv.s:20     .text.arm_sin_f32:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccJ8FhQv.s:26     .text.arm_sin_f32:00000000 arm_sin_f32
+C:\Users\23612\AppData\Local\Temp\ccJ8FhQv.s:137    .text.arm_sin_f32:00000084 $d
 
 UNDEFINED SYMBOLS
 sinTable_f32

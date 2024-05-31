@@ -93,7 +93,7 @@ int main(void)
   MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_TIM4_Init();
-  
+
   /* USER CODE BEGIN 2 */
   SPI_LCD_Init();    // 初始化LCD
   HAL_TIM_Base_Start_IT(&htim4);
@@ -106,10 +106,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    
+    LCD_Test_Clear();    // 清屏测试
+    LCD_Test_Variable();    // 变量显示测试
     /* USER CODE END WHILE */
-    LCD_Test_Clear();
-    LCD_Test_Variable ();
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -169,7 +169,7 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 /*************************************************************************************************
-*	函 数 名:	LCD_Test_Clear
+*	�? �? �?:	LCD_Test_Clear
 *
 *	函数功能:	清屏测试
 *************************************************************************************************/
@@ -182,7 +182,7 @@ void LCD_Test_Clear(void)
 
     for(i=0;i<5;i++)
     {
-        switch (i)		// 切换背景色
+        switch (i)		// 切换背景�?
         {
             case 0: LCD_SetBackColor(LCD_DISP_RED); 		break;	
             case 1: LCD_SetBackColor(LCD_DISP_GREEN); 	break;				
@@ -198,21 +198,21 @@ void LCD_Test_Clear(void)
 
 
 /************************************************************************************************
-*	函 数 名:	LCD_Test_Variable
+*	�? �? �?:	LCD_Test_Variable
 *
 *	函数功能:	变量显示，包括整数和小数
 *************************************************************************************************/
 void LCD_Test_Variable (void)
 {
     uint16_t i;					// 计数变量
-    int32_t	a = 0;			// 定义整数变量，用于测试
-    int32_t	b = 0;			// 定义整数变量，用于测试
-    int32_t	c = 0;			// 定义整数变量，用于测试
+    int32_t	a = 0;			// 定义整数变量，用于测�?
+    int32_t	b = 0;			// 定义整数变量，用于测�?
+    int32_t	c = 0;			// 定义整数变量，用于测�?
 
     double p = 123.123;	// 定义浮点数变量，用于测试
     double f = -123.123;	// 定义浮点数变量，用于测试
     
-    LCD_SetBackColor(LCD_DISP_BLACK); 			//	设置背景色
+    LCD_SetBackColor(LCD_DISP_BLACK); 			//	设置背景�?
     LCD_Clear(); 								// 清屏
        
     LCD_SetColor(LCD_DISP_BLUE);					// 设置画笔，蓝绿色		
@@ -230,20 +230,20 @@ void LCD_Test_Variable (void)
     for(i=0;i<100;i++)
     {
         LCD_SetColor(LCD_DISP_BLUE);								// 设置画笔	，蓝绿色	
-        LCD_ShowNumMode(Fill_Space);							// 多余位填充空格
+        LCD_ShowNumMode(Fill_Space);							// 多余位填充空�?
         LCD_DisplayNumber( 80,30, b+i*10, 4) ;				// 显示变量			
         LCD_DisplayNumber( 80,60, c-i*10, 4) ;				// 显示变量			
         
         LCD_SetColor(LCD_DISP_GREEN);								// 设置画笔，亮黄色	
 
-        LCD_ShowNumMode(Fill_Space);								// 多余位填充 空格
+        LCD_ShowNumMode(Fill_Space);								// 多余位填�? 空格
         LCD_DisplayNumber( 130,100, a+i*150, 8) ;				// 显示变量		
 
-        LCD_ShowNumMode(Fill_Zero);								// 多余位填充0      
+        LCD_ShowNumMode(Fill_Zero);								// 多余位填�?0      
         LCD_DisplayNumber( 130,130, b+i*150, 8) ;				// 显示变量			
         
         LCD_SetColor(LCD_DISP_RED);									// 设置画笔，亮红色			
-        LCD_ShowNumMode(Fill_Space);								// 多余位填充空格		
+        LCD_ShowNumMode(Fill_Space);								// 多余位填充空�?		
         LCD_DisplayDecimals( 100,170, p+i*0.1,  10,3);		// 显示小数	
         LCD_DisplayDecimals( 100,200, f+i*0.01, 10,4);		// 显示小数		
         
@@ -253,6 +253,27 @@ void LCD_Test_Variable (void)
 }
 
 /* USER CODE END 4 */
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM1 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM1) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+
+  /* USER CODE END Callback 1 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

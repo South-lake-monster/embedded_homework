@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -51,30 +51,30 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
   21:Core/Src/spi.c **** #include "spi.h"
   22:Core/Src/spi.c **** 
   23:Core/Src/spi.c **** /* USER CODE BEGIN 0 */
-  24:Core/Src/spi.c **** #define  LCD_SPI 	hspi3           // SPI局部宏，方便修改和移植
+  24:Core/Src/spi.c **** #define  LCD_SPI 	hspi3           // SPI�?部宏，方便修改和移植
   25:Core/Src/spi.c **** 
-  26:Core/Src/spi.c **** static pFONT	*LCD_AsciiFonts;		// 英文字体，ASCII字符集
+  26:Core/Src/spi.c **** static pFONT	*LCD_AsciiFonts;		// 英文字体，ASCII字符�?
   27:Core/Src/spi.c **** 
-  28:Core/Src/spi.c **** // 因为这类SPI的屏幕，每次更新显示时，需要先配置坐标区域、再写显存，
-  29:Core/Src/spi.c **** // 在显示字符时，如果是一个个点去写坐标写显存，会非常慢，
-  30:Core/Src/spi.c **** // 因此开辟一片缓冲区，先将需要显示的数据写进缓冲区，最后再批量写入
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 2
+  28:Core/Src/spi.c **** // 因为这类SPI的屏幕，每次更新显示时，�?要先配置坐标区域、再写显存，
+  29:Core/Src/spi.c **** // 在显示字符时，如果是�?个个点去写坐标写显存，会非常慢，
+  30:Core/Src/spi.c **** // 因此�?辟一片缓冲区，先将需要显示的数据写进缓冲区，�?后再批量写入
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 2
 
 
   31:Core/Src/spi.c **** // 用户可以根据实际情况去修改此处缓冲区的大小，
-  32:Core/Src/spi.c **** // 例如，用户需要显示32*32的汉字时，需要的大小为 32*32*2 = 2048 字节（每个
-  33:Core/Src/spi.c **** uint16_t  LCD_Buff[DMA_SPI_BUF_SIZE];        // LCD缓冲区，16位宽（每个像素点占2字节
+  32:Core/Src/spi.c **** // 例如，用户需要显�?32*32的汉字时，需要的大小�? 32*32*2 = 2048 字节（每个
+  33:Core/Src/spi.c **** uint16_t  LCD_Buff[DMA_SPI_BUF_SIZE];        // LCD缓冲区，16位宽（每个像素点�?2字节
   34:Core/Src/spi.c **** 
-  35:Core/Src/spi.c **** struct	LCD_Struct//LCD相关参数结构体
+  35:Core/Src/spi.c **** struct	LCD_Struct//LCD相关参数结构�?
   36:Core/Src/spi.c **** {
   37:Core/Src/spi.c **** 	uint16_t Color;  				//	LCD当前画笔颜色
-  38:Core/Src/spi.c **** 	uint16_t BackColor;			//	背景色
+  38:Core/Src/spi.c **** 	uint16_t BackColor;			//	背景�?
   39:Core/Src/spi.c **** 	uint8_t  ShowNum_Mode;		// 数字显示模式
   40:Core/Src/spi.c **** 	uint8_t  Direction;			//	显示方向
   41:Core/Src/spi.c **** 	uint16_t Width;            // 屏幕像素长度
   42:Core/Src/spi.c **** 	uint16_t Height;           // 屏幕像素宽度	
-  43:Core/Src/spi.c **** 	uint8_t  X_Offset;         // X坐标偏移，用于设置屏幕控制器的显存写入方式
-  44:Core/Src/spi.c **** 	uint8_t  Y_Offset;         // Y坐标偏移，用于设置屏幕控制器的显存写入方式
+  43:Core/Src/spi.c **** 	uint8_t  X_Offset;         // X坐标偏移，用于设置屏幕控制器的显存写入方�?
+  44:Core/Src/spi.c **** 	uint8_t  Y_Offset;         // Y坐标偏移，用于设置屏幕控制器的显存写入方�?
   45:Core/Src/spi.c **** };
   46:Core/Src/spi.c **** struct LCD_Struct LCD;
   47:Core/Src/spi.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
   67:Core/Src/spi.c ****   hspi3.Init.Direction = SPI_DIRECTION_2LINES;
   47              		.loc 1 67 3 is_stmt 1 view .LVU5
   48              		.loc 1 67 24 is_stmt 0 view .LVU6
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 3
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 3
 
 
   49 000e 0023     		movs	r3, #0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
   84:Core/Src/spi.c **** 
   85:Core/Src/spi.c **** }
   87              		.loc 1 85 1 view .LVU28
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 4
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 4
 
 
   88 0030 08BD     		pop	{r3, pc}
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
   91:Core/Src/spi.c ****   if(spiHandle->Instance==SPI3)
  138              		.loc 1 91 3 is_stmt 1 view .LVU35
  139              		.loc 1 91 15 is_stmt 0 view .LVU36
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 5
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 5
 
 
  140 0012 0268     		ldr	r2, [r0]
@@ -297,22 +297,22 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  138:Core/Src/spi.c ****     __HAL_LINKDMA(spiHandle,hdmatx,hdma_spi3_tx);
  139:Core/Src/spi.c **** 
  140:Core/Src/spi.c ****   /* USER CODE BEGIN SPI3_MspInit 1 */
- 141:Core/Src/spi.c ****     // 初始化 背光 引脚  
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 6
+ 141:Core/Src/spi.c ****     // 初始�? 背光 引脚  
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 6
 
 
  142:Core/Src/spi.c **** 		GPIO_InitStruct.Pin 		= LCD_Backlight_PIN;				// 背光 引脚
  143:Core/Src/spi.c **** 		GPIO_InitStruct.Mode 	= GPIO_MODE_OUTPUT_PP;			// 推挽输出模式
  144:Core/Src/spi.c **** 		GPIO_InitStruct.Pull 	= GPIO_PULLDOWN;					// 下拉，默认保持低电平
- 145:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级低
- 146:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_Backlight_PORT, &GPIO_InitStruct);	// 初始化  
+ 145:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级�?
+ 146:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_Backlight_PORT, &GPIO_InitStruct);	// 初始�?  
  147:Core/Src/spi.c **** 
- 148:Core/Src/spi.c ****     // 初始化 数据指令选择 引脚  
+ 148:Core/Src/spi.c ****     // 初始�? 数据指令选择 引脚  
  149:Core/Src/spi.c **** 		GPIO_InitStruct.Pin 		= LCD_DC_PIN;				      // 数据指令选择 引脚
  150:Core/Src/spi.c **** 		GPIO_InitStruct.Mode 	= GPIO_MODE_OUTPUT_PP;			// 推挽输出模式
  151:Core/Src/spi.c **** 		GPIO_InitStruct.Pull 	= GPIO_NOPULL;						// 无上下拉
- 152:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级低
- 153:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_DC_PORT, &GPIO_InitStruct);	      // 初始化 
+ 152:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级�?
+ 153:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_DC_PORT, &GPIO_InitStruct);	      // 初始�? 
  154:Core/Src/spi.c ****   /* USER CODE END SPI3_MspInit 1 */
  155:Core/Src/spi.c ****   }
  156:Core/Src/spi.c **** }
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  179              	.LBB3:
   95:Core/Src/spi.c ****   /* USER CODE END SPI3_MspInit 0 */
  180              		.loc 1 95 5 view .LVU47
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 7
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 7
 
 
  181 003c 0195     		str	r5, [sp, #4]
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  221 0074 0392     		str	r2, [sp, #12]
  100:Core/Src/spi.c ****     __HAL_RCC_GPIOC_CLK_ENABLE();
  222              		.loc 1 100 5 view .LVU62
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 8
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 8
 
 
  223 0076 039A     		ldr	r2, [sp, #12]
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  260 00a0 05A9     		add	r1, sp, #20
  261 00a2 2148     		ldr	r0, .L13+4
  262              	.LVL5:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 9
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 9
 
 
  112:Core/Src/spi.c **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  126:Core/Src/spi.c ****     hdma_spi3_tx.Init.MemInc = DMA_MINC_ENABLE;
  299              		.loc 1 126 5 is_stmt 1 view .LVU98
  126:Core/Src/spi.c ****     hdma_spi3_tx.Init.MemInc = DMA_MINC_ENABLE;
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 10
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 10
 
 
  300              		.loc 1 126 33 is_stmt 0 view .LVU99
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  335              		.loc 1 138 5 view .LVU118
  142:Core/Src/spi.c **** 		GPIO_InitStruct.Mode 	= GPIO_MODE_OUTPUT_PP;			// 推挽输出模式
  336              		.loc 1 142 3 view .LVU119
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 11
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 11
 
 
  142:Core/Src/spi.c **** 		GPIO_InitStruct.Mode 	= GPIO_MODE_OUTPUT_PP;			// 推挽输出模式
@@ -611,19 +611,19 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  341              		.loc 1 143 25 is_stmt 0 view .LVU122
  342 00f2 0126     		movs	r6, #1
  343 00f4 0696     		str	r6, [sp, #24]
- 144:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级低
+ 144:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级�?
  344              		.loc 1 144 3 is_stmt 1 view .LVU123
- 144:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级低
+ 144:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级�?
  345              		.loc 1 144 25 is_stmt 0 view .LVU124
  346 00f6 0223     		movs	r3, #2
  347 00f8 0793     		str	r3, [sp, #28]
- 145:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_Backlight_PORT, &GPIO_InitStruct);	// 初始化  
+ 145:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_Backlight_PORT, &GPIO_InitStruct);	// 初始�?  
  348              		.loc 1 145 3 is_stmt 1 view .LVU125
- 145:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_Backlight_PORT, &GPIO_InitStruct);	// 初始化  
+ 145:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_Backlight_PORT, &GPIO_InitStruct);	// 初始�?  
  349              		.loc 1 145 26 is_stmt 0 view .LVU126
  350 00fa 0024     		movs	r4, #0
  351              	.LVL9:
- 145:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_Backlight_PORT, &GPIO_InitStruct);	// 初始化  
+ 145:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_Backlight_PORT, &GPIO_InitStruct);	// 初始�?  
  352              		.loc 1 145 26 view .LVU127
  353 00fc 0894     		str	r4, [sp, #32]
  146:Core/Src/spi.c **** 
@@ -644,21 +644,21 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  150:Core/Src/spi.c **** 		GPIO_InitStruct.Pull 	= GPIO_NOPULL;						// 无上下拉
  365              		.loc 1 150 25 is_stmt 0 view .LVU132
  366 010c 0696     		str	r6, [sp, #24]
- 151:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级低
+ 151:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级�?
  367              		.loc 1 151 3 is_stmt 1 view .LVU133
- 151:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级低
+ 151:Core/Src/spi.c **** 		GPIO_InitStruct.Speed 	= GPIO_SPEED_FREQ_LOW;			// 速度等级�?
  368              		.loc 1 151 25 is_stmt 0 view .LVU134
  369 010e 0794     		str	r4, [sp, #28]
- 152:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_DC_PORT, &GPIO_InitStruct);	      // 初始化 
+ 152:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_DC_PORT, &GPIO_InitStruct);	      // 初始�? 
  370              		.loc 1 152 3 is_stmt 1 view .LVU135
- 152:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_DC_PORT, &GPIO_InitStruct);	      // 初始化 
+ 152:Core/Src/spi.c **** 		HAL_GPIO_Init(LCD_DC_PORT, &GPIO_InitStruct);	      // 初始�? 
  371              		.loc 1 152 26 is_stmt 0 view .LVU136
  372 0110 0894     		str	r4, [sp, #32]
  153:Core/Src/spi.c ****   /* USER CODE END SPI3_MspInit 1 */
  373              		.loc 1 153 3 is_stmt 1 view .LVU137
  374 0112 05A9     		add	r1, sp, #20
  375 0114 2846     		mov	r0, r5
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 12
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 12
 
 
  376 0116 FFF7FEFF 		bl	HAL_GPIO_Init
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  425              		.cfi_offset 4, -8
  426              		.cfi_offset 14, -4
  427 000c 0446     		mov	r4, r0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 13
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 13
 
 
  162:Core/Src/spi.c ****   {
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  459 0040 00080240 		.word	1073874944
  460              		.cfi_endproc
  461              	.LFE172:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 14
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 14
 
 
  463              		.section	.text.LCD_WriteCommand,"ax",%progbits
@@ -793,11 +793,11 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  185:Core/Src/spi.c **** 
  186:Core/Src/spi.c **** /* USER CODE BEGIN 1 */
  187:Core/Src/spi.c **** /*****************************************************************************************
- 188:Core/Src/spi.c **** *	函 数 名: LCD_WriteCMD
- 189:Core/Src/spi.c **** *	入口参数: CMD - 需要写入的控制指令
- 190:Core/Src/spi.c **** *	返 回 值: 无
- 191:Core/Src/spi.c **** *	函数功能: 用于写入控制字
- 192:Core/Src/spi.c **** *	说    明: 无
+ 188:Core/Src/spi.c **** *	�? �? �?: LCD_WriteCMD
+ 189:Core/Src/spi.c **** *	入口参数: CMD - �?要写入的控制指令
+ 190:Core/Src/spi.c **** *	�? �? �?: �?
+ 191:Core/Src/spi.c **** *	函数功能: 用于写入控制�?
+ 192:Core/Src/spi.c **** *	�?    �?: �?
  193:Core/Src/spi.c **** ******************************************************************************************/
  194:Core/Src/spi.c **** void  LCD_WriteCommand(uint8_t lcd_command)
  195:Core/Src/spi.c **** {
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  503 0022 03B0     		add	sp, sp, #12
  504              	.LCFI8:
  505              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 15
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 15
 
 
  506              		@ sp needed
@@ -861,11 +861,11 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  525              	.LFB174:
  200:Core/Src/spi.c **** 
  201:Core/Src/spi.c **** /**************************************************************************************************
- 202:Core/Src/spi.c **** *	函 数 名: LCD_WriteData_8bit
+ 202:Core/Src/spi.c **** *	�? �? �?: LCD_WriteData_8bit
  203:Core/Src/spi.c **** *
- 204:Core/Src/spi.c **** *	入口参数: lcd_data - 需要写入的数据，8位
+ 204:Core/Src/spi.c **** *	入口参数: lcd_data - �?要写入的数据�?8�?
  205:Core/Src/spi.c **** *
- 206:Core/Src/spi.c **** *	函数功能: 写入8位数据
+ 206:Core/Src/spi.c **** *	函数功能: 写入8位数�?
  207:Core/Src/spi.c **** *	
  208:Core/Src/spi.c **** ***************************************************************************************************
  209:Core/Src/spi.c **** void  LCD_WriteData_8bit(uint8_t lcd_data)
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  548              		.loc 1 213 4 view .LVU164
  549 0012 4FF47A73 		mov	r3, #1000
  550 0016 0122     		movs	r2, #1
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 16
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 16
 
 
  551 0018 0DF10701 		add	r1, sp, #7
@@ -930,11 +930,11 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  578              	.LFB175:
  215:Core/Src/spi.c **** 
  216:Core/Src/spi.c **** /**************************************************************************************************
- 217:Core/Src/spi.c **** *	函 数 名: LCD_WriteData_16bit
+ 217:Core/Src/spi.c **** *	�? �? �?: LCD_WriteData_16bit
  218:Core/Src/spi.c **** *
- 219:Core/Src/spi.c **** *	入口参数: lcd_data - 需要写入的数据，16位
+ 219:Core/Src/spi.c **** *	入口参数: lcd_data - �?要写入的数据�?16�?
  220:Core/Src/spi.c **** *
- 221:Core/Src/spi.c **** *	函数功能: 写入16位数据
+ 221:Core/Src/spi.c **** *	函数功能: 写入16位数�?
  222:Core/Src/spi.c **** *	
  223:Core/Src/spi.c **** ***************************************************************************************************
  224:Core/Src/spi.c **** void  LCD_WriteData_16bit(uint16_t lcd_data)
@@ -951,14 +951,14 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  588 0002 83B0     		sub	sp, sp, #12
  589              	.LCFI13:
  590              		.cfi_def_cfa_offset 16
- 226:Core/Src/spi.c ****    uint8_t lcd_data_buff[2];    // 数据发送区
+ 226:Core/Src/spi.c ****    uint8_t lcd_data_buff[2];    // 数据发�?�区
  591              		.loc 1 226 4 is_stmt 1 view .LVU168
- 227:Core/Src/spi.c ****    lcd_data_buff[0] = lcd_data>>8;  // 将数据拆分
+ 227:Core/Src/spi.c ****    lcd_data_buff[0] = lcd_data>>8;  // 将数据拆�?
  592              		.loc 1 227 4 view .LVU169
  593              		.loc 1 227 21 is_stmt 0 view .LVU170
  594 0004 030A     		lsrs	r3, r0, #8
  595 0006 8DF80430 		strb	r3, [sp, #4]
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 17
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 17
 
 
  228:Core/Src/spi.c ****    lcd_data_buff[1] = lcd_data;
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  645              		.syntax unified
  646              		.thumb
  647              		.thumb_func
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 18
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 18
 
 
  649              	LCD_WriteBuff:
@@ -1026,11 +1026,11 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  651              	.LFB176:
  234:Core/Src/spi.c **** 
  235:Core/Src/spi.c **** /**************************************************************************************************
- 236:Core/Src/spi.c **** *	函 数 名: LCD_WriteBuff
+ 236:Core/Src/spi.c **** *	�? �? �?: LCD_WriteBuff
  237:Core/Src/spi.c **** *
  238:Core/Src/spi.c **** *	入口参数: DataBuff - 数据区，DataSize - 数据长度
  239:Core/Src/spi.c **** *
- 240:Core/Src/spi.c **** *	函数功能: 批量写入数据到屏幕
+ 240:Core/Src/spi.c **** *	函数功能: 批量写入数据到屏�?
  241:Core/Src/spi.c **** *	
  242:Core/Src/spi.c **** ***************************************************************************************************
  243:Core/Src/spi.c **** void  LCD_WriteBuff(uint16_t *DataBuff, uint16_t DataSize)
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  689 001e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  690 0020 002B     		cmp	r3, #0
  691 0022 FBD0     		beq	.L38
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 19
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 19
 
 
  692              		.loc 1 247 2 discriminator 2 view .LVU193
@@ -1110,23 +1110,23 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  719              	.LFB178:
  249:Core/Src/spi.c **** 
  250:Core/Src/spi.c **** /**************************************************************************************************
- 251:Core/Src/spi.c **** *	函 数 名: SPI_LCD_Init
+ 251:Core/Src/spi.c **** *	�? �? �?: SPI_LCD_Init
  252:Core/Src/spi.c **** *
  253:Core/Src/spi.c **** *	函数功能: 初始化SPI以及屏幕控制器的各种参数
  254:Core/Src/spi.c **** *	
  255:Core/Src/spi.c **** ***************************************************************************************************
  256:Core/Src/spi.c **** void SPI_LCD_Init(void)
  257:Core/Src/spi.c **** {
- 258:Core/Src/spi.c ****    	MX_SPI3_Init();               // 初始化SPI和控制引脚
- 259:Core/Src/spi.c ****     HAL_Delay(10);               // 屏幕刚完成复位时（包括上电复位），需要等待
+ 258:Core/Src/spi.c ****    	MX_SPI3_Init();               // 初始化SPI和控制引�?
+ 259:Core/Src/spi.c ****     HAL_Delay(10);               // 屏幕刚完成复位时（包括上电复位），需要等�?
  260:Core/Src/spi.c **** 
  261:Core/Src/spi.c ****  	LCD_WriteCommand(0x36);       // 显存访问控制 指令，用于设置访问显存的方式
- 262:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x00);     // 配置成 从上到下、从左到右，RGB像素格式
+ 262:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x00);     // 配置�? 从上到下、从左到右，RGB像素格式
  263:Core/Src/spi.c **** 
- 264:Core/Src/spi.c **** 	LCD_WriteCommand(0x3A);			// 接口像素格式 指令，用于设置使用 12位、16位还是18�
- 265:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x05);     // 此处配置成 16位 像素格式
+ 264:Core/Src/spi.c **** 	LCD_WriteCommand(0x3A);			// 接口像素格式 指令，用于设置使�? 12位�??16位还�?18�
+ 265:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x05);     // 此处配置�? 16�? 像素格式
  266:Core/Src/spi.c **** 
- 267:Core/Src/spi.c **** 	// 接下来很多都是电压设置指令，直接使用厂家给设定值
+ 267:Core/Src/spi.c **** 	// 接下来很多都是电压设置指令，直接使用厂家给设定�??
  268:Core/Src/spi.c ****  	LCD_WriteCommand(0xB2);			
  269:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0C);
  270:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0C); 
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  276:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x35);     // VGH = 13.26V，VGL = -10.43V
  277:Core/Src/spi.c **** 
  278:Core/Src/spi.c **** 	LCD_WriteCommand(0xBB);			// 公共电压设置指令
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 20
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 20
 
 
  279:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x19);     // VCOM = 1.35V
@@ -1146,8 +1146,8 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  281:Core/Src/spi.c **** 	LCD_WriteCommand(0xC0);
  282:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x2C);
  283:Core/Src/spi.c **** 
- 284:Core/Src/spi.c **** 	LCD_WriteCommand(0xC2);       // VDV 和 VRH 来源设置
- 285:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x01);     // VDV 和 VRH 由用户自由配置
+ 284:Core/Src/spi.c **** 	LCD_WriteCommand(0xC2);       // VDV �? VRH 来源设置
+ 285:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x01);     // VDV �? VRH 由用户自由配�?
  286:Core/Src/spi.c **** 
  287:Core/Src/spi.c **** 	LCD_WriteCommand(0xC3);			// VRH电压 设置指令  
  288:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x12);     // VRH电压 = 4.6+( vcom+vcom offset+vdv)
@@ -1155,14 +1155,14 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  290:Core/Src/spi.c **** 	LCD_WriteCommand(0xC4);		   // VDV电压 设置指令	
  291:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x20);     // VDV电压 = 0v
  292:Core/Src/spi.c **** 
- 293:Core/Src/spi.c **** 	LCD_WriteCommand(0xC6); 		// 正常模式的帧率控制指令
- 294:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0F);   	// 设置屏幕控制器的刷新帧率为60帧    
+ 293:Core/Src/spi.c **** 	LCD_WriteCommand(0xC6); 		// 正常模式的帧率控制指�?
+ 294:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0F);   	// 设置屏幕控制器的刷新帧率�?60�?    
  295:Core/Src/spi.c **** 
  296:Core/Src/spi.c **** 	LCD_WriteCommand(0xD0);			// 电源控制指令
- 297:Core/Src/spi.c **** 	LCD_WriteData_8bit(0xA4);     // 无效数据，固定写入0xA4
+ 297:Core/Src/spi.c **** 	LCD_WriteData_8bit(0xA4);     // 无效数据，固定写�?0xA4
  298:Core/Src/spi.c **** 	LCD_WriteData_8bit(0xA1);     // AVDD = 6.8V ，AVDD = -4.8V ，VDS = 2.3V
  299:Core/Src/spi.c **** 
- 300:Core/Src/spi.c **** 	LCD_WriteCommand(0xE0);       // 正极电压伽马值设定
+ 300:Core/Src/spi.c **** 	LCD_WriteCommand(0xE0);       // 正极电压伽马值设�?
  301:Core/Src/spi.c **** 	LCD_WriteData_8bit(0xD0);
  302:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x04);
  303:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0D);
@@ -1178,7 +1178,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  313:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x1F);
  314:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x23);
  315:Core/Src/spi.c **** 
- 316:Core/Src/spi.c **** 	LCD_WriteCommand(0xE1);      // 负极电压伽马值设定
+ 316:Core/Src/spi.c **** 	LCD_WriteCommand(0xE1);      // 负极电压伽马值设�?
  317:Core/Src/spi.c **** 	LCD_WriteData_8bit(0xD0);
  318:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x04);
  319:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0C);
@@ -1194,38 +1194,38 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  329:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x20);
  330:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x23);
  331:Core/Src/spi.c **** 
- 332:Core/Src/spi.c **** 	LCD_WriteCommand(0x21);       // 打开反显，因为面板是常黑型，操作需要反过来
+ 332:Core/Src/spi.c **** 	LCD_WriteCommand(0x21);       // 打开反显，因为面板是常黑型，操作�?要反过来
  333:Core/Src/spi.c **** 
- 334:Core/Src/spi.c ****  	// 退出休眠指令，LCD控制器在刚上电、复位时，会自动进入休眠模式 ，因
- 335:Core/Src/spi.c **** 	LCD_WriteCommand(0x11);       // 退出休眠 指令
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 21
+ 334:Core/Src/spi.c ****  	// �?出休眠指令，LCD控制器在刚上电�?�复位时，会自动进入休眠模式 ，因
+ 335:Core/Src/spi.c **** 	LCD_WriteCommand(0x11);       // �?出休�? 指令
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 21
 
 
- 336:Core/Src/spi.c ****    	HAL_Delay(120);               // 需要等待120ms，让电源电压和时钟电路稳定下来
+ 336:Core/Src/spi.c ****    	HAL_Delay(120);               // �?要等�?120ms，让电源电压和时钟电路稳定下�?
  337:Core/Src/spi.c **** 
- 338:Core/Src/spi.c ****  	// 打开显示指令，LCD控制器在刚上电、复位时，会自动关闭显示 
+ 338:Core/Src/spi.c ****  	// 打开显示指令，LCD控制器在刚上电�?�复位时，会自动关闭显示 
  339:Core/Src/spi.c **** 	LCD_WriteCommand(0x29);       // 打开显示   	
  340:Core/Src/spi.c **** 	
- 341:Core/Src/spi.c **** 	// 以下进行一些驱动的默认设置
+ 341:Core/Src/spi.c **** 	// 以下进行�?些驱动的默认设置
  342:Core/Src/spi.c ****    	LCD_SetDirection(Direction_H);  	      //设置显示方向
- 343:Core/Src/spi.c **** 	LCD_SetBackColor(LCD_DISP_BLACK);           // 设置背景色
- 344:Core/Src/spi.c ****  	LCD_SetColor(LCD_DISP_WHITE);             // 设置画笔色  
+ 343:Core/Src/spi.c **** 	LCD_SetBackColor(LCD_DISP_BLACK);           // 设置背景�?
+ 344:Core/Src/spi.c ****  	LCD_SetColor(LCD_DISP_WHITE);             // 设置画笔�?  
  345:Core/Src/spi.c **** 	LCD_Clear();                          	// 清屏
  346:Core/Src/spi.c **** 
  347:Core/Src/spi.c ****    	LCD_SetAsciiFont(&ASCII_Font24);       // 设置默认字体
  348:Core/Src/spi.c ****    	LCD_ShowNumMode(Fill_Zero);	      	// 设置变量显示模式，多余位填充空格还是填
  349:Core/Src/spi.c **** 
- 350:Core/Src/spi.c **** 	// 全部设置完毕之后，打开背光	
- 351:Core/Src/spi.c ****    	LCD_Backlight_ON;  // 引脚输出高电平点亮背光
+ 350:Core/Src/spi.c **** 	// 全部设置完毕之后，打�?背光	
+ 351:Core/Src/spi.c ****    	LCD_Backlight_ON;  // 引脚输出高电平点亮背�?
  352:Core/Src/spi.c **** }
  353:Core/Src/spi.c **** 
  354:Core/Src/spi.c **** /**************************************************************************************************
- 355:Core/Src/spi.c **** *	函 数 名:	 LCD_SetAddress
+ 355:Core/Src/spi.c **** *	�? �? �?:	 LCD_SetAddress
  356:Core/Src/spi.c **** *
  357:Core/Src/spi.c **** *	入口参数:	 x1 - 起始水平坐标   y1 - 起始垂直坐标  
  358:Core/Src/spi.c **** *              x2 - 终点水平坐标   y2 - 终点垂直坐标	   
  359:Core/Src/spi.c **** *	
- 360:Core/Src/spi.c **** *	函数功能:   设置需要显示的坐标区域		 			 
+ 360:Core/Src/spi.c **** *	函数功能:   设置�?要显示的坐标区域		 			 
  361:Core/Src/spi.c **** ***************************************************************************************************
  362:Core/Src/spi.c **** void LCD_SetAddress(uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2)		
  363:Core/Src/spi.c **** {
@@ -1247,7 +1247,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  735 0006 0E46     		mov	r6, r1
  736 0008 1746     		mov	r7, r2
  737 000a 1D46     		mov	r5, r3
- 364:Core/Src/spi.c **** 	LCD_WriteCommand(0x2a);			//	列地址设置，即X坐标
+ 364:Core/Src/spi.c **** 	LCD_WriteCommand(0x2a);			//	列地�?设置，即X坐标
  738              		.loc 1 364 2 is_stmt 1 view .LVU199
  739 000c 2A20     		movs	r0, #42
  740              	.LVL39:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  744              		.loc 1 365 2 is_stmt 1 view .LVU201
  745              		.loc 1 365 28 is_stmt 0 view .LVU202
  746 0012 0F4C     		ldr	r4, .L44
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 22
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 22
 
 
  747 0014 A37A     		ldrb	r3, [r4, #10]	@ zero_extendqisi2
@@ -1277,7 +1277,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  759 0026 FFF7FEFF 		bl	LCD_WriteData_16bit
  760              	.LVL42:
  367:Core/Src/spi.c **** 
- 368:Core/Src/spi.c **** 	LCD_WriteCommand(0x2b);			//	行地址设置，即Y坐标
+ 368:Core/Src/spi.c **** 	LCD_WriteCommand(0x2b);			//	行地�?设置，即Y坐标
  761              		.loc 1 368 2 is_stmt 1 view .LVU207
  762 002a 2B20     		movs	r0, #43
  763 002c FFF7FEFF 		bl	LCD_WriteCommand
@@ -1301,7 +1301,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  779 0040 FFF7FEFF 		bl	LCD_WriteData_16bit
  780              	.LVL45:
  371:Core/Src/spi.c **** 
- 372:Core/Src/spi.c **** 	LCD_WriteCommand(0x2c);			//	开始写入显存，即要显示的颜色数据
+ 372:Core/Src/spi.c **** 	LCD_WriteCommand(0x2c);			//	�?始写入显存，即要显示的颜色数�?
  781              		.loc 1 372 2 is_stmt 1 view .LVU214
  782 0044 2C20     		movs	r0, #44
  783 0046 FFF7FEFF 		bl	LCD_WriteCommand
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  794              		.section	.text.LCD_SetColor,"ax",%progbits
  795              		.align	1
  796              		.global	LCD_SetColor
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 23
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 23
 
 
  797              		.syntax unified
@@ -1329,14 +1329,14 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  803              	.LFB179:
  374:Core/Src/spi.c **** 
  375:Core/Src/spi.c **** /**************************************************************************************************
- 376:Core/Src/spi.c **** *	函 数 名:	LCD_SetColor
+ 376:Core/Src/spi.c **** *	�? �? �?:	LCD_SetColor
  377:Core/Src/spi.c **** *
  378:Core/Src/spi.c **** *	入口参数:	Color - 要显示的颜色，示例：0x0000FF 表示蓝色
  379:Core/Src/spi.c **** *
- 380:Core/Src/spi.c **** *	函数功能:	此函数用于设置画笔的颜色，例如显示字符、画点画线、绘图�
+ 380:Core/Src/spi.c **** *	函数功能:	此函数用于设置画笔的颜色，例如显示字符�?�画点画线�?�绘图�
  381:Core/Src/spi.c **** *
- 382:Core/Src/spi.c **** *	说    明:	1. 为了方便用户使用自定义颜色，入口参数 Color 使用24位 RGB888的
- 383:Core/Src/spi.c **** *					2. 24位的颜色中，从高位到低位分别对应 R、G、B  3个颜色通道
+ 382:Core/Src/spi.c **** *	�?    �?:	1. 为了方便用户使用自定义颜色，入口参数 Color 使用24�? RGB888的
+ 383:Core/Src/spi.c **** *					2. 24位的颜色中，从高位到低位分别对应 R、G、B  3个颜色�?�道
  384:Core/Src/spi.c **** *
  385:Core/Src/spi.c **** ***************************************************************************************************
  386:Core/Src/spi.c **** void LCD_SetColor(uint16_t Color)
@@ -1346,7 +1346,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  806              		@ args = 0, pretend = 0, frame = 0
  807              		@ frame_needed = 0, uses_anonymous_args = 0
  808              		@ link register save eliminated.
- 388:Core/Src/spi.c **** 	LCD.Color = Color;  // 将颜色写入全局LCD参数		
+ 388:Core/Src/spi.c **** 	LCD.Color = Color;  // 将颜色写入全�?LCD参数		
  809              		.loc 1 388 2 view .LVU217
  810              		.loc 1 388 12 is_stmt 0 view .LVU218
  811 0000 014B     		ldr	r3, .L47
@@ -1371,17 +1371,17 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  831              	.LFB180:
  390:Core/Src/spi.c **** 
  391:Core/Src/spi.c **** /**************************************************************************************************
- 392:Core/Src/spi.c **** *	函 数 名:	LCD_SetBackColor
+ 392:Core/Src/spi.c **** *	�? �? �?:	LCD_SetBackColor
  393:Core/Src/spi.c **** *
  394:Core/Src/spi.c **** *	入口参数:	Color - 要显示的颜色，示例：0x0000FF 表示蓝色
  395:Core/Src/spi.c **** *
- 396:Core/Src/spi.c **** *	函数功能:	设置背景色,此函数用于清屏以及显示字符的背景色
+ 396:Core/Src/spi.c **** *	函数功能:	设置背景�?,此函数用于清屏以及显示字符的背景�?
  397:Core/Src/spi.c **** *
- 398:Core/Src/spi.c **** *	说    明:	1. 为了方便用户使用自定义颜色，入口参数 Color 使用24位 RGB888的
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 24
+ 398:Core/Src/spi.c **** *	�?    �?:	1. 为了方便用户使用自定义颜色，入口参数 Color 使用24�? RGB888的
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 24
 
 
- 399:Core/Src/spi.c **** *					2. 24位的颜色中，从高位到低位分别对应 R、G、B  3个颜色通道
+ 399:Core/Src/spi.c **** *					2. 24位的颜色中，从高位到低位分别对应 R、G、B  3个颜色�?�道
  400:Core/Src/spi.c **** *
  401:Core/Src/spi.c **** ***************************************************************************************************
  402:Core/Src/spi.c **** void LCD_SetBackColor(uint16_t Color)
@@ -1391,7 +1391,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  834              		@ args = 0, pretend = 0, frame = 0
  835              		@ frame_needed = 0, uses_anonymous_args = 0
  836              		@ link register save eliminated.
- 404:Core/Src/spi.c **** 	LCD.BackColor = Color;	// 将颜色写入全局LCD参数			   	
+ 404:Core/Src/spi.c **** 	LCD.BackColor = Color;	// 将颜色写入全�?LCD参数			   	
  837              		.loc 1 404 2 view .LVU221
  838              		.loc 1 404 16 is_stmt 0 view .LVU222
  839 0000 014B     		ldr	r3, .L50
@@ -1416,13 +1416,13 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  859              	.LFB181:
  406:Core/Src/spi.c **** 
  407:Core/Src/spi.c **** /**************************************************************************************************
- 408:Core/Src/spi.c **** *	函 数 名:	LCD_SetDirection
+ 408:Core/Src/spi.c **** *	�? �? �?:	LCD_SetDirection
  409:Core/Src/spi.c **** *
  410:Core/Src/spi.c **** *	入口参数:	direction - 要显示的方向
  411:Core/Src/spi.c **** *
  412:Core/Src/spi.c **** *	函数功能:	设置要显示的方向
  413:Core/Src/spi.c **** *
- 414:Core/Src/spi.c **** *	说    明:   1. 可输入参数 Direction_H 、Direction_V 、Direction_H_Flip 、Direction_V_Fl
+ 414:Core/Src/spi.c **** *	�?    �?:   1. 可输入参�? Direction_H 、Direction_V 、Direction_H_Flip 、Direction_V_Fl
  415:Core/Src/spi.c **** *              2. 使用示例 LCD_DisplayDirection(Direction_H) ，即设置屏幕横屏显示
  416:Core/Src/spi.c **** *
  417:Core/Src/spi.c **** ***************************************************************************************************
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  867              		.cfi_def_cfa_offset 8
  868              		.cfi_offset 3, -8
  869              		.cfi_offset 14, -4
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 25
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 25
 
 
  420:Core/Src/spi.c **** 	LCD.Direction = direction;    // 写入全局LCD参数
@@ -1456,7 +1456,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  425:Core/Src/spi.c ****       LCD_WriteData_8bit(0x70);        // 横屏显示
  426:Core/Src/spi.c ****       LCD.X_Offset   = 20;             // 设置控制器坐标偏移量
  427:Core/Src/spi.c ****       LCD.Y_Offset   = 0;   
- 428:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		// 重新赋值长、宽
+ 428:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		// 重新赋�?�长、宽
  429:Core/Src/spi.c ****       LCD.Height     = LCD_Width;		
  430:Core/Src/spi.c ****    }
  431:Core/Src/spi.c ****    else if( direction == Direction_V )
@@ -1469,7 +1469,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  434:Core/Src/spi.c ****       LCD_WriteData_8bit(0x00);        // 垂直显示
  435:Core/Src/spi.c ****       LCD.X_Offset   = 0;              // 设置控制器坐标偏移量
  436:Core/Src/spi.c ****       LCD.Y_Offset   = 20;     
- 437:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋值长、宽
+ 437:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋�?�长、宽
  438:Core/Src/spi.c ****       LCD.Height     = LCD_Height;						
  439:Core/Src/spi.c ****    }
  440:Core/Src/spi.c ****    else if( direction == Direction_H_Flip )
@@ -1482,7 +1482,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  443:Core/Src/spi.c ****       LCD_WriteData_8bit(0xA0);         // 横屏显示，并上下翻转，RGB像素格式
  444:Core/Src/spi.c ****       LCD.X_Offset   = 20;              // 设置控制器坐标偏移量
  445:Core/Src/spi.c ****       LCD.Y_Offset   = 0;      
- 446:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		 // 重新赋值长、宽
+ 446:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		 // 重新赋�?�长、宽
  447:Core/Src/spi.c ****       LCD.Height     = LCD_Width;				
  448:Core/Src/spi.c ****    }
  449:Core/Src/spi.c ****    else if( direction == Direction_V_Flip )
@@ -1497,8 +1497,8 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  452:Core/Src/spi.c ****       LCD_WriteData_8bit(0xC0);        // 垂直显示 ，并上下翻转，RGB像素格式
  453:Core/Src/spi.c ****       LCD.X_Offset   = 0;              // 设置控制器坐标偏移量
  454:Core/Src/spi.c ****       LCD.Y_Offset   = 20;     
- 455:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋值长、宽
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 26
+ 455:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋�?�长、宽
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 26
 
 
  456:Core/Src/spi.c ****       LCD.Height     = LCD_Height;				
@@ -1528,9 +1528,9 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  907 0022 1F4B     		ldr	r3, .L62
  908 0024 1422     		movs	r2, #20
  909 0026 9A72     		strb	r2, [r3, #10]
- 427:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		// 重新赋值长、宽
+ 427:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		// 重新赋�?�长、宽
  910              		.loc 1 427 7 is_stmt 1 view .LVU242
- 427:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		// 重新赋值长、宽
+ 427:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		// 重新赋�?�长、宽
  911              		.loc 1 427 22 is_stmt 0 view .LVU243
  912 0028 0022     		movs	r2, #0
  913 002a DA72     		strb	r2, [r3, #11]
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  929 003a FFF7FEFF 		bl	LCD_WriteCommand
  930              	.LVL57:
  434:Core/Src/spi.c ****       LCD.X_Offset   = 0;              // 设置控制器坐标偏移量
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 27
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 27
 
 
  931              		.loc 1 434 7 is_stmt 1 view .LVU250
@@ -1572,9 +1572,9 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  937 0044 164B     		ldr	r3, .L62
  938 0046 0022     		movs	r2, #0
  939 0048 9A72     		strb	r2, [r3, #10]
- 436:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋值长、宽
+ 436:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋�?�长、宽
  940              		.loc 1 436 7 is_stmt 1 view .LVU253
- 436:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋值长、宽
+ 436:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋�?�长、宽
  941              		.loc 1 436 22 is_stmt 0 view .LVU254
  942 004a 1422     		movs	r2, #20
  943 004c DA72     		strb	r2, [r3, #11]
@@ -1613,12 +1613,12 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  967 0066 0E4B     		ldr	r3, .L62
  968 0068 1422     		movs	r2, #20
  969 006a 9A72     		strb	r2, [r3, #10]
- 445:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		 // 重新赋值长、宽
+ 445:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		 // 重新赋�?�长、宽
  970              		.loc 1 445 7 is_stmt 1 view .LVU264
- 445:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		 // 重新赋值长、宽
+ 445:Core/Src/spi.c ****       LCD.Width      = LCD_Height;		 // 重新赋�?�长、宽
  971              		.loc 1 445 22 is_stmt 0 view .LVU265
  972 006c 0022     		movs	r2, #0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 28
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 28
 
 
  973 006e DA72     		strb	r2, [r3, #11]
@@ -1657,9 +1657,9 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  997 0088 054B     		ldr	r3, .L62
  998 008a 0022     		movs	r2, #0
  999 008c 9A72     		strb	r2, [r3, #10]
- 454:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋值长、宽
+ 454:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋�?�长、宽
  1000              		.loc 1 454 7 is_stmt 1 view .LVU275
- 454:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋值长、宽
+ 454:Core/Src/spi.c ****       LCD.Width      = LCD_Width;		// 重新赋�?�长、宽
  1001              		.loc 1 454 22 is_stmt 0 view .LVU276
  1002 008e 1422     		movs	r2, #20
  1003 0090 DA72     		strb	r2, [r3, #11]
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1012              		.loc 1 458 1 view .LVU281
  1013 009c BAE7     		b	.L52
  1014              	.L63:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 29
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 29
 
 
  1015 009e 00BF     		.align	2
@@ -1697,14 +1697,14 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1030              	.LFB182:
  459:Core/Src/spi.c **** 
  460:Core/Src/spi.c **** /**************************************************************************************************
- 461:Core/Src/spi.c **** *	函 数 名:	LCD_SetAsciiFont
+ 461:Core/Src/spi.c **** *	�? �? �?:	LCD_SetAsciiFont
  462:Core/Src/spi.c **** *
  463:Core/Src/spi.c **** *	入口参数:	*fonts - 要设置的ASCII字体
  464:Core/Src/spi.c **** *
- 465:Core/Src/spi.c **** *	函数功能:	设置ASCII字体，可选择使用 3216/2412/2010/1608/1206 五种大小的字体
+ 465:Core/Src/spi.c **** *	函数功能:	设置ASCII字体，可选择使用 3216/2412/2010/1608/1206 五种大小的字�?
  466:Core/Src/spi.c **** *
- 467:Core/Src/spi.c **** *	说    明:	1. 使用示例 LCD_SetAsciiFont(&ASCII_Font24) ，即设置 2412的 ASCII字体
- 468:Core/Src/spi.c **** *					2. 相关字模存放在 lcd_fonts.c 			
+ 467:Core/Src/spi.c **** *	�?    �?:	1. 使用示例 LCD_SetAsciiFont(&ASCII_Font24) ，即设置 2412�? ASCII字体
+ 468:Core/Src/spi.c **** *					2. 相关字模存放�? lcd_fonts.c 			
  469:Core/Src/spi.c **** *
  470:Core/Src/spi.c **** ***************************************************************************************************
  471:Core/Src/spi.c **** void LCD_SetAsciiFont(pFONT *Asciifonts)
@@ -1738,14 +1738,14 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1057              	.LFB183:
  475:Core/Src/spi.c **** 
  476:Core/Src/spi.c **** /**************************************************************************************************
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 30
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 30
 
 
- 477:Core/Src/spi.c **** *	函 数 名:	LCD_Clear
+ 477:Core/Src/spi.c **** *	�? �? �?:	LCD_Clear
  478:Core/Src/spi.c **** *
- 479:Core/Src/spi.c **** *	函数功能:	清屏函数，将LCD清除为 LCD.BackColor 的颜色
+ 479:Core/Src/spi.c **** *	函数功能:	清屏函数，将LCD清除�? LCD.BackColor 的颜�?
  480:Core/Src/spi.c **** *
- 481:Core/Src/spi.c **** *	说    明:	先用 LCD_SetBackColor() 设置要清除的背景色，再调用该函数清屏即�
+ 481:Core/Src/spi.c **** *	�?    �?:	先用 LCD_SetBackColor() 设置要清除的背景色，再调用该函数清屏即�
  482:Core/Src/spi.c **** *
  483:Core/Src/spi.c **** ***************************************************************************************************
  484:Core/Src/spi.c **** void LCD_Clear(void)
@@ -1771,7 +1771,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1075              	.LVL69:
  1076              	.L69:
  487:Core/Src/spi.c **** 	{
- 488:Core/Src/spi.c **** 		LCD_Buff[i] = LCD.BackColor;	// 使用背景色填充显存
+ 488:Core/Src/spi.c **** 		LCD_Buff[i] = LCD.BackColor;	// 使用背景色填充显�?
  1077              		.loc 1 488 3 is_stmt 1 discriminator 3 view .LVU291
  1078              		.loc 1 488 20 is_stmt 0 discriminator 3 view .LVU292
  1079 0006 164A     		ldr	r2, .L74
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1094              		.loc 1 490 4 is_stmt 1 view .LVU298
  1095              		.loc 1 490 26 is_stmt 0 view .LVU299
  1096 0018 114B     		ldr	r3, .L74
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 31
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 31
 
 
  1097              	.LVL71:
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  492:Core/Src/spi.c **** 	for(int j=0; j<75; j++)
  1146              		.loc 1 492 21 discriminator 2 view .LVU315
  492:Core/Src/spi.c **** 	for(int j=0; j<75; j++)
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 32
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 32
 
 
  1147              		.loc 1 492 22 is_stmt 0 discriminator 2 view .LVU316
@@ -1899,17 +1899,17 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1180              	.LFB184:
  498:Core/Src/spi.c **** 
  499:Core/Src/spi.c **** /**************************************************************************************************
- 500:Core/Src/spi.c **** *	函 数 名:	LCD_ClearRect
+ 500:Core/Src/spi.c **** *	�? �? �?:	LCD_ClearRect
  501:Core/Src/spi.c **** *
  502:Core/Src/spi.c **** *	入口参数:	x - 起始水平坐标
  503:Core/Src/spi.c **** *					y - 起始垂直坐标
  504:Core/Src/spi.c **** *					width  - 要清除区域的横向长度
  505:Core/Src/spi.c **** *					height - 要清除区域的纵向宽度
  506:Core/Src/spi.c **** *
- 507:Core/Src/spi.c **** *	函数功能:	局部清屏函数，将指定位置对应的区域清除为 LCD.BackColor 的颜�
+ 507:Core/Src/spi.c **** *	函数功能:	�?部清屏函数，将指定位置对应的区域清除�? LCD.BackColor 的颜�
  508:Core/Src/spi.c **** *
- 509:Core/Src/spi.c **** *	说    明:	1. 先用 LCD_SetBackColor() 设置要清除的背景色，再调用该函数清屏�
- 510:Core/Src/spi.c **** *				   2. 使用示例 LCD_ClearRect( 10, 10, 100, 50) ，清除坐标(10,10)开始的长100宽50�
+ 509:Core/Src/spi.c **** *	�?    �?:	1. 先用 LCD_SetBackColor() 设置要清除的背景色，再调用该函数清屏�
+ 510:Core/Src/spi.c **** *				   2. 使用示例 LCD_ClearRect( 10, 10, 100, 50) ，清除坐�?(10,10)�?始的�?100�?50�
  511:Core/Src/spi.c **** *
  512:Core/Src/spi.c **** ***************************************************************************************************
  513:Core/Src/spi.c **** void LCD_ClearRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height)
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1182              		.cfi_startproc
  1183              		@ args = 0, pretend = 0, frame = 0
  1184              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 33
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 33
 
 
  1185              		.loc 1 514 1 is_stmt 0 view .LVU322
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1233              		.loc 1 520 2 discriminator 1 view .LVU337
  1234              		.loc 1 520 2 discriminator 1 view .LVU338
  1235 0036 074B     		ldr	r3, .L79+12
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 34
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 34
 
 
  1236 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
@@ -2012,15 +2012,15 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1265              	.LFB185:
  522:Core/Src/spi.c **** 
  523:Core/Src/spi.c **** /**************************************************************************************************
- 524:Core/Src/spi.c **** *	函 数 名:	LCD_DrawPoint
+ 524:Core/Src/spi.c **** *	�? �? �?:	LCD_DrawPoint
  525:Core/Src/spi.c **** *
  526:Core/Src/spi.c **** *	入口参数:	x - 起始水平坐标
  527:Core/Src/spi.c **** *					y - 起始垂直坐标
- 528:Core/Src/spi.c **** *					color  - 要绘制的颜色，使用 24位 RGB888 的颜色格式，用户无需关心颜色�
+ 528:Core/Src/spi.c **** *					color  - 要绘制的颜色，使�? 24�? RGB888 的颜色格式，用户无需关心颜色�
  529:Core/Src/spi.c **** *
- 530:Core/Src/spi.c **** *	函数功能:	在指定坐标绘制指定颜色的点
+ 530:Core/Src/spi.c **** *	函数功能:	在指定坐标绘制指定颜色的�?
  531:Core/Src/spi.c **** *
- 532:Core/Src/spi.c **** *	说    明:	使用示例 LCD_DrawPoint( 10, 10, 0x0000FF) ，在坐标(10,10)绘制蓝色的点
+ 532:Core/Src/spi.c **** *	�?    �?:	使用示例 LCD_DrawPoint( 10, 10, 0x0000FF) ，在坐标(10,10)绘制蓝色的点
  533:Core/Src/spi.c **** *
  534:Core/Src/spi.c **** ***************************************************************************************************
  535:Core/Src/spi.c **** void LCD_DrawPoint(uint16_t x,uint16_t y,uint16_t color)
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1276 0002 0B46     		mov	r3, r1
  1277 0004 1446     		mov	r4, r2
  537:Core/Src/spi.c **** 	LCD_SetAddress(x,y,x,y);	//	设置坐标 
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 35
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 35
 
 
  1278              		.loc 1 537 2 is_stmt 1 view .LVU344
@@ -2069,7 +2069,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1302              	.LFB186:
  541:Core/Src/spi.c **** 
  542:Core/Src/spi.c **** /**************************************************************************************************
- 543:Core/Src/spi.c **** *	函 数 名:	LCD_DisplayChar
+ 543:Core/Src/spi.c **** *	�? �? �?:	LCD_DisplayChar
  544:Core/Src/spi.c **** *
  545:Core/Src/spi.c **** *	入口参数:	x - 起始水平坐标
  546:Core/Src/spi.c **** *					y - 起始垂直坐标
@@ -2077,8 +2077,8 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  548:Core/Src/spi.c **** *
  549:Core/Src/spi.c **** *	函数功能:	在指定坐标显示指定的字符
  550:Core/Src/spi.c **** *
- 551:Core/Src/spi.c **** *	说    明:	1. 可设置要显示的字体，例如使用 LCD_SetAsciiFont(&ASCII_Font24) 设置�
- 552:Core/Src/spi.c **** *					2.	可设置要显示的颜色，例如使用 LCD_SetColor(0xff0000FF) 设置为蓝色
+ 551:Core/Src/spi.c **** *	�?    �?:	1. 可设置要显示的字体，例如使用 LCD_SetAsciiFont(&ASCII_Font24) 设置�
+ 552:Core/Src/spi.c **** *					2.	可设置要显示的颜色，例如使用 LCD_SetColor(0xff0000FF) 设置为蓝�?
  553:Core/Src/spi.c **** *					3. 可设置对应的背景色，例如使用 LCD_SetBackColor(0x000000) 设置为黑色的�
  554:Core/Src/spi.c **** *					4. 使用示例 LCD_DisplayChar( 10, 10, 'a') ，在坐标(10,10)显示字符 'a'
  555:Core/Src/spi.c **** *
@@ -2098,17 +2098,17 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1313              		.cfi_offset 6, -16
  1314              		.cfi_offset 7, -12
  1315              		.cfi_offset 8, -8
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 36
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 36
 
 
  1316              		.cfi_offset 14, -4
  559:Core/Src/spi.c **** 	uint16_t  index = 0, counter = 0 ,i = 0, w = 0;		// 计数变量
  1317              		.loc 1 559 2 is_stmt 1 view .LVU350
  1318              	.LVL89:
- 560:Core/Src/spi.c ****    	uint8_t   disChar;		//存储字符的地址
+ 560:Core/Src/spi.c ****    	uint8_t   disChar;		//存储字符的地�?
  1319              		.loc 1 560 5 view .LVU351
  561:Core/Src/spi.c **** 
- 562:Core/Src/spi.c **** 	c = c - 32; 	// 计算ASCII字符的偏移
+ 562:Core/Src/spi.c **** 	c = c - 32; 	// 计算ASCII字符的偏�?
  1320              		.loc 1 562 2 view .LVU352
  1321              		.loc 1 562 4 is_stmt 0 view .LVU353
  1322 0004 A2F12007 		sub	r7, r2, #32
@@ -2117,10 +2117,10 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  563:Core/Src/spi.c **** 
  564:Core/Src/spi.c **** 	for(index = 0; index < LCD_AsciiFonts->Sizes; index++)	
  1325              		.loc 1 564 2 is_stmt 1 view .LVU354
- 559:Core/Src/spi.c ****    	uint8_t   disChar;		//存储字符的地址
+ 559:Core/Src/spi.c ****    	uint8_t   disChar;		//存储字符的地�?
  1326              		.loc 1 559 43 is_stmt 0 view .LVU355
  1327 000a 0023     		movs	r3, #0
- 559:Core/Src/spi.c ****    	uint8_t   disChar;		//存储字符的地址
+ 559:Core/Src/spi.c ****    	uint8_t   disChar;		//存储字符的地�?
  1328              		.loc 1 559 36 view .LVU356
  1329 000c 9E46     		mov	lr, r3
  1330              		.loc 1 564 12 view .LVU357
@@ -2130,12 +2130,12 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1334              	.LVL91:
  1335              	.L86:
  565:Core/Src/spi.c **** 	{
- 566:Core/Src/spi.c **** 		disChar = LCD_AsciiFonts->pTable[c*LCD_AsciiFonts->Sizes + index]; //获取字符的模值
+ 566:Core/Src/spi.c **** 		disChar = LCD_AsciiFonts->pTable[c*LCD_AsciiFonts->Sizes + index]; //获取字符的模�?
  567:Core/Src/spi.c **** 		for(counter = 0; counter < 8; counter++)
  568:Core/Src/spi.c **** 		{ 
  569:Core/Src/spi.c **** 			if(disChar & 0x01)	
  570:Core/Src/spi.c **** 			{		
- 571:Core/Src/spi.c ****             LCD_Buff[i] =  LCD.Color;			// 当前模值不为0时，使用画笔色绘点
+ 571:Core/Src/spi.c ****             LCD_Buff[i] =  LCD.Color;			// 当前模�?�不�?0时，使用画笔色绘�?
  572:Core/Src/spi.c **** 			}
  573:Core/Src/spi.c **** 			else		
  574:Core/Src/spi.c **** 			{		
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1348              		.loc 1 578 4 is_stmt 1 view .LVU364
  1349              		.loc 1 578 5 is_stmt 0 view .LVU365
  1350 0020 0EF1010E 		add	lr, lr, #1
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 37
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 37
 
 
  1351              	.LVL93:
@@ -2173,7 +2173,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1359              		.loc 1 579 12 view .LVU369
  1360 002a 9BB2     		uxth	r3, r3
  1361              	.LVL96:
- 580:Core/Src/spi.c ****  			if( w == LCD_AsciiFonts->Width ) // 如果写入的数据达到了字符宽度，则退出当�
+ 580:Core/Src/spi.c ****  			if( w == LCD_AsciiFonts->Width ) // 如果写入的数据达到了字符宽度，则�?出当�
  1362              		.loc 1 580 5 is_stmt 1 view .LVU370
  1363              		.loc 1 580 28 is_stmt 0 view .LVU371
  1364 002c AA88     		ldrh	r2, [r5, #4]
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  581:Core/Src/spi.c **** 			{								   // 进入下一字符的写入的绘制
  582:Core/Src/spi.c **** 				w = 0;
  1393              		.loc 1 582 7 view .LVU383
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 38
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 38
 
 
  1394 0054 0023     		movs	r3, #0
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1430 0072 AA88     		ldrh	r2, [r5, #4]
  1431              		.loc 1 587 27 view .LVU399
  1432 0074 0244     		add	r2, r2, r0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 39
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 39
 
 
  1433 0076 92B2     		uxth	r2, r2
@@ -2333,21 +2333,21 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1482              	.LFB187:
  590:Core/Src/spi.c **** 
  591:Core/Src/spi.c **** /**************************************************************************************************
- 592:Core/Src/spi.c **** *	函 数 名:	LCD_DisplayString
+ 592:Core/Src/spi.c **** *	�? �? �?:	LCD_DisplayString
  593:Core/Src/spi.c **** *
  594:Core/Src/spi.c **** *	入口参数:	x - 起始水平坐标
  595:Core/Src/spi.c **** *					y - 起始垂直坐标
- 596:Core/Src/spi.c **** *					p - ASCII字符串的首地址
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 40
+ 596:Core/Src/spi.c **** *					p - ASCII字符串的首地�?
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 40
 
 
  597:Core/Src/spi.c **** *
- 598:Core/Src/spi.c **** *	函数功能:	在指定坐标显示指定的字符串
+ 598:Core/Src/spi.c **** *	函数功能:	在指定坐标显示指定的字符�?
  599:Core/Src/spi.c **** *
- 600:Core/Src/spi.c **** *	说    明:	1. 可设置要显示的字体，例如使用 LCD_SetAsciiFont(&ASCII_Font24) 设置�
- 601:Core/Src/spi.c **** *					2.	可设置要显示的颜色，例如使用 LCD_SetColor(0x0000FF) 设置为蓝色
+ 600:Core/Src/spi.c **** *	�?    �?:	1. 可设置要显示的字体，例如使用 LCD_SetAsciiFont(&ASCII_Font24) 设置�
+ 601:Core/Src/spi.c **** *					2.	可设置要显示的颜色，例如使用 LCD_SetColor(0x0000FF) 设置为蓝�?
  602:Core/Src/spi.c **** *					3. 可设置对应的背景色，例如使用 LCD_SetBackColor(0x000000) 设置为黑色的�
- 603:Core/Src/spi.c **** *					4. 使用示例 LCD_DisplayString( 10, 10, "FANKE") ，在起始坐标为(10,10)的地方显�
+ 603:Core/Src/spi.c **** *					4. 使用示例 LCD_DisplayString( 10, 10, "FANKE") ，在起始坐标�?(10,10)的地方显�
  604:Core/Src/spi.c **** *
  605:Core/Src/spi.c **** ***************************************************************************************************
  606:Core/Src/spi.c **** void LCD_DisplayString( uint16_t x, uint16_t y, char *p) 
@@ -2380,7 +2380,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1505 000c 2046     		mov	r0, r4
  1506 000e FFF7FEFF 		bl	LCD_DisplayChar
  1507              	.LVL110:
- 611:Core/Src/spi.c **** 		 x += LCD_AsciiFonts->Width; //显示下一个字符
+ 611:Core/Src/spi.c **** 		 x += LCD_AsciiFonts->Width; //显示下一个字�?
  1508              		.loc 1 611 4 view .LVU414
  1509              		.loc 1 611 23 is_stmt 0 view .LVU415
  1510 0012 074B     		ldr	r3, .L101
@@ -2392,13 +2392,13 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1516              		.loc 1 611 6 view .LVU417
  1517 001a A4B2     		uxth	r4, r4
  1518              	.LVL112:
- 612:Core/Src/spi.c **** 		 p++;	//取下一个字符地址
+ 612:Core/Src/spi.c **** 		 p++;	//取下�?个字符地�?
  1519              		.loc 1 612 4 is_stmt 1 view .LVU418
  1520              		.loc 1 612 5 is_stmt 0 view .LVU419
  1521 001c 0135     		adds	r5, r5, #1
  1522              	.LVL113:
  1523              	.L97:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 41
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 41
 
 
  608:Core/Src/spi.c **** 	{
@@ -2443,14 +2443,14 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1558              	.LFB188:
  615:Core/Src/spi.c **** 
  616:Core/Src/spi.c **** /**************************************************************************************************
- 617:Core/Src/spi.c **** *	函 数 名:	LCD_ShowNumMode
+ 617:Core/Src/spi.c **** *	�? �? �?:	LCD_ShowNumMode
  618:Core/Src/spi.c **** *
- 619:Core/Src/spi.c **** *	入口参数:	mode - 设置变量的显示模式
+ 619:Core/Src/spi.c **** *	入口参数:	mode - 设置变量的显示模�?
  620:Core/Src/spi.c **** *
- 621:Core/Src/spi.c **** *	函数功能:	设置变量显示时多余位补0还是补空格，可输入参数 Fill_Space 填�
+ 621:Core/Src/spi.c **** *	函数功能:	设置变量显示时多余位�?0还是补空格，可输入参�? Fill_Space 填�
  622:Core/Src/spi.c **** *
- 623:Core/Src/spi.c **** *	说    明:   1. 只有 LCD_DisplayNumber() 显示整数 和 LCD_DisplayDecimals()显示小数 �
- 624:Core/Src/spi.c **** *					2. 使用示例 LCD_ShowNumMode(Fill_Zero) 设置多余位填充0，例如 123 可以显示�
+ 623:Core/Src/spi.c **** *	�?    �?:   1. 只有 LCD_DisplayNumber() 显示整数 �? LCD_DisplayDecimals()显示小数 �
+ 624:Core/Src/spi.c **** *					2. 使用示例 LCD_ShowNumMode(Fill_Zero) 设置多余位填�?0，例�? 123 可以显示�
  625:Core/Src/spi.c **** *
  626:Core/Src/spi.c **** ***************************************************************************************************
  627:Core/Src/spi.c **** void LCD_ShowNumMode(uint8_t mode)
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1559              		.loc 1 628 1 is_stmt 1 view -0
  1560              		.cfi_startproc
  1561              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 42
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 42
 
 
  1562              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2485,7 +2485,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1582              		.thumb_func
  1584              	SPI_LCD_Init:
  1585              	.LFB177:
- 257:Core/Src/spi.c ****    	MX_SPI3_Init();               // 初始化SPI和控制引脚
+ 257:Core/Src/spi.c ****    	MX_SPI3_Init();               // 初始化SPI和控制引�?
  1586              		.loc 1 257 1 is_stmt 1 view -0
  1587              		.cfi_startproc
  1588              		@ args = 0, pretend = 0, frame = 0
@@ -2495,7 +2495,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1592              		.cfi_def_cfa_offset 8
  1593              		.cfi_offset 3, -8
  1594              		.cfi_offset 14, -4
- 258:Core/Src/spi.c ****     HAL_Delay(10);               // 屏幕刚完成复位时（包括上电复位），需要等待
+ 258:Core/Src/spi.c ****     HAL_Delay(10);               // 屏幕刚完成复位时（包括上电复位），需要等�?
  1595              		.loc 1 258 5 view .LVU432
  1596 0002 FFF7FEFF 		bl	MX_SPI3_Init
  1597              	.LVL116:
@@ -2504,7 +2504,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1599 0006 0A20     		movs	r0, #10
  1600 0008 FFF7FEFF 		bl	HAL_Delay
  1601              	.LVL117:
- 261:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x00);     // 配置成 从上到下、从左到右，RGB像素格式
+ 261:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x00);     // 配置�? 从上到下、从左到右，RGB像素格式
  1602              		.loc 1 261 3 view .LVU434
  1603 000c 3620     		movs	r0, #54
  1604 000e FFF7FEFF 		bl	LCD_WriteCommand
@@ -2514,11 +2514,11 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1607 0012 0020     		movs	r0, #0
  1608 0014 FFF7FEFF 		bl	LCD_WriteData_8bit
  1609              	.LVL119:
- 264:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x05);     // 此处配置成 16位 像素格式
+ 264:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x05);     // 此处配置�? 16�? 像素格式
  1610              		.loc 1 264 2 view .LVU436
  1611 0018 3A20     		movs	r0, #58
  1612 001a FFF7FEFF 		bl	LCD_WriteCommand
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 43
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 43
 
 
  1613              	.LVL120:
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1656 005c FFF7FEFF 		bl	LCD_WriteData_8bit
  1657              	.LVL131:
  281:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x2C);
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 44
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 44
 
 
  1658              		.loc 1 281 2 view .LVU448
@@ -2590,7 +2590,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1663 0066 2C20     		movs	r0, #44
  1664 0068 FFF7FEFF 		bl	LCD_WriteData_8bit
  1665              	.LVL133:
- 284:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x01);     // VDV 和 VRH 由用户自由配置
+ 284:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x01);     // VDV �? VRH 由用户自由配�?
  1666              		.loc 1 284 2 view .LVU450
  1667 006c C220     		movs	r0, #194
  1668 006e FFF7FEFF 		bl	LCD_WriteCommand
@@ -2620,7 +2620,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1687 008a 2020     		movs	r0, #32
  1688 008c FFF7FEFF 		bl	LCD_WriteData_8bit
  1689              	.LVL139:
- 293:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0F);   	// 设置屏幕控制器的刷新帧率为60帧    
+ 293:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0F);   	// 设置屏幕控制器的刷新帧率�?60�?    
  1690              		.loc 1 293 2 view .LVU456
  1691 0090 C620     		movs	r0, #198
  1692 0092 FFF7FEFF 		bl	LCD_WriteCommand
@@ -2630,7 +2630,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1695 0096 0F20     		movs	r0, #15
  1696 0098 FFF7FEFF 		bl	LCD_WriteData_8bit
  1697              	.LVL141:
- 296:Core/Src/spi.c **** 	LCD_WriteData_8bit(0xA4);     // 无效数据，固定写入0xA4
+ 296:Core/Src/spi.c **** 	LCD_WriteData_8bit(0xA4);     // 无效数据，固定写�?0xA4
  1698              		.loc 1 296 2 view .LVU458
  1699 009c D020     		movs	r0, #208
  1700 009e FFF7FEFF 		bl	LCD_WriteCommand
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  297:Core/Src/spi.c **** 	LCD_WriteData_8bit(0xA1);     // AVDD = 6.8V ，AVDD = -4.8V ，VDS = 2.3V
  1702              		.loc 1 297 2 view .LVU459
  1703 00a2 A420     		movs	r0, #164
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 45
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 45
 
 
  1704 00a4 FFF7FEFF 		bl	LCD_WriteData_8bit
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1747 00e4 4C20     		movs	r0, #76
  1748 00e6 FFF7FEFF 		bl	LCD_WriteData_8bit
  1749              	.LVL154:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 46
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 46
 
 
  310:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x0D);
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1793              	.LVL165:
  322:Core/Src/spi.c **** 	LCD_WriteData_8bit(0x3F);
  1794              		.loc 1 322 2 view .LVU482
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 47
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 47
 
 
  1795 012c 2C20     		movs	r0, #44
@@ -2809,7 +2809,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1831 0162 2120     		movs	r0, #33
  1832 0164 FFF7FEFF 		bl	LCD_WriteCommand
  1833              	.LVL175:
- 335:Core/Src/spi.c ****    	HAL_Delay(120);               // 需要等待120ms，让电源电压和时钟电路稳定下来
+ 335:Core/Src/spi.c ****    	HAL_Delay(120);               // �?要等�?120ms，让电源电压和时钟电路稳定下�?
  1834              		.loc 1 335 2 view .LVU492
  1835 0168 1120     		movs	r0, #17
  1836 016a FFF7FEFF 		bl	LCD_WriteCommand
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1838              		.loc 1 336 5 view .LVU493
  1839 016e 7820     		movs	r0, #120
  1840 0170 FFF7FEFF 		bl	HAL_Delay
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 48
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 48
 
 
  1841              	.LVL177:
@@ -2827,12 +2827,12 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1843 0174 2920     		movs	r0, #41
  1844 0176 FFF7FEFF 		bl	LCD_WriteCommand
  1845              	.LVL178:
- 342:Core/Src/spi.c **** 	LCD_SetBackColor(LCD_DISP_BLACK);           // 设置背景色
+ 342:Core/Src/spi.c **** 	LCD_SetBackColor(LCD_DISP_BLACK);           // 设置背景�?
  1846              		.loc 1 342 5 view .LVU495
  1847 017a 0020     		movs	r0, #0
  1848 017c FFF7FEFF 		bl	LCD_SetDirection
  1849              	.LVL179:
- 343:Core/Src/spi.c ****  	LCD_SetColor(LCD_DISP_WHITE);             // 设置画笔色  
+ 343:Core/Src/spi.c ****  	LCD_SetColor(LCD_DISP_WHITE);             // 设置画笔�?  
  1850              		.loc 1 343 2 view .LVU496
  1851 0180 0020     		movs	r0, #0
  1852 0182 FFF7FEFF 		bl	LCD_SetBackColor
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1886              		.section	.rodata.LCD_DisplayNumber.str1.4,"aMS",%progbits,1
  1887              		.align	2
  1888              	.LC0:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 49
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 49
 
 
  1889 0000 25302E2A 		.ascii	"%0.*d\000"
@@ -2897,20 +2897,20 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1902              	.LFB189:
  631:Core/Src/spi.c **** 
  632:Core/Src/spi.c **** /**************************************************************************************************
- 633:Core/Src/spi.c **** *	函 数 名:	LCD_DisplayNumber
+ 633:Core/Src/spi.c **** *	�? �? �?:	LCD_DisplayNumber
  634:Core/Src/spi.c **** *
  635:Core/Src/spi.c **** *	入口参数:	x - 起始水平坐标
  636:Core/Src/spi.c **** *					y - 起始垂直坐标
- 637:Core/Src/spi.c **** *					number - 要显示的数字,范围在 -2147483648~2147483647 之间
+ 637:Core/Src/spi.c **** *					number - 要显示的数字,范围�? -2147483648~2147483647 之间
  638:Core/Src/spi.c **** *					len - 数字的位数，如果位数超过len，将按其实际长度输出，如果需要显
  639:Core/Src/spi.c **** *
  640:Core/Src/spi.c **** *	函数功能:	在指定坐标显示指定的整数变量
  641:Core/Src/spi.c **** *
- 642:Core/Src/spi.c **** *	说    明:	1. 可设置要显示的字体，例如使用 LCD_SetAsciiFont(&ASCII_Font24) 设置�
- 643:Core/Src/spi.c **** *					2.	可设置要显示的颜色，例如使用 LCD_SetColor(0x0000FF) 设置为蓝色
+ 642:Core/Src/spi.c **** *	�?    �?:	1. 可设置要显示的字体，例如使用 LCD_SetAsciiFont(&ASCII_Font24) 设置�
+ 643:Core/Src/spi.c **** *					2.	可设置要显示的颜色，例如使用 LCD_SetColor(0x0000FF) 设置为蓝�?
  644:Core/Src/spi.c **** *					3. 可设置对应的背景色，例如使用 LCD_SetBackColor(0x000000) 设置为黑色的�
  645:Core/Src/spi.c **** *					4. 使用示例 LCD_DisplayNumber( 10, 10, a, 5) ，在坐标(10,10)显示指定变量a,总�
- 646:Core/Src/spi.c **** *						例如 a=123 时，会根据 LCD_ShowNumMode()的设置来显示  123(前面两个空格位)
+ 646:Core/Src/spi.c **** *						例如 a=123 时，会根�? LCD_ShowNumMode()的设置来显示  123(前面两个空格�?)
  647:Core/Src/spi.c **** *						
  648:Core/Src/spi.c **** ***************************************************************************************************
  649:Core/Src/spi.c **** void  LCD_DisplayNumber( uint16_t x, uint16_t y, int32_t number, uint8_t len) 
@@ -2936,9 +2936,9 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1921              		.loc 1 650 1 view .LVU506
  1922 000a 1A46     		mov	r2, r3
  1923              	.LVL188:
- 651:Core/Src/spi.c **** 	char   Number_Buffer[15];				// 用于存储转换后的字符串
+ 651:Core/Src/spi.c **** 	char   Number_Buffer[15];				// 用于存储转换后的字符�?
  1924              		.loc 1 651 2 is_stmt 1 view .LVU507
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 50
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 50
 
 
  652:Core/Src/spi.c **** 
@@ -2952,7 +2952,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  1931              		.loc 1 653 4 view .LVU511
  1932 0010 5BB9     		cbnz	r3, .L111
  654:Core/Src/spi.c **** 	{
- 655:Core/Src/spi.c **** 		sprintf( Number_Buffer , "%0.*d",len, number );	// 将 number 转换成字符串，便于显示		
+ 655:Core/Src/spi.c **** 		sprintf( Number_Buffer , "%0.*d",len, number );	// �? number 转换成字符串，便于显�?		
  1933              		.loc 1 655 3 is_stmt 1 view .LVU512
  1934 0012 0B46     		mov	r3, r1
  1935 0014 0949     		ldr	r1, .L114+4
@@ -2967,10 +2967,10 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  656:Core/Src/spi.c **** 	}
  657:Core/Src/spi.c **** 	else			// 多余位补空格
  658:Core/Src/spi.c **** 	{	
- 659:Core/Src/spi.c **** 		sprintf( Number_Buffer , "%*d",len, number );	// 将 number 转换成字符串，便于显示		
+ 659:Core/Src/spi.c **** 		sprintf( Number_Buffer , "%*d",len, number );	// �? number 转换成字符串，便于显�?		
  660:Core/Src/spi.c **** 	}
  661:Core/Src/spi.c **** 	
- 662:Core/Src/spi.c **** 	LCD_DisplayString( x, y,(char *)Number_Buffer) ;  // 将转换得到的字符串显示出来
+ 662:Core/Src/spi.c **** 	LCD_DisplayString( x, y,(char *)Number_Buffer) ;  // 将转换得到的字符串显示出�?
  1944              		.loc 1 662 2 is_stmt 1 view .LVU515
  1945 001c 6A46     		mov	r2, sp
  1946 001e 2946     		mov	r1, r5
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  659:Core/Src/spi.c **** 	}
  1965              		.loc 1 659 3 is_stmt 0 view .LVU518
  1966 002e 6846     		mov	r0, sp
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 51
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 51
 
 
  1967              	.LVL196:
@@ -3047,27 +3047,27 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2007              	.LFB190:
  665:Core/Src/spi.c **** 
  666:Core/Src/spi.c **** /**************************************************************************************************
- 667:Core/Src/spi.c **** *	函 数 名:	LCD_DisplayDecimals
+ 667:Core/Src/spi.c **** *	�? �? �?:	LCD_DisplayDecimals
  668:Core/Src/spi.c **** *
  669:Core/Src/spi.c **** *	入口参数:	x - 起始水平坐标
  670:Core/Src/spi.c **** *					y - 起始垂直坐标
- 671:Core/Src/spi.c **** *					decimals - 要显示的数字, double型取值1.7 x 10^（-308）~ 1.7 x 10^（+308），但�
+ 671:Core/Src/spi.c **** *					decimals - 要显示的数字, double型取�?1.7 x 10^�?-308）~ 1.7 x 10^�?+308），但�
  672:Core/Src/spi.c **** *
- 673:Core/Src/spi.c **** *       			len - 整个变量的总位数（包括小数点和负号），若实际的总位数超�
- 674:Core/Src/spi.c **** *							示例1：小数 -123.123 ，指定 len <=8 的话，则实际照常输出 -123.123
- 675:Core/Src/spi.c **** *							示例2：小数 -123.123 ，指定 len =10 的话，则实际输出   -123.123(负号前�
- 676:Core/Src/spi.c **** *							示例3：小数 -123.123 ，指定 len =10 的话，当调用函数 LCD_ShowNumMode() 设�
+ 673:Core/Src/spi.c **** *       			len - 整个变量的�?�位数（包括小数点和负号），若实际的总位数超�
+ 674:Core/Src/spi.c **** *							示例1：小�? -123.123 ，指�? len <=8 的话，则实际照常输出 -123.123
+ 675:Core/Src/spi.c **** *							示例2：小�? -123.123 ，指�? len =10 的话，则实际输出   -123.123(负号前�
+ 676:Core/Src/spi.c **** *							示例3：小�? -123.123 ，指�? len =10 的话，当调用函数 LCD_ShowNumMode() 设�
  677:Core/Src/spi.c **** *
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 52
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 52
 
 
  678:Core/Src/spi.c **** *					decs - 要保留的小数位数，若小数的实际位数超过了指定的小数位，则�
- 679:Core/Src/spi.c **** *							 示例：1.12345 ，指定 decs 为4位的话，则输出结果为1.1235
+ 679:Core/Src/spi.c **** *							 示例�?1.12345 ，指�? decs �?4位的话，则输出结果为1.1235
  680:Core/Src/spi.c **** *
- 681:Core/Src/spi.c **** *	函数功能:	在指定坐标显示指定的变量，包括小数
+ 681:Core/Src/spi.c **** *	函数功能:	在指定坐标显示指定的变量，包括小�?
  682:Core/Src/spi.c **** *
- 683:Core/Src/spi.c **** *	说    明:	1. 可设置要显示的字体，例如使用 LCD_SetAsciiFont(&ASCII_Font24) 设置�
- 684:Core/Src/spi.c **** *					2.	可设置要显示的颜色，例如使用 LCD_SetColor(0x0000FF) 设置为蓝色
+ 683:Core/Src/spi.c **** *	�?    �?:	1. 可设置要显示的字体，例如使用 LCD_SetAsciiFont(&ASCII_Font24) 设置�
+ 684:Core/Src/spi.c **** *					2.	可设置要显示的颜色，例如使用 LCD_SetColor(0x0000FF) 设置为蓝�?
  685:Core/Src/spi.c **** *					3. 可设置对应的背景色，例如使用 LCD_SetBackColor(0x000000) 设置为黑色的�
  686:Core/Src/spi.c **** *					4. 使用示例 LCD_DisplayDecimals( 10, 10, a, 5, 3) ，在坐标(10,10)显示字变量a,总
  687:Core/Src/spi.c **** *						
@@ -3101,11 +3101,11 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2032 000e B0EE408A 		vmov.f32	s16, s0
  2033 0012 1646     		mov	r6, r2
  2034 0014 1D46     		mov	r5, r3
- 691:Core/Src/spi.c **** 	char  Number_Buffer[40];				// 用于存储转换后的字符串
+ 691:Core/Src/spi.c **** 	char  Number_Buffer[40];				// 用于存储转换后的字符�?
  2035              		.loc 1 691 2 is_stmt 1 view .LVU523
  692:Core/Src/spi.c **** 	char  buffer[40];
  2036              		.loc 1 692 2 view .LVU524
- 693:Core/Src/spi.c **** 	// 清空缓冲区
+ 693:Core/Src/spi.c **** 	// 清空缓冲�?
  694:Core/Src/spi.c ****     for (uint8_t i = 0; i < 20; i++) 
  2037              		.loc 1 694 5 view .LVU525
  2038              	.LBB9:
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2045              	.LVL200:
  2046              	.L118:
  695:Core/Src/spi.c **** 	{
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 53
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 53
 
 
  696:Core/Src/spi.c ****         Number_Buffer[i] = ' ';
@@ -3169,7 +3169,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  703:Core/Src/spi.c **** 	{
  704:Core/Src/spi.c ****         decimals = -decimals;
  705:Core/Src/spi.c ****     }
- 706:Core/Src/spi.c **** 	// 提取整数部分和小数部分
+ 706:Core/Src/spi.c **** 	// 提取整数部分和小数部�?
  707:Core/Src/spi.c ****     int int_part = (int)decimals;
  2080              		.loc 1 707 5 is_stmt 1 view .LVU541
  2081              		.loc 1 707 9 is_stmt 0 view .LVU542
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  708:Core/Src/spi.c ****     double dec_part = decimals - int_part;
  2084              		.loc 1 708 5 is_stmt 1 view .LVU543
  2085              		.loc 1 708 32 is_stmt 0 view .LVU544
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 54
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 54
 
 
  2086 0050 B8EEE87A 		vcvt.f32.s32	s14, s17
@@ -3191,7 +3191,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2093              		.loc 1 708 12 view .LVU547
  2094 005c FFF7FEFF 		bl	__aeabi_f2d
  2095              	.LVL208:
- 709:Core/Src/spi.c ****     // 处理小数部分并四舍五入
+ 709:Core/Src/spi.c ****     // 处理小数部分并四舍五�?
  710:Core/Src/spi.c ****     for (uint8_t i = 0; i < decs; i++) 
  2096              		.loc 1 710 5 is_stmt 1 view .LVU548
  2097              	.LBB10:
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  710:Core/Src/spi.c **** 	{
  2130              		.loc 1 710 25 is_stmt 1 discriminator 1 view .LVU561
  710:Core/Src/spi.c **** 	{
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 55
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 55
 
 
  2131              		.loc 1 710 5 is_stmt 0 discriminator 1 view .LVU562
@@ -3268,7 +3268,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2149              		.loc 1 717 9 view .LVU570
  2150 008a 0446     		mov	r4, r0
  2151              	.LVL218:
- 718:Core/Src/spi.c ****     // 准备整数部分字符串
+ 718:Core/Src/spi.c ****     // 准备整数部分字符�?
  719:Core/Src/spi.c ****     char int_buffer[20];
  2152              		.loc 1 719 5 is_stmt 1 view .LVU571
  720:Core/Src/spi.c ****     sprintf(int_buffer, "%d", int_part);
@@ -3280,7 +3280,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2158              		.loc 1 720 5 is_stmt 0 view .LVU573
  2159 0094 FFF7FEFF 		bl	sprintf
  2160              	.LVL220:
- 721:Core/Src/spi.c ****     // 准备小数部分字符串
+ 721:Core/Src/spi.c ****     // 准备小数部分字符�?
  722:Core/Src/spi.c ****     char dec_buffer[20];
  2161              		.loc 1 722 5 is_stmt 1 view .LVU574
  723:Core/Src/spi.c ****     sprintf(dec_buffer, "%0*d", decs, dec_part_int);
@@ -3291,14 +3291,14 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2166 009e 0AA8     		add	r0, sp, #40
  2167 00a0 FFF7FEFF 		bl	sprintf
  2168              	.LVL221:
- 724:Core/Src/spi.c **** 	// 组合整数部分和小数部分
+ 724:Core/Src/spi.c **** 	// 组合整数部分和小数部�?
  725:Core/Src/spi.c ****     char combined[40];
  2169              		.loc 1 725 5 view .LVU576
  726:Core/Src/spi.c ****     if (decs > 0) 
  2170              		.loc 1 726 5 view .LVU577
  2171              		.loc 1 726 8 is_stmt 0 view .LVU578
  2172 00a4 CDB1     		cbz	r5, .L123
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 56
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 56
 
 
  727:Core/Src/spi.c **** 	{
@@ -3317,7 +3317,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  732:Core/Src/spi.c ****         sprintf(combined, "%s", int_buffer);
  733:Core/Src/spi.c ****     }
  734:Core/Src/spi.c **** 	
- 735:Core/Src/spi.c **** 	if( LCD.ShowNum_Mode == Fill_Zero)	// 多余位填充0模式
+ 735:Core/Src/spi.c **** 	if( LCD.ShowNum_Mode == Fill_Zero)	// 多余位填�?0模式
  2181              		.loc 1 735 2 view .LVU580
  2182              		.loc 1 735 9 is_stmt 0 view .LVU581
  2183 00b2 414B     		ldr	r3, .L147+16
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2212              	.LVL226:
  2213              		.loc 1 741 13 is_stmt 0 view .LVU592
  2214 00d8 0CE0     		b	.L128
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 57
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 57
 
 
  2215              	.LVL227:
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2259              	.LBB15:
  746:Core/Src/spi.c **** 		}
  747:Core/Src/spi.c **** 		else
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 58
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 58
 
 
  748:Core/Src/spi.c **** 		{
@@ -3469,7 +3469,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  754:Core/Src/spi.c **** 		}
  755:Core/Src/spi.c **** 		
  756:Core/Src/spi.c **** 	}
- 757:Core/Src/spi.c **** 	else		// 多余位填充空格
+ 757:Core/Src/spi.c **** 	else		// 多余位填充空�?
  758:Core/Src/spi.c **** 	{
  759:Core/Src/spi.c **** 		uint8_t combined_len = (uint8_t)strlen(combined);
  760:Core/Src/spi.c **** 		if (negative)
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  763:Core/Src/spi.c **** 			for (uint8_t i = 0; i < len - combined_len; i++) 
  764:Core/Src/spi.c **** 			{
  765:Core/Src/spi.c **** 				buffer[i] = ' ';
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 59
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 59
 
 
  766:Core/Src/spi.c **** 			}
@@ -3493,7 +3493,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  775:Core/Src/spi.c **** 			sprintf(Number_Buffer, "%s%s", buffer, combined);
  776:Core/Src/spi.c **** 		}	
  777:Core/Src/spi.c **** 	}
- 778:Core/Src/spi.c **** 	LCD_DisplayString( x, y, (char *)Number_Buffer) ;	// 将转换得到的字符串显示出来
+ 778:Core/Src/spi.c **** 	LCD_DisplayString( x, y, (char *)Number_Buffer) ;	// 将转换得到的字符串显示出�?
  2293              		.loc 1 778 2 is_stmt 1 view .LVU614
  2294 0128 1EAA     		add	r2, sp, #120
  2295 012a 4146     		mov	r1, r8
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  771:Core/Src/spi.c **** 			{
  2329              		.loc 1 771 17 view .LVU621
  2330 014c 0023     		movs	r3, #0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 60
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 60
 
 
  2331 014e 21E0     		b	.L132
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2371              	.LBE19:
  767:Core/Src/spi.c **** 		}
  2372              		.loc 1 767 4 is_stmt 1 view .LVU636
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 61
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 61
 
 
  2373 0176 6B46     		mov	r3, sp
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2415 01a2 FFF7FEFF 		bl	sprintf
  2416              	.LVL254:
  2417 01a6 BFE7     		b	.L130
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 62
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 62
 
 
  2418              	.L148:
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2470      00000000 
  2470      00000000 
  2471              		.section	.bss.sendFlg,"aw",%nobits
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 63
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 63
 
 
  2472              		.set	.LANCHOR2,. + 0
@@ -3741,90 +3741,90 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 1
  2491              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
  2492              		.file 15 "Core/Inc/main.h"
  2493              		.file 16 "<built-in>"
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 64
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 64
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 spi.c
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:20     .text.MX_SPI3_Init:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:26     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:98     .text.MX_SPI3_Init:00000038 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:104    .text.HAL_SPI_MspInit:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:110    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:389    .text.HAL_SPI_MspInit:00000124 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:399    .text.HAL_SPI_MspDeInit:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:405    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:456    .text.HAL_SPI_MspDeInit:00000034 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:464    .text.LCD_WriteCommand:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:470    .text.LCD_WriteCommand:00000000 LCD_WriteCommand
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:511    .text.LCD_WriteCommand:00000028 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:517    .text.LCD_WriteData_8bit:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:523    .text.LCD_WriteData_8bit:00000000 LCD_WriteData_8bit
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:564    .text.LCD_WriteData_8bit:00000028 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:570    .text.LCD_WriteData_16bit:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:576    .text.LCD_WriteData_16bit:00000000 LCD_WriteData_16bit
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:636    .text.LCD_WriteData_16bit:00000038 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:643    .text.LCD_WriteBuff:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:649    .text.LCD_WriteBuff:00000000 LCD_WriteBuff
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:704    .text.LCD_WriteBuff:0000002c $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:711    .text.LCD_SetAddress:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:717    .text.LCD_SetAddress:00000000 LCD_SetAddress
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:790    .text.LCD_SetAddress:00000050 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:795    .text.LCD_SetColor:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:801    .text.LCD_SetColor:00000000 LCD_SetColor
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:818    .text.LCD_SetColor:00000008 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:823    .text.LCD_SetBackColor:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:829    .text.LCD_SetBackColor:00000000 LCD_SetBackColor
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:846    .text.LCD_SetBackColor:00000008 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:851    .text.LCD_SetDirection:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:857    .text.LCD_SetDirection:00000000 LCD_SetDirection
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1017   .text.LCD_SetDirection:000000a0 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1022   .text.LCD_SetAsciiFont:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1028   .text.LCD_SetAsciiFont:00000000 LCD_SetAsciiFont
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1045   .text.LCD_SetAsciiFont:00000008 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1050   .text.LCD_Clear:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1056   .text.LCD_Clear:00000000 LCD_Clear
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1163   .text.LCD_Clear:00000060 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1172   .text.LCD_ClearRect:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1178   .text.LCD_ClearRect:00000000 LCD_ClearRect
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1249   .text.LCD_ClearRect:00000048 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1257   .text.LCD_DrawPoint:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1263   .text.LCD_DrawPoint:00000000 LCD_DrawPoint
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1294   .text.LCD_DisplayChar:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1300   .text.LCD_DisplayChar:00000000 LCD_DisplayChar
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1467   .text.LCD_DisplayChar:000000a4 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1474   .text.LCD_DisplayString:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1480   .text.LCD_DisplayString:00000000 LCD_DisplayString
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1544   .text.LCD_DisplayString:00000030 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1550   .text.LCD_ShowNumMode:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1556   .text.LCD_ShowNumMode:00000000 LCD_ShowNumMode
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1573   .text.LCD_ShowNumMode:00000008 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1578   .text.SPI_LCD_Init:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1584   .text.SPI_LCD_Init:00000000 SPI_LCD_Init
-ARM GAS  C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s 			page 65
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:20     .text.MX_SPI3_Init:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:26     .text.MX_SPI3_Init:00000000 MX_SPI3_Init
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:98     .text.MX_SPI3_Init:00000038 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:104    .text.HAL_SPI_MspInit:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:110    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:389    .text.HAL_SPI_MspInit:00000124 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:399    .text.HAL_SPI_MspDeInit:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:405    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:456    .text.HAL_SPI_MspDeInit:00000034 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:464    .text.LCD_WriteCommand:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:470    .text.LCD_WriteCommand:00000000 LCD_WriteCommand
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:511    .text.LCD_WriteCommand:00000028 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:517    .text.LCD_WriteData_8bit:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:523    .text.LCD_WriteData_8bit:00000000 LCD_WriteData_8bit
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:564    .text.LCD_WriteData_8bit:00000028 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:570    .text.LCD_WriteData_16bit:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:576    .text.LCD_WriteData_16bit:00000000 LCD_WriteData_16bit
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:636    .text.LCD_WriteData_16bit:00000038 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:643    .text.LCD_WriteBuff:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:649    .text.LCD_WriteBuff:00000000 LCD_WriteBuff
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:704    .text.LCD_WriteBuff:0000002c $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:711    .text.LCD_SetAddress:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:717    .text.LCD_SetAddress:00000000 LCD_SetAddress
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:790    .text.LCD_SetAddress:00000050 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:795    .text.LCD_SetColor:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:801    .text.LCD_SetColor:00000000 LCD_SetColor
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:818    .text.LCD_SetColor:00000008 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:823    .text.LCD_SetBackColor:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:829    .text.LCD_SetBackColor:00000000 LCD_SetBackColor
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:846    .text.LCD_SetBackColor:00000008 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:851    .text.LCD_SetDirection:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:857    .text.LCD_SetDirection:00000000 LCD_SetDirection
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1017   .text.LCD_SetDirection:000000a0 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1022   .text.LCD_SetAsciiFont:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1028   .text.LCD_SetAsciiFont:00000000 LCD_SetAsciiFont
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1045   .text.LCD_SetAsciiFont:00000008 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1050   .text.LCD_Clear:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1056   .text.LCD_Clear:00000000 LCD_Clear
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1163   .text.LCD_Clear:00000060 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1172   .text.LCD_ClearRect:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1178   .text.LCD_ClearRect:00000000 LCD_ClearRect
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1249   .text.LCD_ClearRect:00000048 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1257   .text.LCD_DrawPoint:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1263   .text.LCD_DrawPoint:00000000 LCD_DrawPoint
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1294   .text.LCD_DisplayChar:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1300   .text.LCD_DisplayChar:00000000 LCD_DisplayChar
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1467   .text.LCD_DisplayChar:000000a4 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1474   .text.LCD_DisplayString:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1480   .text.LCD_DisplayString:00000000 LCD_DisplayString
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1544   .text.LCD_DisplayString:00000030 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1550   .text.LCD_ShowNumMode:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1556   .text.LCD_ShowNumMode:00000000 LCD_ShowNumMode
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1573   .text.LCD_ShowNumMode:00000008 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1578   .text.SPI_LCD_Init:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1584   .text.SPI_LCD_Init:00000000 SPI_LCD_Init
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s 			page 65
 
 
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1881   .text.SPI_LCD_Init:000001ac $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1887   .rodata.LCD_DisplayNumber.str1.4:00000000 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1894   .text.LCD_DisplayNumber:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1900   .text.LCD_DisplayNumber:00000000 LCD_DisplayNumber
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1976   .text.LCD_DisplayNumber:00000038 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1986   .rodata.LCD_DisplayDecimals.str1.4:00000000 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:1999   .text.LCD_DisplayDecimals:00000000 $t
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2005   .text.LCD_DisplayDecimals:00000000 LCD_DisplayDecimals
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2421   .text.LCD_DisplayDecimals:000001a8 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2462   .bss.hdma_spi3_tx:00000000 hdma_spi3_tx
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2469   .bss.hspi3:00000000 hspi3
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2475   .bss.sendFlg:00000000 sendFlg
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2441   .bss.LCD:00000000 LCD
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2455   .bss.LCD_Buff:00000000 LCD_Buff
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2437   .bss.LCD:00000000 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2444   .bss.LCD_AsciiFonts:00000000 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2448   .bss.LCD_AsciiFonts:00000000 LCD_AsciiFonts
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2451   .bss.LCD_Buff:00000000 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2458   .bss.hdma_spi3_tx:00000000 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2465   .bss.hspi3:00000000 $d
-C:\Users\23612\AppData\Local\Temp\cc0rgJZd.s:2476   .bss.sendFlg:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1881   .text.SPI_LCD_Init:000001ac $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1887   .rodata.LCD_DisplayNumber.str1.4:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1894   .text.LCD_DisplayNumber:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1900   .text.LCD_DisplayNumber:00000000 LCD_DisplayNumber
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1976   .text.LCD_DisplayNumber:00000038 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1986   .rodata.LCD_DisplayDecimals.str1.4:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:1999   .text.LCD_DisplayDecimals:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2005   .text.LCD_DisplayDecimals:00000000 LCD_DisplayDecimals
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2421   .text.LCD_DisplayDecimals:000001a8 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2462   .bss.hdma_spi3_tx:00000000 hdma_spi3_tx
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2469   .bss.hspi3:00000000 hspi3
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2475   .bss.sendFlg:00000000 sendFlg
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2441   .bss.LCD:00000000 LCD
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2455   .bss.LCD_Buff:00000000 LCD_Buff
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2437   .bss.LCD:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2444   .bss.LCD_AsciiFonts:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2448   .bss.LCD_AsciiFonts:00000000 LCD_AsciiFonts
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2451   .bss.LCD_Buff:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2458   .bss.hdma_spi3_tx:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2465   .bss.hspi3:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2f8jg6.s:2476   .bss.sendFlg:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init

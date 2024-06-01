@@ -12,6 +12,8 @@
         "gpio.h": "c",
         "winapifamily.h": "c",
         "stdarg.h": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "freertos.h": "c",
+        "cmsis_os.h": "c"
     }
 }

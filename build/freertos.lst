@@ -1,0 +1,942 @@
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"freertos.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.rodata.StartTask.str1.4,"aMS",%progbits,1
+  20              		.align	2
+  21              	.LC0:
+  22 0000 4C434456 		.ascii	"LCDViewTask\000"
+  22      69657754 
+  22      61736B00 
+  23              		.section	.text.StartTask,"ax",%progbits
+  24              		.align	1
+  25              		.global	StartTask
+  26              		.syntax unified
+  27              		.thumb
+  28              		.thumb_func
+  30              	StartTask:
+  31              	.LVL0:
+  32              	.LFB175:
+  33              		.file 1 "Core/Src/freertos.c"
+   1:Core/Src/freertos.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/freertos.c **** /**
+   3:Core/Src/freertos.c ****   ******************************************************************************
+   4:Core/Src/freertos.c ****   * File Name          : freertos.c
+   5:Core/Src/freertos.c ****   * Description        : Code for freertos applications
+   6:Core/Src/freertos.c ****   ******************************************************************************
+   7:Core/Src/freertos.c ****   * @attention
+   8:Core/Src/freertos.c ****   *
+   9:Core/Src/freertos.c ****   * Copyright (c) 2024 STMicroelectronics.
+  10:Core/Src/freertos.c ****   * All rights reserved.
+  11:Core/Src/freertos.c ****   *
+  12:Core/Src/freertos.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/freertos.c ****   * in the root directory of this software component.
+  14:Core/Src/freertos.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/freertos.c ****   *
+  16:Core/Src/freertos.c ****   ******************************************************************************
+  17:Core/Src/freertos.c ****   */
+  18:Core/Src/freertos.c **** /* USER CODE END Header */
+  19:Core/Src/freertos.c **** 
+  20:Core/Src/freertos.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/freertos.c **** #include "FreeRTOS.h"
+  22:Core/Src/freertos.c **** #include "task.h"
+  23:Core/Src/freertos.c **** #include "main.h"
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 2
+
+
+  24:Core/Src/freertos.c **** #include "cmsis_os.h"
+  25:Core/Src/freertos.c **** 
+  26:Core/Src/freertos.c **** /* Private includes ----------------------------------------------------------*/
+  27:Core/Src/freertos.c **** /* USER CODE BEGIN Includes */
+  28:Core/Src/freertos.c **** #include "spi.h"
+  29:Core/Src/freertos.c **** /* USER CODE END Includes */
+  30:Core/Src/freertos.c **** 
+  31:Core/Src/freertos.c **** /* Private typedef -----------------------------------------------------------*/
+  32:Core/Src/freertos.c **** /* USER CODE BEGIN PTD */
+  33:Core/Src/freertos.c **** //任务优先级
+  34:Core/Src/freertos.c **** #define LCDVIEW_TASK_PRIO	2
+  35:Core/Src/freertos.c **** //任务堆栈大小	
+  36:Core/Src/freertos.c **** #define LCDVIEW_STK_SIZE 	256  
+  37:Core/Src/freertos.c **** //任务句柄
+  38:Core/Src/freertos.c **** TaskHandle_t LCDViewTask_Handler;
+  39:Core/Src/freertos.c **** //任务函数
+  40:Core/Src/freertos.c **** void LCDViewTask(void *pvParameters);
+  41:Core/Src/freertos.c **** /* USER CODE END PTD */
+  42:Core/Src/freertos.c **** 
+  43:Core/Src/freertos.c **** /* Private define ------------------------------------------------------------*/
+  44:Core/Src/freertos.c **** /* USER CODE BEGIN PD */
+  45:Core/Src/freertos.c **** void 	LCD_Test_Clear(void);			// 清屏测试
+  46:Core/Src/freertos.c **** void 	LCD_Test_Variable (void);	   // 变量显示，包括整数和小数
+  47:Core/Src/freertos.c **** /* USER CODE END PD */
+  48:Core/Src/freertos.c **** 
+  49:Core/Src/freertos.c **** /* Private macro -------------------------------------------------------------*/
+  50:Core/Src/freertos.c **** /* USER CODE BEGIN PM */
+  51:Core/Src/freertos.c **** 
+  52:Core/Src/freertos.c **** /* USER CODE END PM */
+  53:Core/Src/freertos.c **** 
+  54:Core/Src/freertos.c **** /* Private variables ---------------------------------------------------------*/
+  55:Core/Src/freertos.c **** /* USER CODE BEGIN Variables */
+  56:Core/Src/freertos.c **** 
+  57:Core/Src/freertos.c **** /* USER CODE END Variables */
+  58:Core/Src/freertos.c **** /* Definitions for startTask */
+  59:Core/Src/freertos.c **** #include "cmsis_os.h"
+  60:Core/Src/freertos.c **** 
+  61:Core/Src/freertos.c **** osThreadId_t startTaskHandle;
+  62:Core/Src/freertos.c **** const osThreadAttr_t startTask_attributes = {
+  63:Core/Src/freertos.c ****   .name = "startTask",
+  64:Core/Src/freertos.c ****   .stack_size = 128 * 4,
+  65:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityNormal,
+  66:Core/Src/freertos.c **** };
+  67:Core/Src/freertos.c **** 
+  68:Core/Src/freertos.c **** /* Private function prototypes -----------------------------------------------*/
+  69:Core/Src/freertos.c **** /* USER CODE BEGIN FunctionPrototypes */
+  70:Core/Src/freertos.c **** 
+  71:Core/Src/freertos.c **** /* USER CODE END FunctionPrototypes */
+  72:Core/Src/freertos.c **** 
+  73:Core/Src/freertos.c **** void StartTask(void *argument);
+  74:Core/Src/freertos.c **** 
+  75:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  76:Core/Src/freertos.c **** 
+  77:Core/Src/freertos.c **** /**
+  78:Core/Src/freertos.c ****   * @brief  FreeRTOS initialization
+  79:Core/Src/freertos.c ****   * @param  None
+  80:Core/Src/freertos.c ****   * @retval None
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 3
+
+
+  81:Core/Src/freertos.c ****   */
+  82:Core/Src/freertos.c **** void MX_FREERTOS_Init(void) {
+  83:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+  84:Core/Src/freertos.c **** 
+  85:Core/Src/freertos.c ****   /* USER CODE END Init */
+  86:Core/Src/freertos.c **** 
+  87:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+  88:Core/Src/freertos.c ****   /* add mutexes, ... */
+  89:Core/Src/freertos.c ****   /* USER CODE END RTOS_MUTEX */
+  90:Core/Src/freertos.c **** 
+  91:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+  92:Core/Src/freertos.c ****   /* add semaphores, ... */
+  93:Core/Src/freertos.c ****   /* USER CODE END RTOS_SEMAPHORES */
+  94:Core/Src/freertos.c **** 
+  95:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+  96:Core/Src/freertos.c ****   /* start timers, add new ones, ... */
+  97:Core/Src/freertos.c ****   /* USER CODE END RTOS_TIMERS */
+  98:Core/Src/freertos.c **** 
+  99:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+ 100:Core/Src/freertos.c ****   /* add queues, ... */
+ 101:Core/Src/freertos.c ****   /* USER CODE END RTOS_QUEUES */
+ 102:Core/Src/freertos.c **** 
+ 103:Core/Src/freertos.c ****   /* Create the thread(s) */
+ 104:Core/Src/freertos.c ****   /* creation of startTask */
+ 105:Core/Src/freertos.c ****   startTaskHandle = osThreadNew(StartTask, NULL, &startTask_attributes);
+ 106:Core/Src/freertos.c **** 
+ 107:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 108:Core/Src/freertos.c ****   /* add threads, ... */
+ 109:Core/Src/freertos.c ****   /* USER CODE END RTOS_THREADS */
+ 110:Core/Src/freertos.c **** 
+ 111:Core/Src/freertos.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 112:Core/Src/freertos.c ****   /* add events, ... */
+ 113:Core/Src/freertos.c ****   /* USER CODE END RTOS_EVENTS */
+ 114:Core/Src/freertos.c **** 
+ 115:Core/Src/freertos.c **** }
+ 116:Core/Src/freertos.c **** 
+ 117:Core/Src/freertos.c **** /* USER CODE BEGIN Header_StartTask */
+ 118:Core/Src/freertos.c **** /**
+ 119:Core/Src/freertos.c ****   * @brief  Function implementing the startTask thread.
+ 120:Core/Src/freertos.c ****   * @param  argument: Not used
+ 121:Core/Src/freertos.c ****   * @retval None
+ 122:Core/Src/freertos.c ****   */
+ 123:Core/Src/freertos.c **** /* USER CODE END Header_StartTask */
+ 124:Core/Src/freertos.c **** void StartTask(void *argument)
+ 125:Core/Src/freertos.c **** {
+  34              		.loc 1 125 1 view -0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38              		.loc 1 125 1 is_stmt 0 view .LVU1
+  39 0000 00B5     		push	{lr}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 4
+  42              		.cfi_offset 14, -4
+  43 0002 83B0     		sub	sp, sp, #12
+  44              	.LCFI1:
+  45              		.cfi_def_cfa_offset 16
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 4
+
+
+ 126:Core/Src/freertos.c ****   /* USER CODE BEGIN StartTask */
+ 127:Core/Src/freertos.c ****   taskENTER_CRITICAL();           //进入临界区
+  46              		.loc 1 127 3 is_stmt 1 view .LVU2
+  47 0004 FFF7FEFF 		bl	vPortEnterCritical
+  48              	.LVL1:
+ 128:Core/Src/freertos.c **** 	
+ 129:Core/Src/freertos.c **** 	//创建LCD显示的任务
+ 130:Core/Src/freertos.c ****     xTaskCreate((TaskFunction_t )LCDViewTask,             
+  49              		.loc 1 130 5 view .LVU3
+  50 0008 094B     		ldr	r3, .L3
+  51 000a 0193     		str	r3, [sp, #4]
+  52 000c 0223     		movs	r3, #2
+  53 000e 0093     		str	r3, [sp]
+  54 0010 0023     		movs	r3, #0
+  55 0012 4FF48072 		mov	r2, #256
+  56 0016 0749     		ldr	r1, .L3+4
+  57 0018 0748     		ldr	r0, .L3+8
+  58 001a FFF7FEFF 		bl	xTaskCreate
+  59              	.LVL2:
+ 131:Core/Src/freertos.c ****                 (const char*    )"LCDViewTask",           
+ 132:Core/Src/freertos.c ****                 (uint16_t       )LCDVIEW_STK_SIZE,        
+ 133:Core/Src/freertos.c ****                 (void*          )NULL,                  
+ 134:Core/Src/freertos.c ****                 (UBaseType_t    )LCDVIEW_TASK_PRIO,        
+ 135:Core/Src/freertos.c ****                 (TaskHandle_t*  )&LCDViewTask_Handler);   	
+ 136:Core/Src/freertos.c ****        
+ 137:Core/Src/freertos.c ****     osThreadTerminate(startTaskHandle); //删除开始任务
+  60              		.loc 1 137 5 view .LVU4
+  61 001e 074B     		ldr	r3, .L3+12
+  62 0020 1868     		ldr	r0, [r3]
+  63 0022 FFF7FEFF 		bl	osThreadTerminate
+  64              	.LVL3:
+ 138:Core/Src/freertos.c ****     taskEXIT_CRITICAL();            //退出临界区
+  65              		.loc 1 138 5 view .LVU5
+  66 0026 FFF7FEFF 		bl	vPortExitCritical
+  67              	.LVL4:
+ 139:Core/Src/freertos.c ****   /* USER CODE END StartTask */
+ 140:Core/Src/freertos.c **** }
+  68              		.loc 1 140 1 is_stmt 0 view .LVU6
+  69 002a 03B0     		add	sp, sp, #12
+  70              	.LCFI2:
+  71              		.cfi_def_cfa_offset 4
+  72              		@ sp needed
+  73 002c 5DF804FB 		ldr	pc, [sp], #4
+  74              	.L4:
+  75              		.align	2
+  76              	.L3:
+  77 0030 00000000 		.word	.LANCHOR0
+  78 0034 00000000 		.word	.LC0
+  79 0038 00000000 		.word	LCDViewTask
+  80 003c 00000000 		.word	.LANCHOR1
+  81              		.cfi_endproc
+  82              	.LFE175:
+  84              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+  85              		.align	1
+  86              		.global	MX_FREERTOS_Init
+  87              		.syntax unified
+  88              		.thumb
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 5
+
+
+  89              		.thumb_func
+  91              	MX_FREERTOS_Init:
+  92              	.LFB174:
+  82:Core/Src/freertos.c ****   /* USER CODE BEGIN Init */
+  93              		.loc 1 82 29 is_stmt 1 view -0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97 0000 08B5     		push	{r3, lr}
+  98              	.LCFI3:
+  99              		.cfi_def_cfa_offset 8
+ 100              		.cfi_offset 3, -8
+ 101              		.cfi_offset 14, -4
+ 105:Core/Src/freertos.c **** 
+ 102              		.loc 1 105 3 view .LVU8
+ 105:Core/Src/freertos.c **** 
+ 103              		.loc 1 105 21 is_stmt 0 view .LVU9
+ 104 0002 044A     		ldr	r2, .L7
+ 105 0004 0021     		movs	r1, #0
+ 106 0006 0448     		ldr	r0, .L7+4
+ 107 0008 FFF7FEFF 		bl	osThreadNew
+ 108              	.LVL5:
+ 105:Core/Src/freertos.c **** 
+ 109              		.loc 1 105 19 view .LVU10
+ 110 000c 034B     		ldr	r3, .L7+8
+ 111 000e 1860     		str	r0, [r3]
+ 115:Core/Src/freertos.c **** 
+ 112              		.loc 1 115 1 view .LVU11
+ 113 0010 08BD     		pop	{r3, pc}
+ 114              	.L8:
+ 115 0012 00BF     		.align	2
+ 116              	.L7:
+ 117 0014 00000000 		.word	.LANCHOR2
+ 118 0018 00000000 		.word	StartTask
+ 119 001c 00000000 		.word	.LANCHOR1
+ 120              		.cfi_endproc
+ 121              	.LFE174:
+ 123              		.section	.text.LCD_Test_Clear,"ax",%progbits
+ 124              		.align	1
+ 125              		.global	LCD_Test_Clear
+ 126              		.syntax unified
+ 127              		.thumb
+ 128              		.thumb_func
+ 130              	LCD_Test_Clear:
+ 131              	.LFB177:
+ 141:Core/Src/freertos.c **** 
+ 142:Core/Src/freertos.c **** /* Private application code --------------------------------------------------*/
+ 143:Core/Src/freertos.c **** /* USER CODE BEGIN Application */
+ 144:Core/Src/freertos.c **** void LCDViewTask(void *pvParameters)
+ 145:Core/Src/freertos.c **** {
+ 146:Core/Src/freertos.c ****   while(1)
+ 147:Core/Src/freertos.c ****   {
+ 148:Core/Src/freertos.c ****     LCD_Test_Clear();    // 清屏测试
+ 149:Core/Src/freertos.c ****     LCD_Test_Variable();    // 变量显示测试
+ 150:Core/Src/freertos.c ****   }
+ 151:Core/Src/freertos.c **** }
+ 152:Core/Src/freertos.c **** 
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 6
+
+
+ 153:Core/Src/freertos.c **** /*************************************************************************************************
+ 154:Core/Src/freertos.c **** *	�??? �??? �???:	LCD_Test_Clear
+ 155:Core/Src/freertos.c **** *
+ 156:Core/Src/freertos.c **** *	函数功能:	清屏测试
+ 157:Core/Src/freertos.c **** *************************************************************************************************/
+ 158:Core/Src/freertos.c **** void LCD_Test_Clear(void)
+ 159:Core/Src/freertos.c **** {
+ 132              		.loc 1 159 1 is_stmt 1 view -0
+ 133              		.cfi_startproc
+ 134              		@ args = 0, pretend = 0, frame = 0
+ 135              		@ frame_needed = 0, uses_anonymous_args = 0
+ 136 0000 10B5     		push	{r4, lr}
+ 137              	.LCFI4:
+ 138              		.cfi_def_cfa_offset 8
+ 139              		.cfi_offset 4, -8
+ 140              		.cfi_offset 14, -4
+ 160:Core/Src/freertos.c ****     uint8_t	i = 0;			// 计数变量
+ 141              		.loc 1 160 5 view .LVU13
+ 142              	.LVL6:
+ 161:Core/Src/freertos.c ****     
+ 162:Core/Src/freertos.c ****     LCD_SetDirection(Direction_H);		
+ 143              		.loc 1 162 5 view .LVU14
+ 144 0002 0020     		movs	r0, #0
+ 145 0004 FFF7FEFF 		bl	LCD_SetDirection
+ 146              	.LVL7:
+ 163:Core/Src/freertos.c ****     LCD_SetColor(LCD_DISP_BLACK);				// 设置画笔颜色
+ 147              		.loc 1 163 5 view .LVU15
+ 148 0008 0020     		movs	r0, #0
+ 149 000a FFF7FEFF 		bl	LCD_SetColor
+ 150              	.LVL8:
+ 164:Core/Src/freertos.c **** 
+ 165:Core/Src/freertos.c ****     for(i=0;i<5;i++)
+ 151              		.loc 1 165 5 view .LVU16
+ 152              		.loc 1 165 10 is_stmt 0 view .LVU17
+ 153 000e 0024     		movs	r4, #0
+ 154              		.loc 1 165 5 view .LVU18
+ 155 0010 0BE0     		b	.L10
+ 156              	.LVL9:
+ 157              	.L17:
+ 166:Core/Src/freertos.c ****     {
+ 167:Core/Src/freertos.c ****         switch (i)		// 切换背景�???
+ 168:Core/Src/freertos.c ****         {
+ 169:Core/Src/freertos.c ****             case 0: LCD_SetBackColor(LCD_DISP_RED); 		break;	
+ 158              		.loc 1 169 21 is_stmt 1 view .LVU19
+ 159 0012 4FF47840 		mov	r0, #63488
+ 160 0016 FFF7FEFF 		bl	LCD_SetBackColor
+ 161              	.LVL10:
+ 162              		.loc 1 169 55 view .LVU20
+ 163              	.L11:
+ 170:Core/Src/freertos.c ****             case 1: LCD_SetBackColor(LCD_DISP_GREEN); 	break;				
+ 171:Core/Src/freertos.c ****             case 2: LCD_SetBackColor(LCD_DISP_BLUE); 		break;
+ 172:Core/Src/freertos.c ****             case 3: LCD_SetBackColor(LCD_DISP_GRAY); 		break;
+ 173:Core/Src/freertos.c ****             case 4: LCD_SetBackColor(LCD_DISP_WHITE); 		break;			
+ 174:Core/Src/freertos.c ****             default:	break;			
+ 175:Core/Src/freertos.c ****         }
+ 176:Core/Src/freertos.c ****         LCD_Clear();		// 清屏
+ 164              		.loc 1 176 9 discriminator 2 view .LVU21
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 7
+
+
+ 165 001a FFF7FEFF 		bl	LCD_Clear
+ 166              	.LVL11:
+ 177:Core/Src/freertos.c ****         vTaskDelay(1000);
+ 167              		.loc 1 177 9 discriminator 2 view .LVU22
+ 168 001e 4FF47A70 		mov	r0, #1000
+ 169 0022 FFF7FEFF 		bl	vTaskDelay
+ 170              	.LVL12:
+ 165:Core/Src/freertos.c ****     {
+ 171              		.loc 1 165 17 discriminator 2 view .LVU23
+ 165:Core/Src/freertos.c ****     {
+ 172              		.loc 1 165 18 is_stmt 0 discriminator 2 view .LVU24
+ 173 0026 0134     		adds	r4, r4, #1
+ 174              	.LVL13:
+ 165:Core/Src/freertos.c ****     {
+ 175              		.loc 1 165 18 discriminator 2 view .LVU25
+ 176 0028 E4B2     		uxtb	r4, r4
+ 177              	.LVL14:
+ 178              	.L10:
+ 165:Core/Src/freertos.c ****     {
+ 179              		.loc 1 165 13 is_stmt 1 discriminator 1 view .LVU26
+ 165:Core/Src/freertos.c ****     {
+ 180              		.loc 1 165 5 is_stmt 0 discriminator 1 view .LVU27
+ 181 002a 042C     		cmp	r4, #4
+ 182 002c 21D8     		bhi	.L20
+ 167:Core/Src/freertos.c ****         {
+ 183              		.loc 1 167 9 is_stmt 1 view .LVU28
+ 184 002e 042C     		cmp	r4, #4
+ 185 0030 F3D8     		bhi	.L11
+ 186 0032 01A3     		adr	r3, .L13
+ 187 0034 53F824F0 		ldr	pc, [r3, r4, lsl #2]
+ 188              		.p2align 2
+ 189              	.L13:
+ 190 0038 13000000 		.word	.L17+1
+ 191 003c 4D000000 		.word	.L16+1
+ 192 0040 57000000 		.word	.L15+1
+ 193 0044 5F000000 		.word	.L14+1
+ 194 0048 69000000 		.word	.L12+1
+ 195              		.p2align 1
+ 196              	.L16:
+ 170:Core/Src/freertos.c ****             case 2: LCD_SetBackColor(LCD_DISP_BLUE); 		break;
+ 197              		.loc 1 170 21 view .LVU29
+ 198 004c 4FF4FC60 		mov	r0, #2016
+ 199 0050 FFF7FEFF 		bl	LCD_SetBackColor
+ 200              	.LVL15:
+ 170:Core/Src/freertos.c ****             case 2: LCD_SetBackColor(LCD_DISP_BLUE); 		break;
+ 201              		.loc 1 170 56 view .LVU30
+ 170:Core/Src/freertos.c ****             case 2: LCD_SetBackColor(LCD_DISP_BLUE); 		break;
+ 202              		.loc 1 170 13 is_stmt 0 view .LVU31
+ 203 0054 E1E7     		b	.L11
+ 204              	.L15:
+ 171:Core/Src/freertos.c ****             case 3: LCD_SetBackColor(LCD_DISP_GRAY); 		break;
+ 205              		.loc 1 171 21 is_stmt 1 view .LVU32
+ 206 0056 1F20     		movs	r0, #31
+ 207 0058 FFF7FEFF 		bl	LCD_SetBackColor
+ 208              	.LVL16:
+ 171:Core/Src/freertos.c ****             case 3: LCD_SetBackColor(LCD_DISP_GRAY); 		break;
+ 209              		.loc 1 171 56 view .LVU33
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 8
+
+
+ 171:Core/Src/freertos.c ****             case 3: LCD_SetBackColor(LCD_DISP_GRAY); 		break;
+ 210              		.loc 1 171 13 is_stmt 0 view .LVU34
+ 211 005c DDE7     		b	.L11
+ 212              	.L14:
+ 172:Core/Src/freertos.c ****             case 4: LCD_SetBackColor(LCD_DISP_WHITE); 		break;			
+ 213              		.loc 1 172 21 is_stmt 1 view .LVU35
+ 214 005e 4EF65D70 		movw	r0, #61277
+ 215 0062 FFF7FEFF 		bl	LCD_SetBackColor
+ 216              	.LVL17:
+ 172:Core/Src/freertos.c ****             case 4: LCD_SetBackColor(LCD_DISP_WHITE); 		break;			
+ 217              		.loc 1 172 56 view .LVU36
+ 172:Core/Src/freertos.c ****             case 4: LCD_SetBackColor(LCD_DISP_WHITE); 		break;			
+ 218              		.loc 1 172 13 is_stmt 0 view .LVU37
+ 219 0066 D8E7     		b	.L11
+ 220              	.L12:
+ 173:Core/Src/freertos.c ****             default:	break;			
+ 221              		.loc 1 173 21 is_stmt 1 view .LVU38
+ 222 0068 4FF6FF70 		movw	r0, #65535
+ 223 006c FFF7FEFF 		bl	LCD_SetBackColor
+ 224              	.LVL18:
+ 173:Core/Src/freertos.c ****             default:	break;			
+ 225              		.loc 1 173 57 view .LVU39
+ 173:Core/Src/freertos.c ****             default:	break;			
+ 226              		.loc 1 173 13 is_stmt 0 view .LVU40
+ 227 0070 D3E7     		b	.L11
+ 228              	.L20:
+ 178:Core/Src/freertos.c ****     }
+ 179:Core/Src/freertos.c **** }
+ 229              		.loc 1 179 1 view .LVU41
+ 230 0072 10BD     		pop	{r4, pc}
+ 231              		.loc 1 179 1 view .LVU42
+ 232              		.cfi_endproc
+ 233              	.LFE177:
+ 235              		.section	.rodata.LCD_Test_Variable.str1.4,"aMS",%progbits,1
+ 236              		.align	2
+ 237              	.LC1:
+ 238 0000 74657374 		.ascii	"test +:\000"
+ 238      202B3A00 
+ 239              		.align	2
+ 240              	.LC2:
+ 241 0008 74657374 		.ascii	"test -:\000"
+ 241      202D3A00 
+ 242              		.align	2
+ 243              	.LC3:
+ 244 0010 74657374 		.ascii	"test :\000"
+ 244      203A00
+ 245 0017 00       		.align	2
+ 246              	.LC4:
+ 247 0018 74657374 		.ascii	"test0:\000"
+ 247      303A00
+ 248 001f 00       		.align	2
+ 249              	.LC5:
+ 250 0020 74657374 		.ascii	"test+.:\000"
+ 250      2B2E3A00 
+ 251              		.align	2
+ 252              	.LC6:
+ 253 0028 74657374 		.ascii	"test-.:\000"
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 9
+
+
+ 253      2D2E3A00 
+ 254              		.global	__aeabi_i2d
+ 255              		.global	__aeabi_dmul
+ 256              		.global	__aeabi_dadd
+ 257              		.global	__aeabi_d2f
+ 258              		.global	__aeabi_dsub
+ 259              		.section	.text.LCD_Test_Variable,"ax",%progbits
+ 260              		.align	1
+ 261              		.global	LCD_Test_Variable
+ 262              		.syntax unified
+ 263              		.thumb
+ 264              		.thumb_func
+ 266              	LCD_Test_Variable:
+ 267              	.LFB178:
+ 180:Core/Src/freertos.c **** 
+ 181:Core/Src/freertos.c **** 
+ 182:Core/Src/freertos.c **** /************************************************************************************************
+ 183:Core/Src/freertos.c **** *	�??? �??? �???:	LCD_Test_Variable
+ 184:Core/Src/freertos.c **** *
+ 185:Core/Src/freertos.c **** *	函数功能:	变量显示，包括整数和小数
+ 186:Core/Src/freertos.c **** *************************************************************************************************/
+ 187:Core/Src/freertos.c **** void LCD_Test_Variable (void)
+ 188:Core/Src/freertos.c **** {
+ 268              		.loc 1 188 1 is_stmt 1 view -0
+ 269              		.cfi_startproc
+ 270              		@ args = 0, pretend = 0, frame = 0
+ 271              		@ frame_needed = 0, uses_anonymous_args = 0
+ 272 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 273              	.LCFI5:
+ 274              		.cfi_def_cfa_offset 24
+ 275              		.cfi_offset 3, -24
+ 276              		.cfi_offset 4, -20
+ 277              		.cfi_offset 5, -16
+ 278              		.cfi_offset 6, -12
+ 279              		.cfi_offset 7, -8
+ 280              		.cfi_offset 14, -4
+ 189:Core/Src/freertos.c ****     uint16_t i;					// 计数变量
+ 281              		.loc 1 189 5 view .LVU44
+ 190:Core/Src/freertos.c ****     int32_t	a = 0;			// 定义整数变量，用于测�???
+ 282              		.loc 1 190 5 view .LVU45
+ 283              	.LVL19:
+ 191:Core/Src/freertos.c ****     int32_t	b = 0;			// 定义整数变量，用于测�???
+ 284              		.loc 1 191 5 view .LVU46
+ 192:Core/Src/freertos.c ****     int32_t	c = 0;			// 定义整数变量，用于测�???
+ 285              		.loc 1 192 5 view .LVU47
+ 193:Core/Src/freertos.c **** 
+ 194:Core/Src/freertos.c ****     double p = 123.123;	// 定义浮点数变量，用于测试
+ 286              		.loc 1 194 5 view .LVU48
+ 195:Core/Src/freertos.c ****     double f = -123.123;	// 定义浮点数变量，用于测试
+ 287              		.loc 1 195 5 view .LVU49
+ 196:Core/Src/freertos.c ****     
+ 197:Core/Src/freertos.c ****     LCD_SetBackColor(LCD_DISP_BLACK); 			//	设置背景�???
+ 288              		.loc 1 197 5 view .LVU50
+ 289 0002 0020     		movs	r0, #0
+ 290 0004 FFF7FEFF 		bl	LCD_SetBackColor
+ 291              	.LVL20:
+ 198:Core/Src/freertos.c ****     LCD_Clear(); 								// 清屏
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 10
+
+
+ 292              		.loc 1 198 5 view .LVU51
+ 293 0008 FFF7FEFF 		bl	LCD_Clear
+ 294              	.LVL21:
+ 199:Core/Src/freertos.c ****        
+ 200:Core/Src/freertos.c ****     LCD_SetColor(LCD_DISP_BLUE);					// 设置画笔，蓝绿色		
+ 295              		.loc 1 200 5 view .LVU52
+ 296 000c 1F20     		movs	r0, #31
+ 297 000e FFF7FEFF 		bl	LCD_SetColor
+ 298              	.LVL22:
+ 201:Core/Src/freertos.c ****     LCD_DisplayString(0,30,"test +:");				
+ 299              		.loc 1 201 5 view .LVU53
+ 300 0012 534A     		ldr	r2, .L25+24
+ 301 0014 1E21     		movs	r1, #30
+ 302 0016 0020     		movs	r0, #0
+ 303 0018 FFF7FEFF 		bl	LCD_DisplayString
+ 304              	.LVL23:
+ 202:Core/Src/freertos.c ****     LCD_DisplayString(0,60,"test -:");					
+ 305              		.loc 1 202 5 view .LVU54
+ 306 001c 514A     		ldr	r2, .L25+28
+ 307 001e 3C21     		movs	r1, #60
+ 308 0020 0020     		movs	r0, #0
+ 309 0022 FFF7FEFF 		bl	LCD_DisplayString
+ 310              	.LVL24:
+ 203:Core/Src/freertos.c ****           
+ 204:Core/Src/freertos.c ****     LCD_SetColor(LCD_DISP_GREEN);				// 设置画笔，亮黄色		
+ 311              		.loc 1 204 5 view .LVU55
+ 312 0026 4FF4FC60 		mov	r0, #2016
+ 313 002a FFF7FEFF 		bl	LCD_SetColor
+ 314              	.LVL25:
+ 205:Core/Src/freertos.c ****     LCD_DisplayString(0,100,"test :");	
+ 315              		.loc 1 205 5 view .LVU56
+ 316 002e 4E4A     		ldr	r2, .L25+32
+ 317 0030 6421     		movs	r1, #100
+ 318 0032 0020     		movs	r0, #0
+ 319 0034 FFF7FEFF 		bl	LCD_DisplayString
+ 320              	.LVL26:
+ 206:Core/Src/freertos.c ****     LCD_DisplayString(0,130,"test0:");	
+ 321              		.loc 1 206 5 view .LVU57
+ 322 0038 4C4A     		ldr	r2, .L25+36
+ 323 003a 8221     		movs	r1, #130
+ 324 003c 0020     		movs	r0, #0
+ 325 003e FFF7FEFF 		bl	LCD_DisplayString
+ 326              	.LVL27:
+ 207:Core/Src/freertos.c ****     
+ 208:Core/Src/freertos.c ****     LCD_SetColor(LCD_DISP_RED);					// 设置画笔	，亮红色		
+ 327              		.loc 1 208 5 view .LVU58
+ 328 0042 4FF47840 		mov	r0, #63488
+ 329 0046 FFF7FEFF 		bl	LCD_SetColor
+ 330              	.LVL28:
+ 209:Core/Src/freertos.c ****     LCD_DisplayString(0,170,"test+.:");	
+ 331              		.loc 1 209 5 view .LVU59
+ 332 004a 494A     		ldr	r2, .L25+40
+ 333 004c AA21     		movs	r1, #170
+ 334 004e 0020     		movs	r0, #0
+ 335 0050 FFF7FEFF 		bl	LCD_DisplayString
+ 336              	.LVL29:
+ 210:Core/Src/freertos.c ****     LCD_DisplayString(0,200,"test-.:");		
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 11
+
+
+ 337              		.loc 1 210 5 view .LVU60
+ 338 0054 474A     		ldr	r2, .L25+44
+ 339 0056 C821     		movs	r1, #200
+ 340 0058 0020     		movs	r0, #0
+ 341 005a FFF7FEFF 		bl	LCD_DisplayString
+ 342              	.LVL30:
+ 211:Core/Src/freertos.c ****     
+ 212:Core/Src/freertos.c ****     for(i=0;i<100;i++)
+ 343              		.loc 1 212 5 view .LVU61
+ 344              		.loc 1 212 10 is_stmt 0 view .LVU62
+ 345 005e 0024     		movs	r4, #0
+ 346              		.loc 1 212 5 view .LVU63
+ 347 0060 6AE0     		b	.L22
+ 348              	.LVL31:
+ 349              	.L23:
+ 213:Core/Src/freertos.c ****     {
+ 214:Core/Src/freertos.c ****         LCD_SetColor(LCD_DISP_BLUE);								// 设置画笔	，蓝绿色	
+ 350              		.loc 1 214 9 is_stmt 1 discriminator 3 view .LVU64
+ 351 0062 1F20     		movs	r0, #31
+ 352 0064 FFF7FEFF 		bl	LCD_SetColor
+ 353              	.LVL32:
+ 215:Core/Src/freertos.c ****         LCD_ShowNumMode(Fill_Space);							// 多余位填充空�???
+ 354              		.loc 1 215 9 discriminator 3 view .LVU65
+ 355 0068 0120     		movs	r0, #1
+ 356 006a FFF7FEFF 		bl	LCD_ShowNumMode
+ 357              	.LVL33:
+ 216:Core/Src/freertos.c ****         LCD_DisplayNumber( 80,30, b+i*10, 4) ;				// 显示变量			
+ 358              		.loc 1 216 9 discriminator 3 view .LVU66
+ 359              		.loc 1 216 38 is_stmt 0 discriminator 3 view .LVU67
+ 360 006e 04EB8402 		add	r2, r4, r4, lsl #2
+ 361              		.loc 1 216 9 discriminator 3 view .LVU68
+ 362 0072 0423     		movs	r3, #4
+ 363 0074 5200     		lsls	r2, r2, #1
+ 364 0076 1E21     		movs	r1, #30
+ 365 0078 5020     		movs	r0, #80
+ 366 007a FFF7FEFF 		bl	LCD_DisplayNumber
+ 367              	.LVL34:
+ 217:Core/Src/freertos.c ****         LCD_DisplayNumber( 80,60, c-i*10, 4) ;				// 显示变量			
+ 368              		.loc 1 217 9 is_stmt 1 discriminator 3 view .LVU69
+ 369 007e 0423     		movs	r3, #4
+ 370 0080 6FF00902 		mvn	r2, #9
+ 371 0084 04FB02F2 		mul	r2, r4, r2
+ 372 0088 3C21     		movs	r1, #60
+ 373 008a 5020     		movs	r0, #80
+ 374 008c FFF7FEFF 		bl	LCD_DisplayNumber
+ 375              	.LVL35:
+ 218:Core/Src/freertos.c ****         
+ 219:Core/Src/freertos.c ****         LCD_SetColor(LCD_DISP_GREEN);								// 设置画笔，亮黄色	
+ 376              		.loc 1 219 9 discriminator 3 view .LVU70
+ 377 0090 4FF4FC60 		mov	r0, #2016
+ 378 0094 FFF7FEFF 		bl	LCD_SetColor
+ 379              	.LVL36:
+ 220:Core/Src/freertos.c **** 
+ 221:Core/Src/freertos.c ****         LCD_ShowNumMode(Fill_Space);								// 多余位填�??? 空格
+ 380              		.loc 1 221 9 discriminator 3 view .LVU71
+ 381 0098 0120     		movs	r0, #1
+ 382 009a FFF7FEFF 		bl	LCD_ShowNumMode
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 12
+
+
+ 383              	.LVL37:
+ 222:Core/Src/freertos.c ****         LCD_DisplayNumber( 130,100, a+i*150, 8) ;				// 显示变量		
+ 384              		.loc 1 222 9 discriminator 3 view .LVU72
+ 385              		.loc 1 222 40 is_stmt 0 discriminator 3 view .LVU73
+ 386 009e 9625     		movs	r5, #150
+ 387 00a0 04FB05F5 		mul	r5, r4, r5
+ 388              		.loc 1 222 9 discriminator 3 view .LVU74
+ 389 00a4 0823     		movs	r3, #8
+ 390 00a6 2A46     		mov	r2, r5
+ 391 00a8 6421     		movs	r1, #100
+ 392 00aa 8220     		movs	r0, #130
+ 393 00ac FFF7FEFF 		bl	LCD_DisplayNumber
+ 394              	.LVL38:
+ 223:Core/Src/freertos.c **** 
+ 224:Core/Src/freertos.c ****         LCD_ShowNumMode(Fill_Zero);								// 多余位填�???0      
+ 395              		.loc 1 224 9 is_stmt 1 discriminator 3 view .LVU75
+ 396 00b0 0020     		movs	r0, #0
+ 397 00b2 FFF7FEFF 		bl	LCD_ShowNumMode
+ 398              	.LVL39:
+ 225:Core/Src/freertos.c ****         LCD_DisplayNumber( 130,130, b+i*150, 8) ;				// 显示变量			
+ 399              		.loc 1 225 9 discriminator 3 view .LVU76
+ 400 00b6 0823     		movs	r3, #8
+ 401 00b8 2A46     		mov	r2, r5
+ 402 00ba 8221     		movs	r1, #130
+ 403 00bc 0846     		mov	r0, r1
+ 404 00be FFF7FEFF 		bl	LCD_DisplayNumber
+ 405              	.LVL40:
+ 226:Core/Src/freertos.c ****         
+ 227:Core/Src/freertos.c ****         LCD_SetColor(LCD_DISP_RED);									// 设置画笔，亮红色			
+ 406              		.loc 1 227 9 discriminator 3 view .LVU77
+ 407 00c2 4FF47840 		mov	r0, #63488
+ 408 00c6 FFF7FEFF 		bl	LCD_SetColor
+ 409              	.LVL41:
+ 228:Core/Src/freertos.c ****         LCD_ShowNumMode(Fill_Space);								// 多余位填充空�???		
+ 410              		.loc 1 228 9 discriminator 3 view .LVU78
+ 411 00ca 0120     		movs	r0, #1
+ 412 00cc FFF7FEFF 		bl	LCD_ShowNumMode
+ 413              	.LVL42:
+ 229:Core/Src/freertos.c ****         LCD_DisplayDecimals( 100,170, p+i*0.1,  10,3);		// 显示小数	
+ 414              		.loc 1 229 9 discriminator 3 view .LVU79
+ 415              		.loc 1 229 42 is_stmt 0 discriminator 3 view .LVU80
+ 416 00d0 2046     		mov	r0, r4
+ 417 00d2 FFF7FEFF 		bl	__aeabi_i2d
+ 418              	.LVL43:
+ 419 00d6 0646     		mov	r6, r0
+ 420 00d8 0F46     		mov	r7, r1
+ 421 00da 1BA3     		adr	r3, .L25
+ 422 00dc D3E90023 		ldrd	r2, [r3]
+ 423 00e0 FFF7FEFF 		bl	__aeabi_dmul
+ 424              	.LVL44:
+ 425              		.loc 1 229 40 discriminator 3 view .LVU81
+ 426 00e4 1AA3     		adr	r3, .L25+8
+ 427 00e6 D3E90023 		ldrd	r2, [r3]
+ 428 00ea FFF7FEFF 		bl	__aeabi_dadd
+ 429              	.LVL45:
+ 430              		.loc 1 229 9 discriminator 3 view .LVU82
+ 431 00ee FFF7FEFF 		bl	__aeabi_d2f
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 13
+
+
+ 432              	.LVL46:
+ 433 00f2 0323     		movs	r3, #3
+ 434 00f4 0A22     		movs	r2, #10
+ 435 00f6 00EE100A 		vmov	s0, r0
+ 436 00fa AA21     		movs	r1, #170
+ 437 00fc 6420     		movs	r0, #100
+ 438 00fe FFF7FEFF 		bl	LCD_DisplayDecimals
+ 439              	.LVL47:
+ 230:Core/Src/freertos.c ****         LCD_DisplayDecimals( 100,200, f+i*0.01, 10,4);		// 显示小数		
+ 440              		.loc 1 230 9 is_stmt 1 discriminator 3 view .LVU83
+ 441              		.loc 1 230 42 is_stmt 0 discriminator 3 view .LVU84
+ 442 0102 15A3     		adr	r3, .L25+16
+ 443 0104 D3E90023 		ldrd	r2, [r3]
+ 444 0108 3046     		mov	r0, r6
+ 445 010a 3946     		mov	r1, r7
+ 446 010c FFF7FEFF 		bl	__aeabi_dmul
+ 447              	.LVL48:
+ 448              		.loc 1 230 40 discriminator 3 view .LVU85
+ 449 0110 0FA3     		adr	r3, .L25+8
+ 450 0112 D3E90023 		ldrd	r2, [r3]
+ 451 0116 FFF7FEFF 		bl	__aeabi_dsub
+ 452              	.LVL49:
+ 453              		.loc 1 230 9 discriminator 3 view .LVU86
+ 454 011a FFF7FEFF 		bl	__aeabi_d2f
+ 455              	.LVL50:
+ 456 011e 0423     		movs	r3, #4
+ 457 0120 0A22     		movs	r2, #10
+ 458 0122 00EE100A 		vmov	s0, r0
+ 459 0126 C821     		movs	r1, #200
+ 460 0128 6420     		movs	r0, #100
+ 461 012a FFF7FEFF 		bl	LCD_DisplayDecimals
+ 462              	.LVL51:
+ 231:Core/Src/freertos.c ****         
+ 232:Core/Src/freertos.c ****         vTaskDelay(15);				
+ 463              		.loc 1 232 9 is_stmt 1 discriminator 3 view .LVU87
+ 464 012e 0F20     		movs	r0, #15
+ 465 0130 FFF7FEFF 		bl	vTaskDelay
+ 466              	.LVL52:
+ 212:Core/Src/freertos.c ****     {
+ 467              		.loc 1 212 19 discriminator 3 view .LVU88
+ 212:Core/Src/freertos.c ****     {
+ 468              		.loc 1 212 20 is_stmt 0 discriminator 3 view .LVU89
+ 469 0134 0134     		adds	r4, r4, #1
+ 470              	.LVL53:
+ 212:Core/Src/freertos.c ****     {
+ 471              		.loc 1 212 20 discriminator 3 view .LVU90
+ 472 0136 A4B2     		uxth	r4, r4
+ 473              	.LVL54:
+ 474              	.L22:
+ 212:Core/Src/freertos.c ****     {
+ 475              		.loc 1 212 13 is_stmt 1 discriminator 1 view .LVU91
+ 212:Core/Src/freertos.c ****     {
+ 476              		.loc 1 212 5 is_stmt 0 discriminator 1 view .LVU92
+ 477 0138 632C     		cmp	r4, #99
+ 478 013a 92D9     		bls	.L23
+ 233:Core/Src/freertos.c ****     }
+ 234:Core/Src/freertos.c ****     vTaskDelay(2500);		
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 14
+
+
+ 479              		.loc 1 234 5 is_stmt 1 view .LVU93
+ 480 013c 40F6C410 		movw	r0, #2500
+ 481 0140 FFF7FEFF 		bl	vTaskDelay
+ 482              	.LVL55:
+ 235:Core/Src/freertos.c **** }
+ 483              		.loc 1 235 1 is_stmt 0 view .LVU94
+ 484 0144 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 485              	.LVL56:
+ 486              	.L26:
+ 487              		.loc 1 235 1 view .LVU95
+ 488 0146 00BF     		.align	3
+ 489              	.L25:
+ 490 0148 9A999999 		.word	-1717986918
+ 491 014c 9999B93F 		.word	1069128089
+ 492 0150 1D5A643B 		.word	996432413
+ 493 0154 DFC75E40 		.word	1079953375
+ 494 0158 7B14AE47 		.word	1202590843
+ 495 015c E17A843F 		.word	1065646817
+ 496 0160 00000000 		.word	.LC1
+ 497 0164 08000000 		.word	.LC2
+ 498 0168 10000000 		.word	.LC3
+ 499 016c 18000000 		.word	.LC4
+ 500 0170 20000000 		.word	.LC5
+ 501 0174 28000000 		.word	.LC6
+ 502              		.cfi_endproc
+ 503              	.LFE178:
+ 505              		.section	.text.LCDViewTask,"ax",%progbits
+ 506              		.align	1
+ 507              		.global	LCDViewTask
+ 508              		.syntax unified
+ 509              		.thumb
+ 510              		.thumb_func
+ 512              	LCDViewTask:
+ 513              	.LFB176:
+ 145:Core/Src/freertos.c ****   while(1)
+ 514              		.loc 1 145 1 is_stmt 1 view -0
+ 515              		.cfi_startproc
+ 516              		@ Volatile: function does not return.
+ 517              		@ args = 0, pretend = 0, frame = 0
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519              	.LVL57:
+ 145:Core/Src/freertos.c ****   while(1)
+ 520              		.loc 1 145 1 is_stmt 0 view .LVU97
+ 521 0000 08B5     		push	{r3, lr}
+ 522              	.LCFI6:
+ 523              		.cfi_def_cfa_offset 8
+ 524              		.cfi_offset 3, -8
+ 525              		.cfi_offset 14, -4
+ 526              	.LVL58:
+ 527              	.L28:
+ 146:Core/Src/freertos.c ****   {
+ 528              		.loc 1 146 3 is_stmt 1 discriminator 1 view .LVU98
+ 148:Core/Src/freertos.c ****     LCD_Test_Variable();    // 变量显示测试
+ 529              		.loc 1 148 5 discriminator 1 view .LVU99
+ 530 0002 FFF7FEFF 		bl	LCD_Test_Clear
+ 531              	.LVL59:
+ 149:Core/Src/freertos.c ****   }
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 15
+
+
+ 532              		.loc 1 149 5 discriminator 1 view .LVU100
+ 533 0006 FFF7FEFF 		bl	LCD_Test_Variable
+ 534              	.LVL60:
+ 146:Core/Src/freertos.c ****   {
+ 535              		.loc 1 146 8 discriminator 1 view .LVU101
+ 536 000a FAE7     		b	.L28
+ 537              		.cfi_endproc
+ 538              	.LFE176:
+ 540              		.global	startTask_attributes
+ 541              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 542              		.align	2
+ 543              	.LC7:
+ 544 0000 73746172 		.ascii	"startTask\000"
+ 544      74546173 
+ 544      6B00
+ 545              		.global	startTaskHandle
+ 546              		.global	LCDViewTask_Handler
+ 547              		.section	.bss.LCDViewTask_Handler,"aw",%nobits
+ 548              		.align	2
+ 549              		.set	.LANCHOR0,. + 0
+ 552              	LCDViewTask_Handler:
+ 553 0000 00000000 		.space	4
+ 554              		.section	.bss.startTaskHandle,"aw",%nobits
+ 555              		.align	2
+ 556              		.set	.LANCHOR1,. + 0
+ 559              	startTaskHandle:
+ 560 0000 00000000 		.space	4
+ 561              		.section	.rodata.startTask_attributes,"a"
+ 562              		.align	2
+ 563              		.set	.LANCHOR2,. + 0
+ 566              	startTask_attributes:
+ 567 0000 00000000 		.word	.LC7
+ 568 0004 00000000 		.space	16
+ 568      00000000 
+ 568      00000000 
+ 568      00000000 
+ 569 0014 00020000 		.word	512
+ 570 0018 18000000 		.word	24
+ 571 001c 00000000 		.space	8
+ 571      00000000 
+ 572              		.text
+ 573              	.Letext0:
+ 574              		.file 2 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 575              		.file 3 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 576              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h"
+ 577              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 578              		.file 6 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ 579              		.file 7 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 580              		.file 8 "Core/Inc/spi.h"
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s 			page 16
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 freertos.c
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:20     .rodata.StartTask.str1.4:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:24     .text.StartTask:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:30     .text.StartTask:00000000 StartTask
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:77     .text.StartTask:00000030 $d
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:512    .text.LCDViewTask:00000000 LCDViewTask
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:85     .text.MX_FREERTOS_Init:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:91     .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:117    .text.MX_FREERTOS_Init:00000014 $d
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:124    .text.LCD_Test_Clear:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:130    .text.LCD_Test_Clear:00000000 LCD_Test_Clear
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:190    .text.LCD_Test_Clear:00000038 $d
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:195    .text.LCD_Test_Clear:0000004c $t
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:236    .rodata.LCD_Test_Variable.str1.4:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:260    .text.LCD_Test_Variable:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:266    .text.LCD_Test_Variable:00000000 LCD_Test_Variable
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:490    .text.LCD_Test_Variable:00000148 $d
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:506    .text.LCDViewTask:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:566    .rodata.startTask_attributes:00000000 startTask_attributes
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:542    .rodata.str1.4:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:559    .bss.startTaskHandle:00000000 startTaskHandle
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:552    .bss.LCDViewTask_Handler:00000000 LCDViewTask_Handler
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:548    .bss.LCDViewTask_Handler:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:555    .bss.startTaskHandle:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccCrIvlo.s:562    .rodata.startTask_attributes:00000000 $d
+
+UNDEFINED SYMBOLS
+vPortEnterCritical
+xTaskCreate
+osThreadTerminate
+vPortExitCritical
+osThreadNew
+LCD_SetDirection
+LCD_SetColor
+LCD_SetBackColor
+LCD_Clear
+vTaskDelay
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_dadd
+__aeabi_d2f
+__aeabi_dsub
+LCD_DisplayString
+LCD_ShowNumMode
+LCD_DisplayNumber
+LCD_DisplayDecimals

@@ -1,0 +1,526 @@
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"bsp_as5600.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.i2cWrite,"ax",%progbits
+  20              		.align	1
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	i2cWrite:
+  26              	.LVL0:
+  27              	.LFB168:
+  28              		.file 1 "Core/Src/bsp_as5600.c"
+   1:Core/Src/bsp_as5600.c **** #include "bsp_as5600.h"
+   2:Core/Src/bsp_as5600.c **** 
+   3:Core/Src/bsp_as5600.c **** #define abs(x) ((x) > 0 ? (x) : -(x))
+   4:Core/Src/bsp_as5600.c **** #define _2PI 6.28318530718
+   5:Core/Src/bsp_as5600.c **** 
+   6:Core/Src/bsp_as5600.c **** static float angle_data_prev;      // 上次位置
+   7:Core/Src/bsp_as5600.c **** static float full_rotation_offset; // 转过的整圈数
+   8:Core/Src/bsp_as5600.c **** 
+   9:Core/Src/bsp_as5600.c **** //初始化霍尔传感器
+  10:Core/Src/bsp_as5600.c **** void bsp_as5600Init(void)
+  11:Core/Src/bsp_as5600.c **** {
+  12:Core/Src/bsp_as5600.c ****     full_rotation_offset = 0;
+  13:Core/Src/bsp_as5600.c ****     angle_data_prev = bsp_as5600GetRawAngle();
+  14:Core/Src/bsp_as5600.c **** }
+  15:Core/Src/bsp_as5600.c **** 
+  16:Core/Src/bsp_as5600.c **** //向霍尔传感器寄存器写入数据
+  17:Core/Src/bsp_as5600.c **** static int i2cWrite(uint8_t dev_addr, uint8_t *pData, uint32_t count)
+  18:Core/Src/bsp_as5600.c **** {
+  29              		.loc 1 18 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 18 1 is_stmt 0 view .LVU1
+  34 0000 00B5     		push	{lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 14, -4
+  38 0002 83B0     		sub	sp, sp, #12
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 16
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 2
+
+
+  19:Core/Src/bsp_as5600.c ****     int status;
+  41              		.loc 1 19 5 is_stmt 1 view .LVU2
+  20:Core/Src/bsp_as5600.c ****     int i2c_time_out = I2C_TIME_OUT_BASE + count * I2C_TIME_OUT_BYTE;
+  42              		.loc 1 20 5 view .LVU3
+  43              		.loc 1 20 42 is_stmt 0 view .LVU4
+  44 0004 02F10A03 		add	r3, r2, #10
+  45              	.LVL1:
+  21:Core/Src/bsp_as5600.c **** 
+  22:Core/Src/bsp_as5600.c ****     status = HAL_I2C_Master_Transmit(&AS5600_I2C_HANDLE, dev_addr, pData, count, i2c_time_out);
+  46              		.loc 1 22 5 is_stmt 1 view .LVU5
+  47              		.loc 1 22 14 is_stmt 0 view .LVU6
+  48 0008 0093     		str	r3, [sp]
+  49 000a 93B2     		uxth	r3, r2
+  50              	.LVL2:
+  51              		.loc 1 22 14 view .LVU7
+  52 000c 0A46     		mov	r2, r1
+  53              	.LVL3:
+  54              		.loc 1 22 14 view .LVU8
+  55 000e 0146     		mov	r1, r0
+  56              	.LVL4:
+  57              		.loc 1 22 14 view .LVU9
+  58 0010 0248     		ldr	r0, .L3
+  59              	.LVL5:
+  60              		.loc 1 22 14 view .LVU10
+  61 0012 FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+  62              	.LVL6:
+  23:Core/Src/bsp_as5600.c ****     return status;
+  63              		.loc 1 23 5 is_stmt 1 view .LVU11
+  24:Core/Src/bsp_as5600.c **** }
+  64              		.loc 1 24 1 is_stmt 0 view .LVU12
+  65 0016 03B0     		add	sp, sp, #12
+  66              	.LCFI2:
+  67              		.cfi_def_cfa_offset 4
+  68              		@ sp needed
+  69 0018 5DF804FB 		ldr	pc, [sp], #4
+  70              	.L4:
+  71              		.align	2
+  72              	.L3:
+  73 001c 00000000 		.word	hi2c2
+  74              		.cfi_endproc
+  75              	.LFE168:
+  77              		.section	.text.i2cRead,"ax",%progbits
+  78              		.align	1
+  79              		.syntax unified
+  80              		.thumb
+  81              		.thumb_func
+  83              	i2cRead:
+  84              	.LVL7:
+  85              	.LFB169:
+  25:Core/Src/bsp_as5600.c **** 
+  26:Core/Src/bsp_as5600.c **** //读取霍尔传感器寄存器数据
+  27:Core/Src/bsp_as5600.c **** static int i2cRead(uint8_t dev_addr, uint8_t *pData, uint32_t count)
+  28:Core/Src/bsp_as5600.c **** {
+  86              		.loc 1 28 1 is_stmt 1 view -0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 3
+
+
+  90              		.loc 1 28 1 is_stmt 0 view .LVU14
+  91 0000 00B5     		push	{lr}
+  92              	.LCFI3:
+  93              		.cfi_def_cfa_offset 4
+  94              		.cfi_offset 14, -4
+  95 0002 83B0     		sub	sp, sp, #12
+  96              	.LCFI4:
+  97              		.cfi_def_cfa_offset 16
+  29:Core/Src/bsp_as5600.c ****     int status;
+  98              		.loc 1 29 5 is_stmt 1 view .LVU15
+  30:Core/Src/bsp_as5600.c ****     int i2c_time_out = I2C_TIME_OUT_BASE + count * I2C_TIME_OUT_BYTE;
+  99              		.loc 1 30 5 view .LVU16
+ 100              		.loc 1 30 42 is_stmt 0 view .LVU17
+ 101 0004 02F10A03 		add	r3, r2, #10
+ 102              	.LVL8:
+  31:Core/Src/bsp_as5600.c **** 
+  32:Core/Src/bsp_as5600.c ****     status = HAL_I2C_Master_Receive(&AS5600_I2C_HANDLE, dev_addr, pData, count, i2c_time_out);
+ 103              		.loc 1 32 5 is_stmt 1 view .LVU18
+ 104              		.loc 1 32 14 is_stmt 0 view .LVU19
+ 105 0008 0093     		str	r3, [sp]
+ 106 000a 93B2     		uxth	r3, r2
+ 107              	.LVL9:
+ 108              		.loc 1 32 14 view .LVU20
+ 109 000c 0A46     		mov	r2, r1
+ 110              	.LVL10:
+ 111              		.loc 1 32 14 view .LVU21
+ 112 000e 0146     		mov	r1, r0
+ 113              	.LVL11:
+ 114              		.loc 1 32 14 view .LVU22
+ 115 0010 0248     		ldr	r0, .L7
+ 116              	.LVL12:
+ 117              		.loc 1 32 14 view .LVU23
+ 118 0012 FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 119              	.LVL13:
+  33:Core/Src/bsp_as5600.c ****     return status;
+ 120              		.loc 1 33 5 is_stmt 1 view .LVU24
+  34:Core/Src/bsp_as5600.c **** }
+ 121              		.loc 1 34 1 is_stmt 0 view .LVU25
+ 122 0016 03B0     		add	sp, sp, #12
+ 123              	.LCFI5:
+ 124              		.cfi_def_cfa_offset 4
+ 125              		@ sp needed
+ 126 0018 5DF804FB 		ldr	pc, [sp], #4
+ 127              	.L8:
+ 128              		.align	2
+ 129              	.L7:
+ 130 001c 00000000 		.word	hi2c2
+ 131              		.cfi_endproc
+ 132              	.LFE169:
+ 134              		.section	.text.bsp_as5600GetRawAngle,"ax",%progbits
+ 135              		.align	1
+ 136              		.global	bsp_as5600GetRawAngle
+ 137              		.syntax unified
+ 138              		.thumb
+ 139              		.thumb_func
+ 141              	bsp_as5600GetRawAngle:
+ 142              	.LFB170:
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 4
+
+
+  35:Core/Src/bsp_as5600.c **** 
+  36:Core/Src/bsp_as5600.c **** //获取霍尔传感器原始角度
+  37:Core/Src/bsp_as5600.c **** uint16_t bsp_as5600GetRawAngle(void)
+  38:Core/Src/bsp_as5600.c **** {
+ 143              		.loc 1 38 1 is_stmt 1 view -0
+ 144              		.cfi_startproc
+ 145              		@ args = 0, pretend = 0, frame = 8
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147 0000 00B5     		push	{lr}
+ 148              	.LCFI6:
+ 149              		.cfi_def_cfa_offset 4
+ 150              		.cfi_offset 14, -4
+ 151 0002 83B0     		sub	sp, sp, #12
+ 152              	.LCFI7:
+ 153              		.cfi_def_cfa_offset 16
+  39:Core/Src/bsp_as5600.c ****     uint16_t raw_angle;
+ 154              		.loc 1 39 5 view .LVU27
+  40:Core/Src/bsp_as5600.c ****     uint8_t buffer[2] = {0};
+ 155              		.loc 1 40 5 view .LVU28
+ 156              		.loc 1 40 13 is_stmt 0 view .LVU29
+ 157 0004 0023     		movs	r3, #0
+ 158 0006 ADF80430 		strh	r3, [sp, #4]	@ movhi
+  41:Core/Src/bsp_as5600.c ****     uint8_t raw_angle_register = AS5600_RAW_ANGLE_REGISTER;
+ 159              		.loc 1 41 5 is_stmt 1 view .LVU30
+ 160              		.loc 1 41 13 is_stmt 0 view .LVU31
+ 161 000a 0C23     		movs	r3, #12
+ 162 000c 8DF80330 		strb	r3, [sp, #3]
+  42:Core/Src/bsp_as5600.c **** 
+  43:Core/Src/bsp_as5600.c ****     i2cWrite(AS5600_WRITE_ADDR, &raw_angle_register, 1);
+ 163              		.loc 1 43 5 is_stmt 1 view .LVU32
+ 164 0010 0122     		movs	r2, #1
+ 165 0012 0DF10301 		add	r1, sp, #3
+ 166 0016 6C20     		movs	r0, #108
+ 167 0018 FFF7FEFF 		bl	i2cWrite
+ 168              	.LVL14:
+  44:Core/Src/bsp_as5600.c ****     i2cRead(AS5600_READ_ADDR, buffer, 2);
+ 169              		.loc 1 44 5 view .LVU33
+ 170 001c 0222     		movs	r2, #2
+ 171 001e 01A9     		add	r1, sp, #4
+ 172 0020 6D20     		movs	r0, #109
+ 173 0022 FFF7FEFF 		bl	i2cRead
+ 174              	.LVL15:
+  45:Core/Src/bsp_as5600.c ****     raw_angle = ((uint16_t)buffer[0] << 8) | (uint16_t)buffer[1];
+ 175              		.loc 1 45 5 view .LVU34
+ 176              		.loc 1 45 34 is_stmt 0 view .LVU35
+ 177 0026 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+ 178              		.loc 1 45 62 view .LVU36
+ 179 002a 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 180              	.LVL16:
+  46:Core/Src/bsp_as5600.c ****     return raw_angle;
+ 181              		.loc 1 46 5 is_stmt 1 view .LVU37
+  47:Core/Src/bsp_as5600.c **** }
+ 182              		.loc 1 47 1 is_stmt 0 view .LVU38
+ 183 002e 43EA0020 		orr	r0, r3, r0, lsl #8
+ 184              	.LVL17:
+ 185              		.loc 1 47 1 view .LVU39
+ 186 0032 03B0     		add	sp, sp, #12
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 5
+
+
+ 187              	.LCFI8:
+ 188              		.cfi_def_cfa_offset 4
+ 189              		@ sp needed
+ 190 0034 5DF804FB 		ldr	pc, [sp], #4
+ 191              		.cfi_endproc
+ 192              	.LFE170:
+ 194              		.section	.text.bsp_as5600Init,"ax",%progbits
+ 195              		.align	1
+ 196              		.global	bsp_as5600Init
+ 197              		.syntax unified
+ 198              		.thumb
+ 199              		.thumb_func
+ 201              	bsp_as5600Init:
+ 202              	.LFB167:
+  11:Core/Src/bsp_as5600.c ****     full_rotation_offset = 0;
+ 203              		.loc 1 11 1 is_stmt 1 view -0
+ 204              		.cfi_startproc
+ 205              		@ args = 0, pretend = 0, frame = 0
+ 206              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207 0000 08B5     		push	{r3, lr}
+ 208              	.LCFI9:
+ 209              		.cfi_def_cfa_offset 8
+ 210              		.cfi_offset 3, -8
+ 211              		.cfi_offset 14, -4
+  12:Core/Src/bsp_as5600.c ****     angle_data_prev = bsp_as5600GetRawAngle();
+ 212              		.loc 1 12 5 view .LVU41
+  12:Core/Src/bsp_as5600.c ****     angle_data_prev = bsp_as5600GetRawAngle();
+ 213              		.loc 1 12 26 is_stmt 0 view .LVU42
+ 214 0002 064B     		ldr	r3, .L13
+ 215 0004 0022     		movs	r2, #0
+ 216 0006 1A60     		str	r2, [r3]	@ float
+  13:Core/Src/bsp_as5600.c **** }
+ 217              		.loc 1 13 5 is_stmt 1 view .LVU43
+  13:Core/Src/bsp_as5600.c **** }
+ 218              		.loc 1 13 23 is_stmt 0 view .LVU44
+ 219 0008 FFF7FEFF 		bl	bsp_as5600GetRawAngle
+ 220              	.LVL18:
+ 221 000c 07EE900A 		vmov	s15, r0	@ int
+  13:Core/Src/bsp_as5600.c **** }
+ 222              		.loc 1 13 21 view .LVU45
+ 223 0010 F8EE677A 		vcvt.f32.u32	s15, s15
+ 224 0014 024B     		ldr	r3, .L13+4
+ 225 0016 C3ED007A 		vstr.32	s15, [r3]
+  14:Core/Src/bsp_as5600.c **** 
+ 226              		.loc 1 14 1 view .LVU46
+ 227 001a 08BD     		pop	{r3, pc}
+ 228              	.L14:
+ 229              		.align	2
+ 230              	.L13:
+ 231 001c 00000000 		.word	.LANCHOR0
+ 232 0020 00000000 		.word	.LANCHOR1
+ 233              		.cfi_endproc
+ 234              	.LFE167:
+ 236              		.global	__aeabi_f2d
+ 237              		.global	__aeabi_dcmpgt
+ 238              		.global	__aeabi_dadd
+ 239              		.global	__aeabi_d2f
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 6
+
+
+ 240              		.global	__aeabi_dmul
+ 241              		.section	.text.bsp_as5600GetAngle,"ax",%progbits
+ 242              		.align	1
+ 243              		.global	bsp_as5600GetAngle
+ 244              		.syntax unified
+ 245              		.thumb
+ 246              		.thumb_func
+ 248              	bsp_as5600GetAngle:
+ 249              	.LFB171:
+  48:Core/Src/bsp_as5600.c **** 
+  49:Core/Src/bsp_as5600.c **** //获取霍尔传感器当前角度
+  50:Core/Src/bsp_as5600.c **** float bsp_as5600GetAngle(void)
+  51:Core/Src/bsp_as5600.c **** {
+ 250              		.loc 1 51 1 is_stmt 1 view -0
+ 251              		.cfi_startproc
+ 252              		@ args = 0, pretend = 0, frame = 0
+ 253              		@ frame_needed = 0, uses_anonymous_args = 0
+ 254 0000 38B5     		push	{r3, r4, r5, lr}
+ 255              	.LCFI10:
+ 256              		.cfi_def_cfa_offset 16
+ 257              		.cfi_offset 3, -16
+ 258              		.cfi_offset 4, -12
+ 259              		.cfi_offset 5, -8
+ 260              		.cfi_offset 14, -4
+ 261 0002 2DED028B 		vpush.64	{d8}
+ 262              	.LCFI11:
+ 263              		.cfi_def_cfa_offset 24
+ 264              		.cfi_offset 80, -24
+ 265              		.cfi_offset 81, -20
+  52:Core/Src/bsp_as5600.c ****     float angle_data = bsp_as5600GetRawAngle();
+ 266              		.loc 1 52 5 view .LVU48
+ 267              		.loc 1 52 24 is_stmt 0 view .LVU49
+ 268 0006 FFF7FEFF 		bl	bsp_as5600GetRawAngle
+ 269              	.LVL19:
+ 270 000a 08EE100A 		vmov	s16, r0	@ int
+ 271              		.loc 1 52 11 view .LVU50
+ 272 000e B8EE488A 		vcvt.f32.u32	s16, s16
+ 273              	.LVL20:
+  53:Core/Src/bsp_as5600.c **** 
+  54:Core/Src/bsp_as5600.c ****     float d_angle = angle_data - angle_data_prev;
+ 274              		.loc 1 54 5 is_stmt 1 view .LVU51
+ 275              		.loc 1 54 32 is_stmt 0 view .LVU52
+ 276 0012 2F4B     		ldr	r3, .L28+24
+ 277 0014 D3ED008A 		vldr.32	s17, [r3]
+ 278              		.loc 1 54 11 view .LVU53
+ 279 0018 78EE688A 		vsub.f32	s17, s16, s17
+ 280              	.LVL21:
+  55:Core/Src/bsp_as5600.c ****     if (abs(d_angle) > (0.8 * AS5600_RESOLUTION))
+ 281              		.loc 1 55 5 is_stmt 1 view .LVU54
+ 282              		.loc 1 55 9 is_stmt 0 view .LVU55
+ 283 001c F5EEC08A 		vcmpe.f32	s17, #0
+ 284 0020 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 285 0024 3CDD     		ble	.L27
+ 286 0026 18EE900A 		vmov	r0, s17
+ 287              	.L16:
+ 288              		.loc 1 55 9 discriminator 4 view .LVU56
+ 289 002a FFF7FEFF 		bl	__aeabi_f2d
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 7
+
+
+ 290              	.LVL22:
+ 291              		.loc 1 55 8 discriminator 4 view .LVU57
+ 292 002e 22A3     		adr	r3, .L28
+ 293 0030 D3E90023 		ldrd	r2, [r3]
+ 294 0034 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 295              	.LVL23:
+ 296 0038 88B1     		cbz	r0, .L17
+  56:Core/Src/bsp_as5600.c ****     {
+  57:Core/Src/bsp_as5600.c ****         full_rotation_offset += (d_angle > 0 ? -_2PI : _2PI);
+ 297              		.loc 1 57 9 is_stmt 1 view .LVU58
+ 298              		.loc 1 57 30 is_stmt 0 view .LVU59
+ 299 003a 264B     		ldr	r3, .L28+28
+ 300 003c 1868     		ldr	r0, [r3]	@ float
+ 301 003e FFF7FEFF 		bl	__aeabi_f2d
+ 302              	.LVL24:
+ 303              		.loc 1 57 54 view .LVU60
+ 304 0042 F5EEC08A 		vcmpe.f32	s17, #0
+ 305 0046 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 306 004a 2EDD     		ble	.L25
+ 307 004c 1CA3     		adr	r3, .L28+8
+ 308 004e D3E90023 		ldrd	r2, [r3]
+ 309              	.L19:
+ 310              		.loc 1 57 30 discriminator 4 view .LVU61
+ 311 0052 FFF7FEFF 		bl	__aeabi_dadd
+ 312              	.LVL25:
+ 313 0056 FFF7FEFF 		bl	__aeabi_d2f
+ 314              	.LVL26:
+ 315 005a 1E4B     		ldr	r3, .L28+28
+ 316 005c 1860     		str	r0, [r3]	@ float
+ 317              	.L17:
+  58:Core/Src/bsp_as5600.c ****     }
+  59:Core/Src/bsp_as5600.c ****     angle_data_prev = angle_data;
+ 318              		.loc 1 59 5 is_stmt 1 view .LVU62
+ 319              		.loc 1 59 21 is_stmt 0 view .LVU63
+ 320 005e 1C4B     		ldr	r3, .L28+24
+ 321 0060 83ED008A 		vstr.32	s16, [r3]
+  60:Core/Src/bsp_as5600.c **** 
+  61:Core/Src/bsp_as5600.c ****     return (full_rotation_offset + (angle_data / (float)AS5600_RESOLUTION) * _2PI);
+ 322              		.loc 1 61 5 is_stmt 1 view .LVU64
+ 323              		.loc 1 61 48 is_stmt 0 view .LVU65
+ 324 0064 DFED1C7A 		vldr.32	s15, .L28+32
+ 325 0068 68EE277A 		vmul.f32	s15, s16, s15
+ 326 006c 17EE900A 		vmov	r0, s15
+ 327 0070 FFF7FEFF 		bl	__aeabi_f2d
+ 328              	.LVL27:
+ 329              		.loc 1 61 76 view .LVU66
+ 330 0074 14A3     		adr	r3, .L28+16
+ 331 0076 D3E90023 		ldrd	r2, [r3]
+ 332 007a FFF7FEFF 		bl	__aeabi_dmul
+ 333              	.LVL28:
+ 334 007e 0446     		mov	r4, r0
+ 335 0080 0D46     		mov	r5, r1
+ 336              		.loc 1 61 34 view .LVU67
+ 337 0082 144B     		ldr	r3, .L28+28
+ 338 0084 1868     		ldr	r0, [r3]	@ float
+ 339 0086 FFF7FEFF 		bl	__aeabi_f2d
+ 340              	.LVL29:
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 8
+
+
+ 341 008a 2246     		mov	r2, r4
+ 342 008c 2B46     		mov	r3, r5
+ 343 008e FFF7FEFF 		bl	__aeabi_dadd
+ 344              	.LVL30:
+ 345 0092 FFF7FEFF 		bl	__aeabi_d2f
+ 346              	.LVL31:
+  62:Core/Src/bsp_as5600.c **** }
+ 347              		.loc 1 62 1 view .LVU68
+ 348 0096 00EE100A 		vmov	s0, r0
+ 349 009a BDEC028B 		vldm	sp!, {d8}
+ 350              	.LCFI12:
+ 351              		.cfi_remember_state
+ 352              		.cfi_restore 80
+ 353              		.cfi_restore 81
+ 354              		.cfi_def_cfa_offset 16
+ 355              	.LVL32:
+ 356              		.loc 1 62 1 view .LVU69
+ 357 009e 38BD     		pop	{r3, r4, r5, pc}
+ 358              	.LVL33:
+ 359              	.L27:
+ 360              	.LCFI13:
+ 361              		.cfi_restore_state
+  55:Core/Src/bsp_as5600.c ****     {
+ 362              		.loc 1 55 9 discriminator 2 view .LVU70
+ 363 00a0 F1EE687A 		vneg.f32	s15, s17
+ 364 00a4 17EE900A 		vmov	r0, s15
+ 365 00a8 BFE7     		b	.L16
+ 366              	.L25:
+  57:Core/Src/bsp_as5600.c ****     }
+ 367              		.loc 1 57 54 view .LVU71
+ 368 00aa 07A3     		adr	r3, .L28+16
+ 369 00ac D3E90023 		ldrd	r2, [r3]
+ 370 00b0 CFE7     		b	.L19
+ 371              	.L29:
+ 372 00b2 00BFAFF3 		.align	3
+ 372      0080
+ 373              	.L28:
+ 374 00b8 9A999999 		.word	-1717986918
+ 375 00bc 9999A940 		.word	1084856729
+ 376 00c0 EA2E4454 		.word	1413754602
+ 377 00c4 FB2119C0 		.word	-1072094725
+ 378 00c8 EA2E4454 		.word	1413754602
+ 379 00cc FB211940 		.word	1075388923
+ 380 00d0 00000000 		.word	.LANCHOR1
+ 381 00d4 00000000 		.word	.LANCHOR0
+ 382 00d8 00008039 		.word	964689920
+ 383              		.cfi_endproc
+ 384              	.LFE171:
+ 386              		.section	.bss.angle_data_prev,"aw",%nobits
+ 387              		.align	2
+ 388              		.set	.LANCHOR1,. + 0
+ 391              	angle_data_prev:
+ 392 0000 00000000 		.space	4
+ 393              		.section	.bss.full_rotation_offset,"aw",%nobits
+ 394              		.align	2
+ 395              		.set	.LANCHOR0,. + 0
+ 398              	full_rotation_offset:
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 9
+
+
+ 399 0000 00000000 		.space	4
+ 400              		.text
+ 401              	.Letext0:
+ 402              		.file 2 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 403              		.file 3 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 404              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h"
+ 405              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 406              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 407              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 408              		.file 8 "Core/Inc/i2c.h"
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cckk9tTh.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 bsp_as5600.c
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:20     .text.i2cWrite:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:25     .text.i2cWrite:00000000 i2cWrite
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:73     .text.i2cWrite:0000001c $d
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:78     .text.i2cRead:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:83     .text.i2cRead:00000000 i2cRead
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:130    .text.i2cRead:0000001c $d
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:135    .text.bsp_as5600GetRawAngle:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:141    .text.bsp_as5600GetRawAngle:00000000 bsp_as5600GetRawAngle
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:195    .text.bsp_as5600Init:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:201    .text.bsp_as5600Init:00000000 bsp_as5600Init
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:231    .text.bsp_as5600Init:0000001c $d
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:242    .text.bsp_as5600GetAngle:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:248    .text.bsp_as5600GetAngle:00000000 bsp_as5600GetAngle
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:374    .text.bsp_as5600GetAngle:000000b8 $d
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:387    .bss.angle_data_prev:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:391    .bss.angle_data_prev:00000000 angle_data_prev
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:394    .bss.full_rotation_offset:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cckk9tTh.s:398    .bss.full_rotation_offset:00000000 full_rotation_offset
+
+UNDEFINED SYMBOLS
+HAL_I2C_Master_Transmit
+hi2c2
+HAL_I2C_Master_Receive
+__aeabi_f2d
+__aeabi_dcmpgt
+__aeabi_dadd
+__aeabi_d2f
+__aeabi_dmul

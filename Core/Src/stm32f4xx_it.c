@@ -232,7 +232,7 @@ void TIM5_IRQHandler(void)
   /* USER CODE END TIM5_IRQn 0 */
   HAL_TIM_IRQHandler(&htim5);
   /* USER CODE BEGIN TIM5_IRQn 1 */
-  micros_counter++; // 定时器每滴答一次，微秒计数器加1
+  micros_counter++; // 定时器每滴答�?次，微秒计数器加1
   /* USER CODE END TIM5_IRQn 1 */
 }
 

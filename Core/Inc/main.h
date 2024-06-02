@@ -69,6 +69,8 @@ void Error_Handler(void);
 #define SPI3_SCL_GPIO_Port GPIOC
 #define SPI3_SDA_Pin GPIO_PIN_12
 #define SPI3_SDA_GPIO_Port GPIOC
+#define Motor_EN_Pin GPIO_PIN_5
+#define Motor_EN_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

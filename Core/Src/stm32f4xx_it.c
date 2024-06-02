@@ -27,7 +27,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN TD */
-
+volatile uint32_t micros_counter = 0;
 /* USER CODE END TD */
 
 /* Private define ------------------------------------------------------------*/
@@ -58,6 +58,7 @@
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_spi3_tx;
 extern TIM_HandleTypeDef htim4;
+extern TIM_HandleTypeDef htim5;
 extern DMA_HandleTypeDef hdma_usart1_tx;
 extern DMA_HandleTypeDef hdma_usart1_rx;
 extern UART_HandleTypeDef huart1;
@@ -222,6 +223,20 @@ void USART1_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles TIM5 global interrupt.
+  */
+void TIM5_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM5_IRQn 0 */
+
+  /* USER CODE END TIM5_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim5);
+  /* USER CODE BEGIN TIM5_IRQn 1 */
+  micros_counter++; // 定时器每滴答一次，微秒计数器加1
+  /* USER CODE END TIM5_IRQn 1 */
+}
+
+/**
   * @brief This function handles DMA2 stream2 global interrupt.
   */
 void DMA2_Stream2_IRQHandler(void)
@@ -250,5 +265,8 @@ void DMA2_Stream7_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-
+uint32_t micros(void) 
+{
+    return micros_counter;
+}
 /* USER CODE END 1 */

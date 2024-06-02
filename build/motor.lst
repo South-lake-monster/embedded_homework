@@ -1,0 +1,809 @@
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"motor.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text._electricalAngle,"ax",%progbits
+  20              		.align	1
+  21              		.global	_electricalAngle
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	_electricalAngle:
+  27              	.LVL0:
+  28              	.LFB167:
+  29              		.file 1 "Core/Src/motor.c"
+   1:Core/Src/motor.c **** #include "motor.h"
+   2:Core/Src/motor.c **** 
+   3:Core/Src/motor.c **** float voltage_power_supply=12;
+   4:Core/Src/motor.c **** float shaft_angle=0,open_loop_timestamp=0;
+   5:Core/Src/motor.c **** float zero_electric_angle=0,Ualpha,Ubeta=0,Ua=0,Ub=0,Uc=0,dc_a=0,dc_b=0,dc_c=0;
+   6:Core/Src/motor.c **** 
+   7:Core/Src/motor.c **** // 电角度求解
+   8:Core/Src/motor.c **** float _electricalAngle(float shaft_angle, int pole_pairs)
+   9:Core/Src/motor.c **** {
+  30              		.loc 1 9 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  35              		.loc 1 9 1 is_stmt 0 view .LVU1
+  36 0000 07EE900A 		vmov	s15, r0	@ int
+  10:Core/Src/motor.c ****     return (shaft_angle * pole_pairs);
+  37              		.loc 1 10 5 is_stmt 1 view .LVU2
+  38              		.loc 1 10 25 is_stmt 0 view .LVU3
+  39 0004 F8EEE77A 		vcvt.f32.s32	s15, s15
+  11:Core/Src/motor.c **** }
+  40              		.loc 1 11 1 view .LVU4
+  41 0008 27EE800A 		vmul.f32	s0, s15, s0
+  42              	.LVL1:
+  43              		.loc 1 11 1 view .LVU5
+  44 000c 7047     		bx	lr
+  45              		.cfi_endproc
+  46              	.LFE167:
+  48              		.global	__aeabi_f2d
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 2
+
+
+  49              		.global	__aeabi_d2f
+  50              		.section	.text._normalizeAngle,"ax",%progbits
+  51              		.align	1
+  52              		.global	_normalizeAngle
+  53              		.syntax unified
+  54              		.thumb
+  55              		.thumb_func
+  57              	_normalizeAngle:
+  58              	.LVL2:
+  59              	.LFB168:
+  12:Core/Src/motor.c **** 
+  13:Core/Src/motor.c **** // 归一化角度到 [0,2PI]
+  14:Core/Src/motor.c **** float _normalizeAngle(float angle)
+  15:Core/Src/motor.c **** {
+  60              		.loc 1 15 1 is_stmt 1 view -0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		.loc 1 15 1 is_stmt 0 view .LVU7
+  65 0000 08B5     		push	{r3, lr}
+  66              	.LCFI0:
+  67              		.cfi_def_cfa_offset 8
+  68              		.cfi_offset 3, -8
+  69              		.cfi_offset 14, -4
+  70 0002 10EE100A 		vmov	r0, s0
+  16:Core/Src/motor.c ****     float a = fmod(angle, 2*PI);   //取余运算可以用于归一化，列出特殊值例子算�
+  71              		.loc 1 16 5 is_stmt 1 view .LVU8
+  72              		.loc 1 16 15 is_stmt 0 view .LVU9
+  73 0006 FFF7FEFF 		bl	__aeabi_f2d
+  74              	.LVL3:
+  75              		.loc 1 16 15 view .LVU10
+  76 000a 9FED0B1B 		vldr.64	d1, .L6
+  77 000e 41EC100B 		vmov	d0, r0, r1
+  78 0012 FFF7FEFF 		bl	fmod
+  79              	.LVL4:
+  80 0016 51EC100B 		vmov	r0, r1, d0
+  81              		.loc 1 16 11 view .LVU11
+  82 001a FFF7FEFF 		bl	__aeabi_d2f
+  83              	.LVL5:
+  84 001e 00EE100A 		vmov	s0, r0
+  85              	.LVL6:
+  17:Core/Src/motor.c ****     return a >= 0 ? a : (a + 2*PI);  
+  86              		.loc 1 17 5 is_stmt 1 view .LVU12
+  87              		.loc 1 17 23 is_stmt 0 view .LVU13
+  88 0022 B5EEC00A 		vcmpe.f32	s0, #0
+  89 0026 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+  90 002a 00DB     		blt	.L5
+  91              	.L2:
+  18:Core/Src/motor.c **** }
+  92              		.loc 1 18 1 view .LVU14
+  93 002c 08BD     		pop	{r3, pc}
+  94              	.L5:
+  17:Core/Src/motor.c ****     return a >= 0 ? a : (a + 2*PI);  
+  95              		.loc 1 17 23 discriminator 2 view .LVU15
+  96 002e DFED047A 		vldr.32	s15, .L6+8
+  97 0032 30EE270A 		vadd.f32	s0, s0, s15
+  98 0036 F9E7     		b	.L2
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 3
+
+
+  99              	.L7:
+ 100              		.align	3
+ 101              	.L6:
+ 102 0038 00000060 		.word	1610612736
+ 103 003c FB211940 		.word	1075388923
+ 104 0040 DB0FC940 		.word	1086918619
+ 105              		.cfi_endproc
+ 106              	.LFE168:
+ 108              		.section	.text.setPwm,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	setPwm
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 115              	setPwm:
+ 116              	.LVL7:
+ 117              	.LFB169:
+  19:Core/Src/motor.c **** 
+  20:Core/Src/motor.c **** // 设置PWM到控制器输出
+  21:Core/Src/motor.c **** void setPwm(float Ua, float Ub, float Uc) 
+  22:Core/Src/motor.c **** {
+ 118              		.loc 1 22 1 is_stmt 1 view -0
+ 119              		.cfi_startproc
+ 120              		@ args = 0, pretend = 0, frame = 0
+ 121              		@ frame_needed = 0, uses_anonymous_args = 0
+ 122              		.loc 1 22 1 is_stmt 0 view .LVU17
+ 123 0000 10B5     		push	{r4, lr}
+ 124              	.LCFI1:
+ 125              		.cfi_def_cfa_offset 8
+ 126              		.cfi_offset 4, -8
+ 127              		.cfi_offset 14, -4
+  23:Core/Src/motor.c **** 
+  24:Core/Src/motor.c ****   // 计算占空比
+  25:Core/Src/motor.c ****   // 限制占空比从0到1
+  26:Core/Src/motor.c ****   dc_a = _constrain(Ua / voltage_power_supply, 0.0f , 1.0f );
+ 128              		.loc 1 26 3 is_stmt 1 view .LVU18
+ 129              		.loc 1 26 10 is_stmt 0 view .LVU19
+ 130 0002 344B     		ldr	r3, .L22
+ 131 0004 93ED007A 		vldr.32	s14, [r3]
+ 132 0008 C0EE077A 		vdiv.f32	s15, s0, s14
+ 133 000c F5EEC07A 		vcmpe.f32	s15, #0
+ 134 0010 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 135 0014 09D4     		bmi	.L15
+ 136              		.loc 1 26 10 discriminator 2 view .LVU20
+ 137 0016 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 138 001a F4EEE67A 		vcmpe.f32	s15, s13
+ 139 001e F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 140 0022 04DD     		ble	.L9
+ 141              		.loc 1 26 10 view .LVU21
+ 142 0024 F0EE667A 		vmov.f32	s15, s13
+ 143 0028 01E0     		b	.L9
+ 144              	.L15:
+ 145 002a DFED2B7A 		vldr.32	s15, .L22+4
+ 146              	.L9:
+ 147              		.loc 1 26 8 discriminator 8 view .LVU22
+ 148 002e 2B4B     		ldr	r3, .L22+8
+ 149 0030 C3ED007A 		vstr.32	s15, [r3]
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 4
+
+
+  27:Core/Src/motor.c ****   dc_b = _constrain(Ub / voltage_power_supply, 0.0f , 1.0f );
+ 150              		.loc 1 27 3 is_stmt 1 discriminator 8 view .LVU23
+ 151              		.loc 1 27 10 is_stmt 0 discriminator 8 view .LVU24
+ 152 0034 C0EE877A 		vdiv.f32	s15, s1, s14
+ 153 0038 F5EEC07A 		vcmpe.f32	s15, #0
+ 154 003c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 155 0040 09D4     		bmi	.L16
+ 156              		.loc 1 27 10 discriminator 2 view .LVU25
+ 157 0042 F7EE006A 		vmov.f32	s13, #1.0e+0
+ 158 0046 F4EEE67A 		vcmpe.f32	s15, s13
+ 159 004a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 160 004e 04DD     		ble	.L11
+ 161              		.loc 1 27 10 view .LVU26
+ 162 0050 F0EE667A 		vmov.f32	s15, s13
+ 163 0054 01E0     		b	.L11
+ 164              	.L16:
+ 165 0056 DFED207A 		vldr.32	s15, .L22+4
+ 166              	.L11:
+ 167              		.loc 1 27 8 discriminator 8 view .LVU27
+ 168 005a 214B     		ldr	r3, .L22+12
+ 169 005c C3ED007A 		vstr.32	s15, [r3]
+  28:Core/Src/motor.c ****   dc_c = _constrain(Uc / voltage_power_supply, 0.0f , 1.0f );
+ 170              		.loc 1 28 3 is_stmt 1 discriminator 8 view .LVU28
+ 171              		.loc 1 28 10 is_stmt 0 discriminator 8 view .LVU29
+ 172 0060 C1EE077A 		vdiv.f32	s15, s2, s14
+ 173 0064 F5EEC07A 		vcmpe.f32	s15, #0
+ 174 0068 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 175 006c 09D4     		bmi	.L17
+ 176              		.loc 1 28 10 discriminator 2 view .LVU30
+ 177 006e B7EE007A 		vmov.f32	s14, #1.0e+0
+ 178 0072 F4EEC77A 		vcmpe.f32	s15, s14
+ 179 0076 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 180 007a 04DD     		ble	.L13
+ 181              		.loc 1 28 10 view .LVU31
+ 182 007c F0EE477A 		vmov.f32	s15, s14
+ 183 0080 01E0     		b	.L13
+ 184              	.L17:
+ 185 0082 DFED157A 		vldr.32	s15, .L22+4
+ 186              	.L13:
+ 187              		.loc 1 28 8 discriminator 8 view .LVU32
+ 188 0086 174C     		ldr	r4, .L22+16
+ 189 0088 C4ED007A 		vstr.32	s15, [r4]
+  29:Core/Src/motor.c **** 
+  30:Core/Src/motor.c ****     // 更新 PWM 占空比
+  31:Core/Src/motor.c ****     HAL_GPIO_WritePin(Motor_EN_GPIO_Port, Motor_EN_Pin, GPIO_PIN_SET);
+ 190              		.loc 1 31 5 is_stmt 1 discriminator 8 view .LVU33
+ 191 008c 0122     		movs	r2, #1
+ 192 008e 2021     		movs	r1, #32
+ 193 0090 1548     		ldr	r0, .L22+20
+ 194 0092 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 195              	.LVL8:
+  32:Core/Src/motor.c ****     __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, dc_a*250);
+ 196              		.loc 1 32 5 discriminator 8 view .LVU34
+ 197 0096 114B     		ldr	r3, .L22+8
+ 198 0098 93ED007A 		vldr.32	s14, [r3]
+ 199 009c DFED136A 		vldr.32	s13, .L22+24
+ 200 00a0 27EE267A 		vmul.f32	s14, s14, s13
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 5
+
+
+ 201 00a4 124B     		ldr	r3, .L22+28
+ 202 00a6 1B68     		ldr	r3, [r3]
+ 203 00a8 BCEEC77A 		vcvt.u32.f32	s14, s14
+ 204 00ac 83ED0D7A 		vstr.32	s14, [r3, #52]	@ int
+  33:Core/Src/motor.c ****     __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_2, dc_b*250);
+ 205              		.loc 1 33 5 discriminator 8 view .LVU35
+ 206 00b0 0B4A     		ldr	r2, .L22+12
+ 207 00b2 92ED007A 		vldr.32	s14, [r2]
+ 208 00b6 27EE267A 		vmul.f32	s14, s14, s13
+ 209 00ba BCEEC77A 		vcvt.u32.f32	s14, s14
+ 210 00be 83ED0E7A 		vstr.32	s14, [r3, #56]	@ int
+  34:Core/Src/motor.c ****     __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_3, dc_c*250);
+ 211              		.loc 1 34 5 discriminator 8 view .LVU36
+ 212 00c2 D4ED007A 		vldr.32	s15, [r4]
+ 213 00c6 67EEA67A 		vmul.f32	s15, s15, s13
+ 214 00ca FCEEE77A 		vcvt.u32.f32	s15, s15
+ 215 00ce C3ED0F7A 		vstr.32	s15, [r3, #60]	@ int
+  35:Core/Src/motor.c ****     
+  36:Core/Src/motor.c ****     // HAL_GPIO_WritePin(Motor_EN_GPIO_Port, Motor_EN_Pin, GPIO_PIN_RESET);
+  37:Core/Src/motor.c **** }
+ 216              		.loc 1 37 1 is_stmt 0 discriminator 8 view .LVU37
+ 217 00d2 10BD     		pop	{r4, pc}
+ 218              	.L23:
+ 219              		.align	2
+ 220              	.L22:
+ 221 00d4 00000000 		.word	.LANCHOR0
+ 222 00d8 00000000 		.word	0
+ 223 00dc 00000000 		.word	.LANCHOR1
+ 224 00e0 00000000 		.word	.LANCHOR2
+ 225 00e4 00000000 		.word	.LANCHOR3
+ 226 00e8 00040240 		.word	1073873920
+ 227 00ec 00007A43 		.word	1132068864
+ 228 00f0 00000000 		.word	htim4
+ 229              		.cfi_endproc
+ 230              	.LFE169:
+ 232              		.global	__aeabi_dmul
+ 233              		.global	__aeabi_dsub
+ 234              		.global	__aeabi_dadd
+ 235              		.section	.text.setPhaseVoltage,"ax",%progbits
+ 236              		.align	1
+ 237              		.global	setPhaseVoltage
+ 238              		.syntax unified
+ 239              		.thumb
+ 240              		.thumb_func
+ 242              	setPhaseVoltage:
+ 243              	.LVL9:
+ 244              	.LFB170:
+  38:Core/Src/motor.c **** 
+  39:Core/Src/motor.c **** void setPhaseVoltage(float Uq,float Ud, float angle_el) 
+  40:Core/Src/motor.c **** {
+ 245              		.loc 1 40 1 is_stmt 1 view -0
+ 246              		.cfi_startproc
+ 247              		@ args = 0, pretend = 0, frame = 0
+ 248              		@ frame_needed = 0, uses_anonymous_args = 0
+ 249              		.loc 1 40 1 is_stmt 0 view .LVU39
+ 250 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 251              	.LCFI2:
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 6
+
+
+ 252              		.cfi_def_cfa_offset 32
+ 253              		.cfi_offset 4, -32
+ 254              		.cfi_offset 5, -28
+ 255              		.cfi_offset 6, -24
+ 256              		.cfi_offset 7, -20
+ 257              		.cfi_offset 8, -16
+ 258              		.cfi_offset 9, -12
+ 259              		.cfi_offset 10, -8
+ 260              		.cfi_offset 14, -4
+ 261 0004 2DED028B 		vpush.64	{d8}
+ 262              	.LCFI3:
+ 263              		.cfi_def_cfa_offset 40
+ 264              		.cfi_offset 80, -40
+ 265              		.cfi_offset 81, -36
+ 266 0008 10EE104A 		vmov	r4, s0
+  41:Core/Src/motor.c ****   angle_el = _normalizeAngle(angle_el + zero_electric_angle);
+ 267              		.loc 1 41 3 is_stmt 1 view .LVU40
+ 268              		.loc 1 41 14 is_stmt 0 view .LVU41
+ 269 000c 4A4B     		ldr	r3, .L26+8
+ 270 000e 93ED000A 		vldr.32	s0, [r3]
+ 271              	.LVL10:
+ 272              		.loc 1 41 14 view .LVU42
+ 273 0012 31EE000A 		vadd.f32	s0, s2, s0
+ 274 0016 FFF7FEFF 		bl	_normalizeAngle
+ 275              	.LVL11:
+ 276              		.loc 1 41 14 view .LVU43
+ 277 001a 10EE105A 		vmov	r5, s0
+ 278              	.LVL12:
+  42:Core/Src/motor.c ****   // 帕克逆变换
+  43:Core/Src/motor.c ****   Ualpha =  -Uq*sin(angle_el); 
+ 279              		.loc 1 43 3 is_stmt 1 view .LVU44
+ 280              		.loc 1 43 13 is_stmt 0 view .LVU45
+ 281 001e 84F00040 		eor	r0, r4, #-2147483648
+ 282 0022 FFF7FEFF 		bl	__aeabi_f2d
+ 283              	.LVL13:
+ 284 0026 0646     		mov	r6, r0
+ 285 0028 0F46     		mov	r7, r1
+ 286              		.loc 1 43 17 view .LVU46
+ 287 002a 2846     		mov	r0, r5	@ float
+ 288 002c FFF7FEFF 		bl	__aeabi_f2d
+ 289              	.LVL14:
+ 290 0030 41EC180B 		vmov	d8, r0, r1
+ 291 0034 41EC100B 		vmov	d0, r0, r1
+ 292 0038 FFF7FEFF 		bl	sin
+ 293              	.LVL15:
+ 294 003c 53EC102B 		vmov	r2, r3, d0
+ 295              		.loc 1 43 16 view .LVU47
+ 296 0040 3046     		mov	r0, r6
+ 297 0042 3946     		mov	r1, r7
+ 298 0044 FFF7FEFF 		bl	__aeabi_dmul
+ 299              	.LVL16:
+ 300 0048 FFF7FEFF 		bl	__aeabi_d2f
+ 301              	.LVL17:
+ 302 004c 8246     		mov	r10, r0	@ float
+ 303              		.loc 1 43 10 view .LVU48
+ 304 004e 3B4B     		ldr	r3, .L26+12
+ 305 0050 1860     		str	r0, [r3]	@ float
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 7
+
+
+  44:Core/Src/motor.c ****   Ubeta =   Uq*cos(angle_el); 
+ 306              		.loc 1 44 3 is_stmt 1 view .LVU49
+ 307              		.loc 1 44 16 is_stmt 0 view .LVU50
+ 308 0052 B0EE480A 		vmov.f32	s0, s16
+ 309 0056 F0EE680A 		vmov.f32	s1, s17
+ 310 005a FFF7FEFF 		bl	cos
+ 311              	.LVL18:
+ 312 005e 57EC106B 		vmov	r6, r7, d0
+ 313              		.loc 1 44 15 view .LVU51
+ 314 0062 2046     		mov	r0, r4	@ float
+ 315 0064 FFF7FEFF 		bl	__aeabi_f2d
+ 316              	.LVL19:
+ 317 0068 3246     		mov	r2, r6
+ 318 006a 3B46     		mov	r3, r7
+ 319 006c FFF7FEFF 		bl	__aeabi_dmul
+ 320              	.LVL20:
+ 321 0070 FFF7FEFF 		bl	__aeabi_d2f
+ 322              	.LVL21:
+ 323              		.loc 1 44 9 view .LVU52
+ 324 0074 324B     		ldr	r3, .L26+16
+ 325 0076 1860     		str	r0, [r3]	@ float
+  45:Core/Src/motor.c **** 
+  46:Core/Src/motor.c ****   // 克拉克逆变换
+  47:Core/Src/motor.c ****   Ua = Ualpha + voltage_power_supply/2;
+ 326              		.loc 1 47 3 is_stmt 1 view .LVU53
+ 327              		.loc 1 47 37 is_stmt 0 view .LVU54
+ 328 0078 324B     		ldr	r3, .L26+20
+ 329 007a 93ED008A 		vldr.32	s16, [r3]
+ 330 007e F6EE007A 		vmov.f32	s15, #5.0e-1
+ 331 0082 28EE278A 		vmul.f32	s16, s16, s15
+ 332              		.loc 1 47 15 view .LVU55
+ 333 0086 07EE90AA 		vmov	s15, r10
+ 334 008a 77EE888A 		vadd.f32	s17, s15, s16
+ 335              		.loc 1 47 6 view .LVU56
+ 336 008e 2E4B     		ldr	r3, .L26+24
+ 337 0090 C3ED008A 		vstr.32	s17, [r3]
+  48:Core/Src/motor.c ****   Ub = (sqrt(3)*Ubeta-Ualpha)/2 + voltage_power_supply/2;
+ 338              		.loc 1 48 3 is_stmt 1 view .LVU57
+ 339              		.loc 1 48 16 is_stmt 0 view .LVU58
+ 340 0094 FFF7FEFF 		bl	__aeabi_f2d
+ 341              	.LVL22:
+ 342 0098 25A3     		adr	r3, .L26
+ 343 009a D3E90023 		ldrd	r2, [r3]
+ 344 009e FFF7FEFF 		bl	__aeabi_dmul
+ 345              	.LVL23:
+ 346 00a2 0646     		mov	r6, r0
+ 347 00a4 0F46     		mov	r7, r1
+ 348              		.loc 1 48 22 view .LVU59
+ 349 00a6 5046     		mov	r0, r10	@ float
+ 350 00a8 FFF7FEFF 		bl	__aeabi_f2d
+ 351              	.LVL24:
+ 352 00ac 0246     		mov	r2, r0
+ 353 00ae 0B46     		mov	r3, r1
+ 354 00b0 3046     		mov	r0, r6
+ 355 00b2 3946     		mov	r1, r7
+ 356 00b4 FFF7FEFF 		bl	__aeabi_dsub
+ 357              	.LVL25:
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 8
+
+
+ 358              		.loc 1 48 30 view .LVU60
+ 359 00b8 0022     		movs	r2, #0
+ 360 00ba 244B     		ldr	r3, .L26+28
+ 361 00bc FFF7FEFF 		bl	__aeabi_dmul
+ 362              	.LVL26:
+ 363 00c0 8046     		mov	r8, r0
+ 364 00c2 8946     		mov	r9, r1
+ 365              		.loc 1 48 55 view .LVU61
+ 366 00c4 18EE100A 		vmov	r0, s16
+ 367 00c8 FFF7FEFF 		bl	__aeabi_f2d
+ 368              	.LVL27:
+ 369 00cc 0446     		mov	r4, r0
+ 370              	.LVL28:
+ 371              		.loc 1 48 55 view .LVU62
+ 372 00ce 0D46     		mov	r5, r1
+ 373              	.LVL29:
+ 374              		.loc 1 48 33 view .LVU63
+ 375 00d0 0246     		mov	r2, r0
+ 376 00d2 0B46     		mov	r3, r1
+ 377 00d4 4046     		mov	r0, r8
+ 378 00d6 4946     		mov	r1, r9
+ 379 00d8 FFF7FEFF 		bl	__aeabi_dadd
+ 380              	.LVL30:
+ 381 00dc FFF7FEFF 		bl	__aeabi_d2f
+ 382              	.LVL31:
+ 383 00e0 08EE100A 		vmov	s16, r0
+ 384              		.loc 1 48 6 view .LVU64
+ 385 00e4 1A4B     		ldr	r3, .L26+32
+ 386 00e6 1860     		str	r0, [r3]	@ float
+  49:Core/Src/motor.c ****   Uc = (-Ualpha-sqrt(3)*Ubeta)/2 + voltage_power_supply/2;
+ 387              		.loc 1 49 3 is_stmt 1 view .LVU65
+ 388              		.loc 1 49 9 is_stmt 0 view .LVU66
+ 389 00e8 8AF00040 		eor	r0, r10, #-2147483648
+ 390 00ec FFF7FEFF 		bl	__aeabi_f2d
+ 391              	.LVL32:
+ 392              		.loc 1 49 16 view .LVU67
+ 393 00f0 3246     		mov	r2, r6
+ 394 00f2 3B46     		mov	r3, r7
+ 395 00f4 FFF7FEFF 		bl	__aeabi_dsub
+ 396              	.LVL33:
+ 397              		.loc 1 49 31 view .LVU68
+ 398 00f8 0022     		movs	r2, #0
+ 399 00fa 144B     		ldr	r3, .L26+28
+ 400 00fc FFF7FEFF 		bl	__aeabi_dmul
+ 401              	.LVL34:
+ 402 0100 0246     		mov	r2, r0
+ 403 0102 0B46     		mov	r3, r1
+ 404              		.loc 1 49 34 view .LVU69
+ 405 0104 2046     		mov	r0, r4
+ 406 0106 2946     		mov	r1, r5
+ 407 0108 FFF7FEFF 		bl	__aeabi_dadd
+ 408              	.LVL35:
+ 409 010c FFF7FEFF 		bl	__aeabi_d2f
+ 410              	.LVL36:
+ 411 0110 01EE100A 		vmov	s2, r0
+ 412              		.loc 1 49 6 view .LVU70
+ 413 0114 0F4B     		ldr	r3, .L26+36
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 9
+
+
+ 414 0116 1860     		str	r0, [r3]	@ float
+  50:Core/Src/motor.c ****   setPwm(Ua,Ub,Uc);
+ 415              		.loc 1 50 3 is_stmt 1 view .LVU71
+ 416 0118 F0EE480A 		vmov.f32	s1, s16
+ 417 011c B0EE680A 		vmov.f32	s0, s17
+ 418 0120 FFF7FEFF 		bl	setPwm
+ 419              	.LVL37:
+  51:Core/Src/motor.c **** }
+ 420              		.loc 1 51 1 is_stmt 0 view .LVU72
+ 421 0124 BDEC028B 		vldm	sp!, {d8}
+ 422              	.LCFI4:
+ 423              		.cfi_restore 80
+ 424              		.cfi_restore 81
+ 425              		.cfi_def_cfa_offset 32
+ 426 0128 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 427              	.L27:
+ 428 012c AFF30080 		.align	3
+ 429              	.L26:
+ 430 0130 AA4C58E8 		.word	-396866390
+ 431 0134 7AB6FB3F 		.word	1073460858
+ 432 0138 00000000 		.word	.LANCHOR4
+ 433 013c 00000000 		.word	.LANCHOR5
+ 434 0140 00000000 		.word	.LANCHOR6
+ 435 0144 00000000 		.word	.LANCHOR0
+ 436 0148 00000000 		.word	.LANCHOR7
+ 437 014c 0000E03F 		.word	1071644672
+ 438 0150 00000000 		.word	.LANCHOR8
+ 439 0154 00000000 		.word	.LANCHOR9
+ 440              		.cfi_endproc
+ 441              	.LFE170:
+ 443              		.section	.text.velocityOpenloop,"ax",%progbits
+ 444              		.align	1
+ 445              		.global	velocityOpenloop
+ 446              		.syntax unified
+ 447              		.thumb
+ 448              		.thumb_func
+ 450              	velocityOpenloop:
+ 451              	.LVL38:
+ 452              	.LFB171:
+  52:Core/Src/motor.c **** 
+  53:Core/Src/motor.c **** //开环速度函数
+  54:Core/Src/motor.c **** float velocityOpenloop(float target_velocity)
+  55:Core/Src/motor.c **** {
+ 453              		.loc 1 55 1 is_stmt 1 view -0
+ 454              		.cfi_startproc
+ 455              		@ args = 0, pretend = 0, frame = 0
+ 456              		@ frame_needed = 0, uses_anonymous_args = 0
+ 457              		.loc 1 55 1 is_stmt 0 view .LVU74
+ 458 0000 10B5     		push	{r4, lr}
+ 459              	.LCFI5:
+ 460              		.cfi_def_cfa_offset 8
+ 461              		.cfi_offset 4, -8
+ 462              		.cfi_offset 14, -4
+ 463 0002 2DED028B 		vpush.64	{d8}
+ 464              	.LCFI6:
+ 465              		.cfi_def_cfa_offset 16
+ 466              		.cfi_offset 80, -16
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 10
+
+
+ 467              		.cfi_offset 81, -12
+ 468 0006 F0EE408A 		vmov.f32	s17, s0
+  56:Core/Src/motor.c ****   unsigned long now_us = micros();  //获取从开启芯片以来的微秒数，它的精度是 4 �
+ 469              		.loc 1 56 3 is_stmt 1 view .LVU75
+ 470              		.loc 1 56 26 is_stmt 0 view .LVU76
+ 471 000a FFF7FEFF 		bl	micros
+ 472              	.LVL39:
+ 473              		.loc 1 56 26 view .LVU77
+ 474 000e 08EE100A 		vmov	s16, r0	@ int
+ 475              	.LVL40:
+  57:Core/Src/motor.c ****   
+  58:Core/Src/motor.c ****   //计算当前每个Loop的运行时间间隔
+  59:Core/Src/motor.c ****   float Ts = (now_us - open_loop_timestamp) * 1e-6f;
+ 476              		.loc 1 59 3 is_stmt 1 view .LVU78
+ 477              		.loc 1 59 22 is_stmt 0 view .LVU79
+ 478 0012 B8EE488A 		vcvt.f32.u32	s16, s16
+ 479 0016 1F4B     		ldr	r3, .L33
+ 480 0018 D3ED007A 		vldr.32	s15, [r3]
+ 481 001c 78EE677A 		vsub.f32	s15, s16, s15
+ 482              		.loc 1 59 9 view .LVU80
+ 483 0020 9FED1D0A 		vldr.32	s0, .L33+4
+ 484 0024 67EE807A 		vmul.f32	s15, s15, s0
+ 485              	.LVL41:
+  60:Core/Src/motor.c **** 
+  61:Core/Src/motor.c ****   //由于 micros() 函数返回的时间戳会在大约 70 分钟之后重新开始计数，在由
+  62:Core/Src/motor.c ****   if(Ts <= 0 || Ts > 0.5f) Ts = 1e-3f;
+ 486              		.loc 1 62 3 is_stmt 1 view .LVU81
+ 487              		.loc 1 62 5 is_stmt 0 view .LVU82
+ 488 0028 F5EEC07A 		vcmpe.f32	s15, #0
+ 489 002c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 490 0030 09D9     		bls	.L30
+ 491              		.loc 1 62 14 discriminator 2 view .LVU83
+ 492 0032 B6EE007A 		vmov.f32	s14, #5.0e-1
+ 493 0036 F4EEC77A 		vcmpe.f32	s15, s14
+ 494 003a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 495 003e 04DD     		ble	.L29
+ 496              		.loc 1 62 31 view .LVU84
+ 497 0040 DFED167A 		vldr.32	s15, .L33+8
+ 498              	.LVL42:
+ 499              		.loc 1 62 31 view .LVU85
+ 500 0044 01E0     		b	.L29
+ 501              	.LVL43:
+ 502              	.L30:
+ 503              		.loc 1 62 31 view .LVU86
+ 504 0046 DFED157A 		vldr.32	s15, .L33+8
+ 505              	.LVL44:
+ 506              	.L29:
+  63:Core/Src/motor.c ****   
+  64:Core/Src/motor.c **** 
+  65:Core/Src/motor.c ****   // 通过乘以时间间隔和目标速度来计算需要转动的机械角度，存储在 shaft_
+  66:Core/Src/motor.c ****   shaft_angle = _normalizeAngle(shaft_angle + target_velocity*Ts);
+ 507              		.loc 1 66 3 is_stmt 1 view .LVU87
+ 508              		.loc 1 66 62 is_stmt 0 view .LVU88
+ 509 004a 67EEA87A 		vmul.f32	s15, s15, s17
+ 510              	.LVL45:
+ 511              		.loc 1 66 17 view .LVU89
+ 512 004e 144C     		ldr	r4, .L33+12
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 11
+
+
+ 513 0050 94ED000A 		vldr.32	s0, [r4]
+ 514 0054 37EE800A 		vadd.f32	s0, s15, s0
+ 515 0058 FFF7FEFF 		bl	_normalizeAngle
+ 516              	.LVL46:
+ 517              		.loc 1 66 15 view .LVU90
+ 518 005c 84ED000A 		vstr.32	s0, [r4]
+  67:Core/Src/motor.c ****   //以目标速度为 10 rad/s 为例，如果时间间隔是 1 秒，则在每个循环中需要�
+  68:Core/Src/motor.c ****   //如果时间间隔是 0.1 秒，那么在每个循环中需要增加的角度变化量就是 10
+  69:Core/Src/motor.c **** 
+  70:Core/Src/motor.c ****   // 使用早前设置的voltage_power_supply的1/3作为Uq值，这个值会直接影响输出力
+  71:Core/Src/motor.c ****   // 最大只能设置为Uq = voltage_power_supply/2，否则ua,ub,uc会超出供电电压限幅
+  72:Core/Src/motor.c ****   float Uq = voltage_power_supply/3;
+ 519              		.loc 1 72 3 is_stmt 1 view .LVU91
+ 520              		.loc 1 72 34 is_stmt 0 view .LVU92
+ 521 0060 104B     		ldr	r3, .L33+16
+ 522 0062 93ED007A 		vldr.32	s14, [r3]
+ 523              		.loc 1 72 9 view .LVU93
+ 524 0066 F0EE087A 		vmov.f32	s15, #3.0e+0
+ 525 006a C7EE278A 		vdiv.f32	s17, s14, s15
+ 526              	.LVL47:
+  73:Core/Src/motor.c ****   
+  74:Core/Src/motor.c ****   setPhaseVoltage(Uq,  0, _electricalAngle(shaft_angle, 7));
+ 527              		.loc 1 74 3 is_stmt 1 view .LVU94
+ 528 006e 0720     		movs	r0, #7
+ 529 0070 FFF7FEFF 		bl	_electricalAngle
+ 530              	.LVL48:
+ 531 0074 B0EE401A 		vmov.f32	s2, s0
+ 532 0078 DFED0B0A 		vldr.32	s1, .L33+20
+ 533 007c B0EE680A 		vmov.f32	s0, s17
+ 534 0080 FFF7FEFF 		bl	setPhaseVoltage
+ 535              	.LVL49:
+  75:Core/Src/motor.c ****   
+  76:Core/Src/motor.c ****   open_loop_timestamp = now_us;  //用于计算下一个时间间隔
+ 536              		.loc 1 76 3 view .LVU95
+ 537              		.loc 1 76 23 is_stmt 0 view .LVU96
+ 538 0084 034B     		ldr	r3, .L33
+ 539 0086 83ED008A 		vstr.32	s16, [r3]
+  77:Core/Src/motor.c **** 
+  78:Core/Src/motor.c ****   return Uq;
+ 540              		.loc 1 78 3 is_stmt 1 view .LVU97
+  79:Core/Src/motor.c **** }
+ 541              		.loc 1 79 1 is_stmt 0 view .LVU98
+ 542 008a B0EE680A 		vmov.f32	s0, s17
+ 543 008e BDEC028B 		vldm	sp!, {d8}
+ 544              	.LCFI7:
+ 545              		.cfi_restore 80
+ 546              		.cfi_restore 81
+ 547              		.cfi_def_cfa_offset 8
+ 548 0092 10BD     		pop	{r4, pc}
+ 549              	.L34:
+ 550              		.align	2
+ 551              	.L33:
+ 552 0094 00000000 		.word	.LANCHOR10
+ 553 0098 BD378635 		.word	897988541
+ 554 009c 6F12833A 		.word	981668463
+ 555 00a0 00000000 		.word	.LANCHOR11
+ 556 00a4 00000000 		.word	.LANCHOR0
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 12
+
+
+ 557 00a8 00000000 		.word	0
+ 558              		.cfi_endproc
+ 559              	.LFE171:
+ 561              		.global	dc_c
+ 562              		.global	dc_b
+ 563              		.global	dc_a
+ 564              		.global	Uc
+ 565              		.global	Ub
+ 566              		.global	Ua
+ 567              		.global	Ubeta
+ 568              		.global	Ualpha
+ 569              		.global	zero_electric_angle
+ 570              		.global	open_loop_timestamp
+ 571              		.global	shaft_angle
+ 572              		.global	voltage_power_supply
+ 573              		.section	.bss.Ua,"aw",%nobits
+ 574              		.align	2
+ 575              		.set	.LANCHOR7,. + 0
+ 578              	Ua:
+ 579 0000 00000000 		.space	4
+ 580              		.section	.bss.Ualpha,"aw",%nobits
+ 581              		.align	2
+ 582              		.set	.LANCHOR5,. + 0
+ 585              	Ualpha:
+ 586 0000 00000000 		.space	4
+ 587              		.section	.bss.Ub,"aw",%nobits
+ 588              		.align	2
+ 589              		.set	.LANCHOR8,. + 0
+ 592              	Ub:
+ 593 0000 00000000 		.space	4
+ 594              		.section	.bss.Ubeta,"aw",%nobits
+ 595              		.align	2
+ 596              		.set	.LANCHOR6,. + 0
+ 599              	Ubeta:
+ 600 0000 00000000 		.space	4
+ 601              		.section	.bss.Uc,"aw",%nobits
+ 602              		.align	2
+ 603              		.set	.LANCHOR9,. + 0
+ 606              	Uc:
+ 607 0000 00000000 		.space	4
+ 608              		.section	.bss.dc_a,"aw",%nobits
+ 609              		.align	2
+ 610              		.set	.LANCHOR1,. + 0
+ 613              	dc_a:
+ 614 0000 00000000 		.space	4
+ 615              		.section	.bss.dc_b,"aw",%nobits
+ 616              		.align	2
+ 617              		.set	.LANCHOR2,. + 0
+ 620              	dc_b:
+ 621 0000 00000000 		.space	4
+ 622              		.section	.bss.dc_c,"aw",%nobits
+ 623              		.align	2
+ 624              		.set	.LANCHOR3,. + 0
+ 627              	dc_c:
+ 628 0000 00000000 		.space	4
+ 629              		.section	.bss.open_loop_timestamp,"aw",%nobits
+ 630              		.align	2
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 13
+
+
+ 631              		.set	.LANCHOR10,. + 0
+ 634              	open_loop_timestamp:
+ 635 0000 00000000 		.space	4
+ 636              		.section	.bss.shaft_angle,"aw",%nobits
+ 637              		.align	2
+ 638              		.set	.LANCHOR11,. + 0
+ 641              	shaft_angle:
+ 642 0000 00000000 		.space	4
+ 643              		.section	.bss.zero_electric_angle,"aw",%nobits
+ 644              		.align	2
+ 645              		.set	.LANCHOR4,. + 0
+ 648              	zero_electric_angle:
+ 649 0000 00000000 		.space	4
+ 650              		.section	.data.voltage_power_supply,"aw"
+ 651              		.align	2
+ 652              		.set	.LANCHOR0,. + 0
+ 655              	voltage_power_supply:
+ 656 0000 00004041 		.word	1094713344
+ 657              		.text
+ 658              	.Letext0:
+ 659              		.file 2 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 660              		.file 3 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 661              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h"
+ 662              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 663              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 664              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 665              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 666              		.file 9 "Core/Inc/tim.h"
+ 667              		.file 10 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\math.h"
+ 668              		.file 11 "Core/Inc/stm32f4xx_it.h"
+ARM GAS  C:\Users\23612\AppData\Local\Temp\ccIT06eY.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 motor.c
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:20     .text._electricalAngle:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:26     .text._electricalAngle:00000000 _electricalAngle
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:51     .text._normalizeAngle:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:57     .text._normalizeAngle:00000000 _normalizeAngle
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:102    .text._normalizeAngle:00000038 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:109    .text.setPwm:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:115    .text.setPwm:00000000 setPwm
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:221    .text.setPwm:000000d4 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:236    .text.setPhaseVoltage:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:242    .text.setPhaseVoltage:00000000 setPhaseVoltage
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:430    .text.setPhaseVoltage:00000130 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:444    .text.velocityOpenloop:00000000 $t
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:450    .text.velocityOpenloop:00000000 velocityOpenloop
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:552    .text.velocityOpenloop:00000094 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:627    .bss.dc_c:00000000 dc_c
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:620    .bss.dc_b:00000000 dc_b
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:613    .bss.dc_a:00000000 dc_a
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:606    .bss.Uc:00000000 Uc
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:592    .bss.Ub:00000000 Ub
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:578    .bss.Ua:00000000 Ua
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:599    .bss.Ubeta:00000000 Ubeta
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:585    .bss.Ualpha:00000000 Ualpha
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:648    .bss.zero_electric_angle:00000000 zero_electric_angle
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:634    .bss.open_loop_timestamp:00000000 open_loop_timestamp
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:641    .bss.shaft_angle:00000000 shaft_angle
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:655    .data.voltage_power_supply:00000000 voltage_power_supply
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:574    .bss.Ua:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:581    .bss.Ualpha:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:588    .bss.Ub:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:595    .bss.Ubeta:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:602    .bss.Uc:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:609    .bss.dc_a:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:616    .bss.dc_b:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:623    .bss.dc_c:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:630    .bss.open_loop_timestamp:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:637    .bss.shaft_angle:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:644    .bss.zero_electric_angle:00000000 $d
+C:\Users\23612\AppData\Local\Temp\ccIT06eY.s:651    .data.voltage_power_supply:00000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_f2d
+__aeabi_d2f
+fmod
+HAL_GPIO_WritePin
+htim4
+__aeabi_dmul
+__aeabi_dsub
+__aeabi_dadd
+sin
+cos
+micros

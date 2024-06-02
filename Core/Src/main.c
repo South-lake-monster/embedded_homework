@@ -94,7 +94,8 @@ int main(void)
   MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_TIM4_Init();
- 
+  MX_SPI3_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
   SPI_LCD_Init();    // 初始化LCD
   HAL_TIM_Base_Start_IT(&htim4);

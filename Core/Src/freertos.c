@@ -26,18 +26,28 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "spi.h"
+#include "motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 //任务优先级
-#define LCDVIEW_TASK_PRIO	2
+#define LCDVIEW_TASK_PRIO	1
 //任务堆栈大小	
 #define LCDVIEW_STK_SIZE 	256  
 //任务句柄
 TaskHandle_t LCDViewTask_Handler;
 //任务函数
 void LCDViewTask(void *pvParameters);
+
+//任务优先级
+#define MOTOR_TASK_PRIO	2
+//任务堆栈大小	
+#define MOTOR_STK_SIZE 	256  
+//任务句柄
+TaskHandle_t MotorTask_Handler;
+//任务函数
+void MotorTask(void *pvParameters);
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -56,8 +66,6 @@ void 	LCD_Test_Variable (void);	   // 变量显示，包括整数和小数
 
 /* USER CODE END Variables */
 /* Definitions for startTask */
-#include "cmsis_os.h"
-
 osThreadId_t startTaskHandle;
 const osThreadAttr_t startTask_attributes = {
   .name = "startTask",
@@ -124,18 +132,25 @@ void MX_FREERTOS_Init(void) {
 void StartTask(void *argument)
 {
   /* USER CODE BEGIN StartTask */
-  taskENTER_CRITICAL();           //进入临界区
-	
+  taskENTER_CRITICAL();           //进入临界�?
 	//创建LCD显示的任务
-    xTaskCreate((TaskFunction_t )LCDViewTask,             
-                (const char*    )"LCDViewTask",           
-                (uint16_t       )LCDVIEW_STK_SIZE,        
-                (void*          )NULL,                  
-                (UBaseType_t    )LCDVIEW_TASK_PRIO,        
-                (TaskHandle_t*  )&LCDViewTask_Handler);   	
-       
-    osThreadTerminate(startTaskHandle); //删除开始任务
-    taskEXIT_CRITICAL();            //退出临界区
+  xTaskCreate((TaskFunction_t )LCDViewTask,             
+              (const char*    )"LCDViewTask",           
+              (uint16_t       )LCDVIEW_STK_SIZE,        
+              (void*          )NULL,                  
+              (UBaseType_t    )LCDVIEW_TASK_PRIO,        
+              (TaskHandle_t*  )&LCDViewTask_Handler);   	
+
+  //创建电机控制的任务
+  xTaskCreate((TaskFunction_t )MotorTask,             
+              (const char*    )"MotorTask",           
+              (uint16_t       )MOTOR_STK_SIZE,        
+              (void*          )NULL,                  
+              (UBaseType_t    )MOTOR_TASK_PRIO,        
+              (TaskHandle_t*  )&MotorTask_Handler); 
+      
+  osThreadTerminate(startTaskHandle); //删除开始任务
+  taskEXIT_CRITICAL();            //退出临界区
   /* USER CODE END StartTask */
 }
 
@@ -150,8 +165,17 @@ void LCDViewTask(void *pvParameters)
   }
 }
 
+void MotorTask(void *pvParameters)
+{
+  while(1)
+  {
+    velocityOpenloop(10);
+    vTaskDelay(1);
+  }
+}
+
 /*************************************************************************************************
-*	�??? �??? �???:	LCD_Test_Clear
+*	�???? �???? �????:	LCD_Test_Clear
 *
 *	函数功能:	清屏测试
 *************************************************************************************************/
@@ -164,7 +188,7 @@ void LCD_Test_Clear(void)
 
     for(i=0;i<5;i++)
     {
-        switch (i)		// 切换背景�???
+        switch (i)		// 切换背景�????
         {
             case 0: LCD_SetBackColor(LCD_DISP_RED); 		break;	
             case 1: LCD_SetBackColor(LCD_DISP_GREEN); 	break;				
@@ -180,21 +204,21 @@ void LCD_Test_Clear(void)
 
 
 /************************************************************************************************
-*	�??? �??? �???:	LCD_Test_Variable
+*	�???? �???? �????:	LCD_Test_Variable
 *
 *	函数功能:	变量显示，包括整数和小数
 *************************************************************************************************/
 void LCD_Test_Variable (void)
 {
     uint16_t i;					// 计数变量
-    int32_t	a = 0;			// 定义整数变量，用于测�???
-    int32_t	b = 0;			// 定义整数变量，用于测�???
-    int32_t	c = 0;			// 定义整数变量，用于测�???
+    int32_t	a = 0;			// 定义整数变量，用于测�????
+    int32_t	b = 0;			// 定义整数变量，用于测�????
+    int32_t	c = 0;			// 定义整数变量，用于测�????
 
     double p = 123.123;	// 定义浮点数变量，用于测试
     double f = -123.123;	// 定义浮点数变量，用于测试
     
-    LCD_SetBackColor(LCD_DISP_BLACK); 			//	设置背景�???
+    LCD_SetBackColor(LCD_DISP_BLACK); 			//	设置背景�????
     LCD_Clear(); 								// 清屏
        
     LCD_SetColor(LCD_DISP_BLUE);					// 设置画笔，蓝绿色		
@@ -212,20 +236,20 @@ void LCD_Test_Variable (void)
     for(i=0;i<100;i++)
     {
         LCD_SetColor(LCD_DISP_BLUE);								// 设置画笔	，蓝绿色	
-        LCD_ShowNumMode(Fill_Space);							// 多余位填充空�???
+        LCD_ShowNumMode(Fill_Space);							// 多余位填充空�????
         LCD_DisplayNumber( 80,30, b+i*10, 4) ;				// 显示变量			
         LCD_DisplayNumber( 80,60, c-i*10, 4) ;				// 显示变量			
         
         LCD_SetColor(LCD_DISP_GREEN);								// 设置画笔，亮黄色	
 
-        LCD_ShowNumMode(Fill_Space);								// 多余位填�??? 空格
+        LCD_ShowNumMode(Fill_Space);								// 多余位填�???? 空格
         LCD_DisplayNumber( 130,100, a+i*150, 8) ;				// 显示变量		
 
-        LCD_ShowNumMode(Fill_Zero);								// 多余位填�???0      
+        LCD_ShowNumMode(Fill_Zero);								// 多余位填�????0      
         LCD_DisplayNumber( 130,130, b+i*150, 8) ;				// 显示变量			
         
         LCD_SetColor(LCD_DISP_RED);									// 设置画笔，亮红色			
-        LCD_ShowNumMode(Fill_Space);								// 多余位填充空�???		
+        LCD_ShowNumMode(Fill_Space);								// 多余位填充空�????		
         LCD_DisplayDecimals( 100,170, p+i*0.1,  10,3);		// 显示小数	
         LCD_DisplayDecimals( 100,200, f+i*0.01, 10,4);		// 显示小数		
         

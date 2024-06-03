@@ -69,6 +69,7 @@ build/freertos.o: Core/Src/freertos.c \
  Drivers/CMSIS/DSP/Include/dsp/quaternion_math_functions.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
+ Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  Core/Inc/usart.h Core/Inc/main.h Core/Inc/spi.h Core/Inc/usart.h \
  Core/Inc/lcd_fonts.h Core/Inc/motor.h Core/Inc/tim.h \
  Core/Inc/stm32f4xx_it.h Core/Inc/motor.h Core/Inc/bsp_as5600.h \
@@ -145,6 +146,7 @@ Drivers/CMSIS/DSP/Include/dsp/filtering_functions.h:
 Drivers/CMSIS/DSP/Include/dsp/support_functions.h:
 Drivers/CMSIS/DSP/Include/dsp/quaternion_math_functions.h:
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
+Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
 Core/Inc/usart.h:
 Core/Inc/main.h:

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
   45              		.cfi_endproc
   46              	.LFE167:
   48              		.global	__aeabi_f2d
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 2
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 2
 
 
   49              		.global	__aeabi_d2f
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
   96 002e DFED047A 		vldr.32	s15, .L6+8
   97 0032 30EE270A 		vadd.f32	s0, s0, s15
   98 0036 F9E7     		b	.L2
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 3
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 3
 
 
   99              	.L7:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  147              		.loc 1 26 8 discriminator 8 view .LVU22
  148 002e 2B4B     		ldr	r3, .L22+8
  149 0030 C3ED007A 		vstr.32	s15, [r3]
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 4
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 4
 
 
   27:Core/Src/motor.c ****   dc_b = _constrain(Ub / voltage_power_supply, 0.0f , 1.0f );
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  198 0098 93ED007A 		vldr.32	s14, [r3]
  199 009c DFED136A 		vldr.32	s13, .L22+24
  200 00a0 27EE267A 		vmul.f32	s14, s14, s13
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 5
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 5
 
 
  201 00a4 124B     		ldr	r3, .L22+28
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  249              		.loc 1 40 1 is_stmt 0 view .LVU39
  250 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
  251              	.LCFI2:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 6
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 6
 
 
  252              		.cfi_def_cfa_offset 32
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  303              		.loc 1 43 10 view .LVU48
  304 004e 3B4B     		ldr	r3, .L26+12
  305 0050 1860     		str	r0, [r3]	@ float
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 7
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 7
 
 
   44:Core/Src/motor.c ****   Ubeta =   Uq*cos(angle_el); 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  355 00b2 3946     		mov	r1, r7
  356 00b4 FFF7FEFF 		bl	__aeabi_dsub
  357              	.LVL25:
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 8
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 8
 
 
  358              		.loc 1 48 30 view .LVU60
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  411 0110 01EE100A 		vmov	s2, r0
  412              		.loc 1 49 6 view .LVU70
  413 0114 0F4B     		ldr	r3, .L26+36
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 9
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 9
 
 
  414 0116 1860     		str	r0, [r3]	@ float
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  464              	.LCFI6:
  465              		.cfi_def_cfa_offset 16
  466              		.cfi_offset 80, -16
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 10
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 10
 
 
  467              		.cfi_offset 81, -12
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  510              	.LVL45:
  511              		.loc 1 66 17 view .LVU89
  512 004e 144C     		ldr	r4, .L33+12
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 11
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 11
 
 
  513 0050 94ED000A 		vldr.32	s0, [r4]
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  554 009c 6F12833A 		.word	981668463
  555 00a0 00000000 		.word	.LANCHOR11
  556 00a4 00000000 		.word	.LANCHOR0
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 12
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 12
 
 
  557 00a8 00000000 		.word	0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  628 0000 00000000 		.space	4
  629              		.section	.bss.open_loop_timestamp,"aw",%nobits
  630              		.align	2
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 13
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 13
 
 
  631              		.set	.LANCHOR10,. + 0
@@ -751,49 +751,49 @@ ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 1
  666              		.file 9 "Core/Inc/tim.h"
  667              		.file 10 "d:\\gcc-arm-none-eabi-10.3-2021.10\\arm-none-eabi\\include\\math.h"
  668              		.file 11 "Core/Inc/stm32f4xx_it.h"
-ARM GAS  C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s 			page 14
+ARM GAS  C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 motor.c
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:20     .text._electricalAngle:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:26     .text._electricalAngle:00000000 _electricalAngle
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:51     .text._normalizeAngle:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:57     .text._normalizeAngle:00000000 _normalizeAngle
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:102    .text._normalizeAngle:00000038 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:109    .text.setPwm:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:115    .text.setPwm:00000000 setPwm
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:221    .text.setPwm:000000d4 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:236    .text.setPhaseVoltage:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:242    .text.setPhaseVoltage:00000000 setPhaseVoltage
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:430    .text.setPhaseVoltage:00000130 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:444    .text.velocityOpenloop:00000000 $t
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:450    .text.velocityOpenloop:00000000 velocityOpenloop
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:552    .text.velocityOpenloop:00000094 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:627    .bss.dc_c:00000000 dc_c
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:620    .bss.dc_b:00000000 dc_b
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:613    .bss.dc_a:00000000 dc_a
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:606    .bss.Uc:00000000 Uc
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:592    .bss.Ub:00000000 Ub
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:578    .bss.Ua:00000000 Ua
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:599    .bss.Ubeta:00000000 Ubeta
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:585    .bss.Ualpha:00000000 Ualpha
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:648    .bss.zero_electric_angle:00000000 zero_electric_angle
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:634    .bss.open_loop_timestamp:00000000 open_loop_timestamp
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:641    .bss.shaft_angle:00000000 shaft_angle
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:655    .data.voltage_power_supply:00000000 voltage_power_supply
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:574    .bss.Ua:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:581    .bss.Ualpha:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:588    .bss.Ub:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:595    .bss.Ubeta:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:602    .bss.Uc:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:609    .bss.dc_a:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:616    .bss.dc_b:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:623    .bss.dc_c:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:630    .bss.open_loop_timestamp:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:637    .bss.shaft_angle:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:644    .bss.zero_electric_angle:00000000 $d
-C:\Users\23612\AppData\Local\Temp\ccgYMgm8.s:651    .data.voltage_power_supply:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:20     .text._electricalAngle:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:26     .text._electricalAngle:00000000 _electricalAngle
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:51     .text._normalizeAngle:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:57     .text._normalizeAngle:00000000 _normalizeAngle
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:102    .text._normalizeAngle:00000038 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:109    .text.setPwm:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:115    .text.setPwm:00000000 setPwm
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:221    .text.setPwm:000000d4 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:236    .text.setPhaseVoltage:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:242    .text.setPhaseVoltage:00000000 setPhaseVoltage
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:430    .text.setPhaseVoltage:00000130 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:444    .text.velocityOpenloop:00000000 $t
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:450    .text.velocityOpenloop:00000000 velocityOpenloop
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:552    .text.velocityOpenloop:00000094 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:627    .bss.dc_c:00000000 dc_c
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:620    .bss.dc_b:00000000 dc_b
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:613    .bss.dc_a:00000000 dc_a
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:606    .bss.Uc:00000000 Uc
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:592    .bss.Ub:00000000 Ub
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:578    .bss.Ua:00000000 Ua
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:599    .bss.Ubeta:00000000 Ubeta
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:585    .bss.Ualpha:00000000 Ualpha
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:648    .bss.zero_electric_angle:00000000 zero_electric_angle
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:634    .bss.open_loop_timestamp:00000000 open_loop_timestamp
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:641    .bss.shaft_angle:00000000 shaft_angle
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:655    .data.voltage_power_supply:00000000 voltage_power_supply
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:574    .bss.Ua:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:581    .bss.Ualpha:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:588    .bss.Ub:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:595    .bss.Ubeta:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:602    .bss.Uc:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:609    .bss.dc_a:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:616    .bss.dc_b:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:623    .bss.dc_c:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:630    .bss.open_loop_timestamp:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:637    .bss.shaft_angle:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:644    .bss.zero_electric_angle:00000000 $d
+C:\Users\23612\AppData\Local\Temp\cc2FnCKT.s:651    .data.voltage_power_supply:00000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_f2d

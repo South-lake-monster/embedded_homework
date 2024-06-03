@@ -25,6 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "cmsis_os2.h"
 #include "usart.h"
 #include "spi.h"
 #include "motor.h"
@@ -69,8 +70,11 @@ void 	LCD_Test_Variable (void);	   // 变量显示，包括整数和小数
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-float angle;
-int angle_int, angle_frac;
+float angle = 0;
+float angle_prev = 0;
+float d_angle = 0;
+float w = 0;
+int angle_int, angle_frac, w_int, w_frac;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -197,10 +201,16 @@ void HallTask(void *pvParameters)
 {
   while(1)
   {
-    angle = bsp_as5600GetAngle();
-    angle_int = (int)angle;
-    angle_frac = (int)((angle - angle_int) * 1000);
-    Usart1Printf("angle: %d.%03d \r\n", angle_int, angle_frac);
+    angle = fmod(bsp_as5600GetAngle(), 2*PI);
+    d_angle = angle - angle_prev;
+    w = d_angle / 0.1;
+    // angle_int = (int)angle;
+    // angle_frac = (int)(angle * 1000) % 1000;
+    // Usart1Printf("angle: %d.%03d \r\n", angle_int, angle_frac);
+    w_int = (int)w;
+    w_frac = (int)(w * 1000) % 1000;
+    Usart1Printf("w: %d.%03d \r\n", w_int, w_frac);
+    angle_prev = angle;
     vTaskDelay(100);
   }
 }

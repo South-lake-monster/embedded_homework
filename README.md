@@ -1,6 +1,6 @@
 ### 试验报告：
 
-目的：学习STM32嵌入式编程，掌握STM32硬件资源的使用，实现STM32控制五刷直流电机实现FOC控制算法，并将电机转速、转向等信息显示在屏幕上。
+​		目的：学习STM32嵌入式编程，掌握STM32硬件资源的使用，实现STM32控制五刷直流电机实现FOC控制算法，并进行电机转动、屏幕显示、霍尔传感器测速、串口通信等测试。
 
 [TOC]
 
@@ -12,9 +12,9 @@
 
 #### 1、硬件
 
-- 正点原子STM32F429IGT6单片机
-- DAP仿真器
-- SPI屏幕（240*320分辨率）
+- 正点原子STM32F429IGT6单片机（阿波罗）
+- 正点原子高速DAP仿真器
+- SPI屏幕（240*320分辨率）（反客）
 - 2804无刷直流电机+AS5600霍尔传感器
 - simpleFOC电机驱动
 
@@ -945,4 +945,398 @@ void LCD_Test_Variable (void)
 **效果：**
 
 <video src="assets/LCD.mp4"></video>
+
+------
+
+#### 4、加入freeRTOS操作系统
+
+##### （1）stm32cubemx配置
+
+- 更改系统时钟源
+
+![image-20240603103420339](assets/image-20240603103420339.png)
+
+​		将时钟源由systick改为不用的定时器，这里我用的是tim1。这个不改也可以，这里配置的时钟源是hal库的时钟源，freeRTOS系统的时钟源默认使用的也是systick，如果这里不更改的话，在生成代码的时候会有警告，而且在程序运行的时候可能会出现意想不到的错误，因此建议更改系统时钟源，除了systick都可以的。
+
+- 在软件库中找到并下载freeRTOS的包
+
+![image-20240603103938998](assets/image-20240603103938998.png)
+
+- freeRTOS配置
+
+![image-20240603104842838](assets/image-20240603104842838.png)
+
+![image-20240603104906243](assets/image-20240603104906243.png)
+
+​		只需要把FPU使能就可以，其他默认。
+
+（2）代码编写
+
+​		有了操作系统，main函数中执行的程序就可以转移到freertos.c的任务中执行。
+
+​		**注：stm32cubemx生成的freertos操作系统的版本为CMSIS-V2版本，是适用于所有cortex内核的版本，但是除了cortex内核却不能适配，因为该版本对操作系统针对cortex内核进行了进一步封装，其api函数与freertos官方所提供的api函数并不一样，但是我并没有找到CMSIS-V2版本的官方文档，链接显示404，没有这个文档，我不知道怎么使用这个版本的操作系统，不过这个版本毕竟是对原freertos版本的进一步封装，因此原freertos版本的api函数仍可以使用，freertos官方的api介绍文档很详细，我就是跟着官方文档来做的。下面是两个版本的官方文档链接，希望有人知道CMSIS-V2版本的api使用官方文档怎么打开：**
+
+[RTOS - Free professionally developed and robust real time operating system for small embedded systems development (freertos.org)](https://www.freertos.org/zh-cn-cmn-s/RTOS.html)
+
+[CMSIS-FreeRTOS: CMSIS-FreeRTOS (arm-software.github.io)](https://arm-software.github.io/CMSIS-FreeRTOS/main/index.html)
+
+```
+void StartTask(void *argument)
+{
+  /* USER CODE BEGIN StartTask */
+  taskENTER_CRITICAL();           //进入临界区
+	//创建LCD的显示任务
+  xTaskCreate((TaskFunction_t )LCDViewTask,             
+              (const char*    )"LCDViewTask",           
+              (uint16_t       )LCDVIEW_STK_SIZE,        
+              (void*          )NULL,                  
+              (UBaseType_t    )LCDVIEW_TASK_PRIO,        
+              (TaskHandle_t*  )&LCDViewTask_Handler);   	
+      
+  osThreadTerminate(startTaskHandle); //删除初始任务
+  taskEXIT_CRITICAL();            //退出临界区
+  /* USER CODE END StartTask */
+}
+```
+
+​		把stm32cubemx默认创建的初始任务作为初始化所有任务的任务，在初始化所有任务的时候进入临界区，保证这个过程不会被任务调度器打断，在初始化所有任务之后，初始任务的使命就完成了，为了节约资源，在退出任务的时候把自己释放掉。这里先只初始化了LCD显示任务，后续有其他任务也同样在这里创建。
+
+```
+//任务优先级
+#define LCDVIEW_TASK_PRIO	1
+//任务堆栈大小	
+#define LCDVIEW_STK_SIZE 	256  
+//任务句柄
+TaskHandle_t LCDViewTask_Handler;
+//任务函数
+void LCDViewTask(void *pvParameters);
+```
+
+​		在创建任务之前，要先在前面定义任务的句柄。
+
+```
+void LCDViewTask(void *pvParameters)
+{
+  while(1)
+  {
+    LCD_Test_Clear();    // 清屏测试
+    LCD_Test_Variable();    // 变量显示测试
+  }
+}
+```
+
+​		任务里实现的函数就和之前没有操作系统时while(1)中的内容相同。
+
+------
+
+#### 5、直流无刷电机FOC开环速度控制
+
+##### （1）stm32cubemx配置
+
+​		电机驱动器一共有四个输入，三个PWM输入，用来控制电机转动，一个EN使能引脚。
+
+![image-20240603194423436](assets/image-20240603194423436.png)
+
+​		配置PB5为电机使能引脚。
+
+![image-20240603194542854](assets/image-20240603194542854.png)
+
+​		配置TIM4输出三路PWM波，PWM的周期为50us，占空比为50%，开启重装载寄存器。
+
+![image-20240603194757597](assets/image-20240603194757597.png)
+
+![image-20240603194946145](assets/image-20240603194946145.png)
+
+​		配置TIM5进行运行时间统计，开启定时器溢出中断，1us进一次中断计时。
+
+##### （2）代码编写
+
+​		FOC的原理较为复杂，这里就不详细解释了，而且我也没有真的实现FOC控制算法，只是一个开环的速度算法，没有使用SVPWM技术，用的最简单的SPWM算法，下面是详细代码：
+
+```
+#include "motor.h"
+
+float voltage_power_supply=12;
+float shaft_angle=0,open_loop_timestamp=0;
+float zero_electric_angle=0,Ualpha,Ubeta=0,Ua=0,Ub=0,Uc=0,dc_a=0,dc_b=0,dc_c=0;
+
+// 电角度求解
+float _electricalAngle(float shaft_angle, int pole_pairs)
+{
+    return (shaft_angle * pole_pairs);
+}
+
+// 归一化角度到 [0,2PI]
+float _normalizeAngle(float angle)
+{
+    float a = fmod(angle, 2*PI);   //取余运算可以用于归一化，列出特殊值例子算便知
+    return a >= 0 ? a : (a + 2*PI);  
+}
+
+// 设置PWM到控制器输出
+void setPwm(float Ua, float Ub, float Uc) 
+{
+
+  // 计算占空比
+  // 限制占空比从0到1
+  dc_a = _constrain(Ua / voltage_power_supply, 0.0f , 1.0f );
+  dc_b = _constrain(Ub / voltage_power_supply, 0.0f , 1.0f );
+  dc_c = _constrain(Uc / voltage_power_supply, 0.0f , 1.0f );
+
+    // 更新 PWM 占空比
+    HAL_GPIO_WritePin(Motor_EN_GPIO_Port, Motor_EN_Pin, GPIO_PIN_SET);
+    __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, dc_a*250);
+    __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_2, dc_b*250);
+    __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_3, dc_c*250);
+    
+    // HAL_GPIO_WritePin(Motor_EN_GPIO_Port, Motor_EN_Pin, GPIO_PIN_RESET);
+}
+
+void setPhaseVoltage(float Uq,float Ud, float angle_el) 
+{
+  angle_el = _normalizeAngle(angle_el + zero_electric_angle);
+  // 帕克逆变换
+  Ualpha =  -Uq*sin(angle_el); 
+  Ubeta =   Uq*cos(angle_el); 
+
+  // 克拉克逆变换
+  Ua = Ualpha + voltage_power_supply/2;
+  Ub = (sqrt(3)*Ubeta-Ualpha)/2 + voltage_power_supply/2;
+  Uc = (-Ualpha-sqrt(3)*Ubeta)/2 + voltage_power_supply/2;
+  setPwm(Ua,Ub,Uc);
+}
+
+//开环速度函数
+float velocityOpenloop(float target_velocity)
+{
+  unsigned long now_us = micros();  //获取从开启芯片以来的微秒数，它的精度是 4 微秒。 micros() 返回的是一个无符号长整型（unsigned long）的值
+  
+  //计算当前每个Loop的运行时间间隔
+  float Ts = (now_us - open_loop_timestamp) * 1e-6f;
+
+  //由于 micros() 函数返回的时间戳会在大约 70 分钟之后重新开始计数，在由70分钟跳变到0时，TS会出现异常，因此需要进行修正。如果时间间隔小于等于零或大于 0.5 秒，则将其设置为一个较小的默认值，即 1e-3f
+  if(Ts <= 0 || Ts > 0.5f) Ts = 1e-3f;
+  
+
+  // 通过乘以时间间隔和目标速度来计算需要转动的机械角度，存储在 shaft_angle 变量中。在此之前，还需要对轴角度进行归一化，以确保其值在 0 到 2π 之间。
+  shaft_angle = _normalizeAngle(shaft_angle + target_velocity*Ts);
+  //以目标速度为 10 rad/s 为例，如果时间间隔是 1 秒，则在每个循环中需要增加 10 * 1 = 10 弧度的角度变化量，才能使电机转动到目标速度。
+  //如果时间间隔是 0.1 秒，那么在每个循环中需要增加的角度变化量就是 10 * 0.1 = 1 弧度，才能实现相同的目标速度。因此，电机轴的转动角度取决于目标速度和时间间隔的乘积。
+
+  // 使用早前设置的voltage_power_supply的1/3作为Uq值，这个值会直接影响输出力矩
+  // 最大只能设置为Uq = voltage_power_supply/2，否则ua,ub,uc会超出供电电压限幅
+  float Uq = voltage_power_supply/3;
+  
+  setPhaseVoltage(Uq,  0, _electricalAngle(shaft_angle, 7));
+  
+  open_loop_timestamp = now_us;  //用于计算下一个时间间隔
+
+  return Uq;
+}
+
+```
+
+​		计时函数加在TIM5的中断服务函数中了：
+
+```
+void TIM5_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM5_IRQn 0 */
+
+  /* USER CODE END TIM5_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim5);
+  /* USER CODE BEGIN TIM5_IRQn 1 */
+  micros_counter++; // 定时器每滴答一次，微秒计数器加1
+  /* USER CODE END TIM5_IRQn 1 */
+}
+/* USER CODE BEGIN 1 */
+uint32_t micros(void) 
+{
+    return micros_counter;
+}
+/* USER CODE END 1 */
+```
+
+------
+
+#### 6、AS5600霍尔传感器读数
+
+##### （1）stm32cubemx配置
+
+​		AS5600采用的IIC通信协议，因此cubemx需要对IIC进行设置，这里用的IIC2，配置如下，不需要开中断：
+
+![image-20240603201239951](assets/image-20240603201239951.png)
+
+![image-20240603201301598](assets/image-20240603201301598.png)
+
+![image-20240603201336505](assets/image-20240603201336505.png)
+
+##### （2）代码编写
+
+​		as5600作为i2c通信的从机的地址固定为**0x36**，七位二进制表示为**0110110**，从**0x0c和0x0d**可以读出当前霍尔传感器的角度信息，as5600的精度为4096，因此**当前电机所在角度（弧度）=读出的角度信息/4096*2Π**。
+
+![image-20240603203413127](assets/image-20240603203413127.png)
+
+![image-20240603203424825](assets/image-20240603203424825.png)
+
+![image-20240603203435095](assets/image-20240603203435095.png)
+
+​		从上图可以看出，如果想要在地址0x0c、0x0d读取原始角度数据，需要先向01101100，也就是0x36<<1，发送0x0c，然后再向01101101，也就是(0x36<<1)|1读取数据，代码如下：
+
+```
+#define AS5600_RAW_ADDR    0x36
+#define AS5600_WRITE_ADDR  (AS5600_RAW_ADDR << 1)
+#define AS5600_READ_ADDR   ((AS5600_RAW_ADDR << 1) | 1)
+
+#define AS5600_RESOLUTION 4096 //12bit Resolution 
+
+#define AS5600_RAW_ANGLE_REGISTER  0x0C
+
+//向霍尔传感器寄存器写入数据
+static int i2cWrite(uint8_t dev_addr, uint8_t *pData, uint32_t count)
+{
+    int status;
+    int i2c_time_out = I2C_TIME_OUT_BASE + count * I2C_TIME_OUT_BYTE;
+
+    status = HAL_I2C_Master_Transmit(&AS5600_I2C_HANDLE, dev_addr, pData, count, i2c_time_out);
+    return status;
+}
+
+//读取霍尔传感器寄存器数据
+static int i2cRead(uint8_t dev_addr, uint8_t *pData, uint32_t count)
+{
+    int status;
+    int i2c_time_out = I2C_TIME_OUT_BASE + count * I2C_TIME_OUT_BYTE;
+
+    status = HAL_I2C_Master_Receive(&AS5600_I2C_HANDLE, dev_addr, pData, count, i2c_time_out);
+    return status;
+}
+
+//获取霍尔传感器原始角度
+uint16_t bsp_as5600GetRawAngle(void)
+{
+    uint16_t raw_angle;
+    uint8_t buffer[2] = {0};
+    uint8_t raw_angle_register = AS5600_RAW_ANGLE_REGISTER;
+
+    i2cWrite(AS5600_WRITE_ADDR, &raw_angle_register, 1);
+    i2cRead(AS5600_READ_ADDR, buffer, 2);
+    raw_angle = ((uint16_t)buffer[0] << 8) | (uint16_t)buffer[1];
+    return raw_angle;
+}
+```
+
+------
+
+### 三、各模块组合测试
+
+```
+//任务优先级
+#define LCDVIEW_TASK_PRIO	1
+//任务堆栈大小	
+#define LCDVIEW_STK_SIZE 	256  
+//任务句柄
+TaskHandle_t LCDViewTask_Handler;
+//任务函数
+void LCDViewTask(void *pvParameters);
+
+//任务优先级
+#define MOTOR_TASK_PRIO	3
+//任务堆栈大小	
+#define MOTOR_STK_SIZE 	256  
+//任务句柄
+TaskHandle_t MotorTask_Handler;
+//任务函数
+void MotorTask(void *pvParameters);
+
+//任务优先级
+#define HALL_TASK_PRIO	2
+//任务堆栈大小	
+#define HALL_STK_SIZE 	256  
+//任务句柄
+TaskHandle_t HallTask_Handler;
+//任务函数
+void HallTask(void *pvParameters);
+```
+
+​		创建了三个任务：LCD显示任务、电机控制任务和霍尔传感器测速任务。
+
+```
+/* USER CODE END Header_StartTask */
+void StartTask(void *argument)
+{
+  /* USER CODE BEGIN StartTask */
+  taskENTER_CRITICAL();           //进入临界区
+	//创建LCD的显示任务
+  xTaskCreate((TaskFunction_t )LCDViewTask,             
+              (const char*    )"LCDViewTask",           
+              (uint16_t       )LCDVIEW_STK_SIZE,        
+              (void*          )NULL,                  
+              (UBaseType_t    )LCDVIEW_TASK_PRIO,        
+              (TaskHandle_t*  )&LCDViewTask_Handler);   	
+
+  //创建电机控制任务
+  xTaskCreate((TaskFunction_t )MotorTask,             
+              (const char*    )"MotorTask",           
+              (uint16_t       )MOTOR_STK_SIZE,        
+              (void*          )NULL,                  
+              (UBaseType_t    )MOTOR_TASK_PRIO,        
+              (TaskHandle_t*  )&MotorTask_Handler); 
+  //创建霍尔传感器任务
+  xTaskCreate((TaskFunction_t )HallTask,             
+              (const char*    )"HallTask",           
+              (uint16_t       )HALL_STK_SIZE,        
+              (void*          )NULL,                  
+              (UBaseType_t    )HALL_TASK_PRIO,        
+              (TaskHandle_t*  )&HallTask_Handler); 
+      
+  osThreadTerminate(startTaskHandle); //删除初始任务
+  taskEXIT_CRITICAL();            //退出临界区
+  /* USER CODE END StartTask */
+}
+```
+
+​		初始化任务。
+
+```
+void LCDViewTask(void *pvParameters)
+{
+  while(1)
+  {
+    LCD_Test_Clear();    // 清屏测试
+    LCD_Test_Variable();    // 变量显示测试
+  }
+}
+
+void MotorTask(void *pvParameters)
+{
+  while(1)
+  {
+    velocityOpenloop(10);
+    vTaskDelay(1);
+  }
+}
+
+void HallTask(void *pvParameters)
+{
+  while(1)
+  {
+    angle = fmod(bsp_as5600GetAngle(), 2*PI);
+    d_angle = angle - angle_prev;
+    w = d_angle / 0.1;
+    // angle_int = (int)angle;
+    // angle_frac = (int)(angle * 1000) % 1000;
+    // Usart1Printf("angle: %d.%03d \r\n", angle_int, angle_frac);
+    w_int = (int)w;
+    w_frac = (int)(w * 1000) % 1000;
+    Usart1Printf("w: %d.%03d \r\n", w_int, w_frac);
+    angle_prev = angle;
+    vTaskDelay(100);
+  }
+}
+```
+
+​		进行LCD屏幕显示测试、电机转动测试和霍尔传感器测速测试。
+
+效果：
 
